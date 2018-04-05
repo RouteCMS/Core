@@ -26,7 +26,7 @@ if (!defined("CURRENT_URI"))
 /**
  * @author        Olaf Braun
  * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       Braun-Development.de License <https://www.braun-development.de/lizenz.html>
+ * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  */
 class RouteCMS
 {
@@ -53,7 +53,7 @@ class RouteCMS
 		/** @noinspection PhpIncludeInspection */
 		$dbConf = include GLOBAL_DIR . "/config/db.php";
 		//init database
-		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "model"], true, null, DoctrineCache::instance(), false);
+		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "model"], DEV_MODE, null, DoctrineCache::instance(), false);
 		$this->database = EntityManager::create(array_merge([
 			'charset'   => 'utf8mb4',
 			'collation' => 'utf8mb4_unicode_ci',

@@ -3,7 +3,7 @@
 namespace RouteCMS\Cache;
 
 use Doctrine\Common\Cache\CacheProvider;
-use RouteCMS\Core;
+use RouteCMS\RouteCMS;
 use RouteCMS\Singleton;
 
 /**
@@ -29,11 +29,11 @@ class DoctrineCache extends CacheProvider
 	 */
 	protected function doFetch($id)
 	{
-		if (!$this->doContains($id) || Core::instance()->getCache()->getItem($id)->get() !== null) {
+		if (!$this->doContains($id) || RouteCMS::instance()->getCache()->getItem($id)->get() !== null) {
 			return false;
 		}
 
-		return Core::instance()->getCache()->getItem($id)->get();
+		return RouteCMS::instance()->getCache()->getItem($id)->get();
 	}
 
 	/**
@@ -41,7 +41,7 @@ class DoctrineCache extends CacheProvider
 	 */
 	protected function doContains($id)
 	{
-		return Core::instance()->getCache()->hasItem($id);
+		return RouteCMS::instance()->getCache()->hasItem($id);
 	}
 
 	/**
@@ -115,11 +115,11 @@ class DoctrineCache extends CacheProvider
 	 */
 	protected function doSave($id, $data, $lifeTime = 0)
 	{
-		$item = Core::instance()->getCache()->getItem($id);
+		$item = RouteCMS::instance()->getCache()->getItem($id);
 		$item->set($data);
 		$item->expiresAfter($lifeTime ? $lifeTime : 0);
 
-		return Core::instance()->getCache()->save($item);
+		return RouteCMS::instance()->getCache()->save($item);
 	}
 
 	/**
@@ -135,7 +135,7 @@ class DoctrineCache extends CacheProvider
 	 */
 	protected function doDelete($id)
 	{
-		return Core::instance()->getCache()->deleteItem($id);
+		return RouteCMS::instance()->getCache()->deleteItem($id);
 	}
 
 	/**
@@ -143,7 +143,7 @@ class DoctrineCache extends CacheProvider
 	 */
 	protected function doFlush()
 	{
-		return Core::instance()->getCache()->clear();
+		return RouteCMS::instance()->getCache()->clear();
 	}
 
 	/**
@@ -151,6 +151,6 @@ class DoctrineCache extends CacheProvider
 	 */
 	protected function doGetStats()
 	{
-		return Core::instance()->getCache()->getStats();
+		return RouteCMS::instance()->getCache()->getStats();
 	}
 }

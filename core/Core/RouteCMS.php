@@ -63,8 +63,10 @@ class RouteCMS
 			$tool = new SchemaTool($this->database);
 			$tool->updateSchema($this->database->getMetadataFactory()->getAllMetadata(), false);
 		}
+		//close database Core@loadDatabase
 		Performance::finish();
 
+		//close database Core@load
 		Performance::finish();
 	}
 

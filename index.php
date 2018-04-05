@@ -5,6 +5,7 @@
  * @license       Braun-Development.de License <https://www.braun-development.de/lizenz.html>
  */
 
+use Doctrine\ORM\EntityManager;
 use RouteCMS\RouteCMS;
 
 if (!defined('GLOBAL_DIR')) {
@@ -16,3 +17,13 @@ include GLOBAL_DIR . "config/config.php";
 require_once "vendor/autoload.php";
 $cms = RouteCMS::instance();
 $cms->load();
+
+//define some simple functions
+/**
+ * Return the database object
+ * 
+ * @return EntityManager
+ */
+function getDatabase() : EntityManager{
+	return RouteCMS::instance()->getDatabase();
+}

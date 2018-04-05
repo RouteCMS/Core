@@ -38,7 +38,7 @@
   },
   "autoload": {
     "psr-4": {
-     
+      "RouteCMS\\": "core/"
     }
   },
   "autoload-dev": {

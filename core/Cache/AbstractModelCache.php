@@ -3,7 +3,7 @@
 namespace RouteCMS\Cache;
 
 use Doctrine\Common\Collections\Criteria;
-use RouteCMS\Core;
+use RouteCMS\Core\RouteCMS;
 
 /**
  * @author        Olaf Braun
@@ -187,7 +187,7 @@ abstract class AbstractModelCache extends AbstractCache
 	protected function updateCache()
 	{
 		$this->cacheItem->set($this->models)->expiresAfter($this->maxLifetime);
-		Core::instance()->getCache()->save($this->cacheItem);
+		RouteCMS::instance()->getCache()->save($this->cacheItem);
 	}
 
 	/**

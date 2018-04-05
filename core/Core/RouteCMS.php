@@ -1,6 +1,6 @@
 <?php
 
-namespace RouteCMS;
+namespace RouteCMS\Core;
 
 use Darsyn\IP\Doctrine\IpType;
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -63,8 +63,10 @@ class RouteCMS
 			$tool = new SchemaTool($this->database);
 			$tool->updateSchema($this->database->getMetadataFactory()->getAllMetadata(), false);
 		}
+		//close database Core@loadDatabase
 		Performance::finish();
 
+		//close database Core@load
 		Performance::finish();
 	}
 

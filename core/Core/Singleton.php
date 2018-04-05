@@ -1,6 +1,6 @@
 <?php
 
-namespace RouteCMS;
+namespace RouteCMS\Core;
 
 /**
  * @author        Olaf Braun

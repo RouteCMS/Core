@@ -3,8 +3,8 @@
 namespace RouteCMS\Cache;
 
 use Phpfastcache\Core\Item\ExtendedCacheItemInterface;
-use RouteCMS\RouteCMS;
-use RouteCMS\Singleton;
+use RouteCMS\Core\RouteCMS;
+use RouteCMS\Core\Singleton;
 
 /**
  * @author        Olaf Braun

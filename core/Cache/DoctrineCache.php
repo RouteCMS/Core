@@ -3,8 +3,8 @@
 namespace RouteCMS\Cache;
 
 use Doctrine\Common\Cache\CacheProvider;
-use RouteCMS\RouteCMS;
-use RouteCMS\Singleton;
+use RouteCMS\Core\RouteCMS;
+use RouteCMS\Core\Singleton;
 
 /**
  * @author        Olaf Braun

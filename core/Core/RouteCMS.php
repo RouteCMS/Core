@@ -1,6 +1,6 @@
 <?php
 
-namespace RouteCMS;
+namespace RouteCMS\Core;
 
 use Darsyn\IP\Doctrine\IpType;
 use Doctrine\Common\Annotations\AnnotationReader;

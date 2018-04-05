@@ -6,7 +6,7 @@
  */
 
 use Doctrine\ORM\EntityManager;
-use RouteCMS\RouteCMS;
+use RouteCMS\Core\RouteCMS;
 
 if (!defined('GLOBAL_DIR')) {
 	define('GLOBAL_DIR', str_replace('\\', '/', dirname(__FILE__)) . '/');

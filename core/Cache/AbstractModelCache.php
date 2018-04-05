@@ -3,7 +3,7 @@
 namespace RouteCMS\Cache;
 
 use Doctrine\Common\Collections\Criteria;
-use RouteCMS\RouteCMS;
+use RouteCMS\Core\RouteCMS;
 
 /**
  * @author        Olaf Braun

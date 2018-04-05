@@ -4,6 +4,7 @@ namespace RouteCMS\Model;
 
 use RouteCMS\Annotations\Database\ModelCache;
 use RouteCMS\Model\Interfaces\EMailInterface;
+use RouteCMS\Model\Interfaces\IDInterface;
 use RouteCMS\Model\Interfaces\IpAddressInterface;
 use RouteCMS\Model\Interfaces\TimeInterface;
 
@@ -19,6 +20,7 @@ use RouteCMS\Model\Interfaces\TimeInterface;
  */
 class User
 {
+	use IDInterface;
 	use EMailInterface;
 	use TimeInterface;
 	use IpAddressInterface;

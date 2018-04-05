@@ -44,7 +44,7 @@ trait Singleton
 	 *
 	 * @return    boolean
 	 */
-	public static final function isInitialized()
+	public static final function isInitialized(): bool
 	{
 		$className = get_called_class();
 
@@ -64,7 +64,7 @@ trait Singleton
 	/**
 	 * Overwrite constructor function for a singleton
 	 */
-	protected function init()
+	protected function init(): void
 	{
 	}
 

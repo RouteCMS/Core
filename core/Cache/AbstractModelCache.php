@@ -193,7 +193,7 @@ abstract class AbstractModelCache extends AbstractCache
 	/**
 	 * @inheritDoc
 	 */
-	protected function init()
+	protected function init():void
 	{
 		parent::init();
 		$cache = $this->getCache();

@@ -31,7 +31,7 @@ trait IpAddressInterface
 	/**
 	 * @param IP $ipAddress
 	 */
-	public function setIpAddress(IP $ipAddress)
+	public function setIpAddress(IP $ipAddress): void
 	{
 		$this->ipAddress = $ipAddress;
 	}

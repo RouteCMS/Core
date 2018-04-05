@@ -31,7 +31,7 @@ class SystemException extends \Exception
 	/**
 	 * @inheritDoc
 	 */
-	public function getSeverity()
+	public function getSeverity(): string
 	{
 		return $this->severity;
 	}

@@ -15,7 +15,7 @@ class InputUtil
 	 *
 	 * @return boolean
 	 */
-	public static function isPost()
+	public static function isPost(): bool
 	{
 		if (!empty($_POST) && count($_POST)) {
 			return true;
@@ -28,11 +28,11 @@ class InputUtil
 	 * @param string $var
 	 * @param string $type
 	 * @param array  $allowed
-	 * @param null   $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function arrayRequest($var, $type = '', $allowed, $default = null)
+	public static function arrayRequest(string $var, string $type = '', array $allowed, $default = null)
 	{
 		$current = self::request($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -47,11 +47,11 @@ class InputUtil
 	 *
 	 * @param string $var
 	 * @param string $type
-	 * @param string $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function request($var, $type = '', $default = null)
+	public static function request(string $var, string $type = '', $default = null)
 	{
 		return self::format($_REQUEST, $var, $type, $default);
 	}
@@ -62,11 +62,11 @@ class InputUtil
 	 * @param array  $input
 	 * @param string $var
 	 * @param string $type
-	 * @param string $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function format($input, $var, $type, $default = null)
+	public static function format(array $input, string $var, string $type, $default = null)
 	{
 		if (isset($input[$var])) {
 			switch (strtolower($type)) {
@@ -105,11 +105,11 @@ class InputUtil
 	 * @param string $var
 	 * @param string $type
 	 * @param array  $allowed
-	 * @param null   $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function arrayPost($var, $type = '', $allowed, $default = null)
+	public static function arrayPost(string $var, string $type = '', array $allowed, $default = null)
 	{
 		$current = self::post($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -124,11 +124,11 @@ class InputUtil
 	 *
 	 * @param string $var
 	 * @param string $type
-	 * @param string $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function post($var, $type = '', $default = null)
+	public static function post(string $var, string $type = '', $default = null)
 	{
 		return self::format($_POST, $var, $type, $default);
 	}
@@ -137,11 +137,11 @@ class InputUtil
 	 * @param string $var
 	 * @param string $type
 	 * @param array  $allowed
-	 * @param null   $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function arrayGet($var, $type = '', $allowed, $default = null)
+	public static function arrayGet(string $var, string $type = '', array $allowed, $default = null)
 	{
 		$current = self::get($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -156,11 +156,11 @@ class InputUtil
 	 *
 	 * @param string $var
 	 * @param string $type
-	 * @param string $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function get($var, $type = '', $default = null)
+	public static function get(string $var, string $type = '', $default = null)
 	{
 		return self::format($_GET, $var, $type, $default);
 	}
@@ -169,11 +169,11 @@ class InputUtil
 	 * @param string $var
 	 * @param string $type
 	 * @param array  $allowed
-	 * @param null   $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function arrayServer($var, $type = '', $allowed, $default = null)
+	public static function arrayServer(string $var, string $type = '', array $allowed, $default = null)
 	{
 		$current = self::server($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -188,11 +188,11 @@ class InputUtil
 	 *
 	 * @param string $var
 	 * @param string $type
-	 * @param string $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function server($var, $type = '', $default = null)
+	public static function server(string $var, string $type = '', $default = null)
 	{
 		return self::format($_SERVER, $var, $type, $default);
 	}
@@ -201,11 +201,11 @@ class InputUtil
 	 * @param string $var
 	 * @param string $type
 	 * @param array  $allowed
-	 * @param null   $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function arrayCookie($var, $type = '', $allowed, $default = null)
+	public static function arrayCookie(string $var, string $type = '', array $allowed, $default = null)
 	{
 		$current = self::server($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -220,11 +220,11 @@ class InputUtil
 	 *
 	 * @param string $var
 	 * @param string $type
-	 * @param string $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function files($var, $type = '', $default = null)
+	public static function files(string $var, string $type = '', $default = null)
 	{
 		return self::format($_FILES, $var, $type, $default);
 	}
@@ -234,11 +234,11 @@ class InputUtil
 	 *
 	 * @param string $var
 	 * @param string $type
-	 * @param string $default
+	 * @param mixed  $default
 	 *
 	 * @return mixed
 	 */
-	public static function cookie($var, $type = '', $default = null)
+	public static function cookie(string $var, string $type = '', $default = null)
 	{
 		return self::format($_COOKIE, $var, $type, $default);
 	}

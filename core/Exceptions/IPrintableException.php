@@ -13,5 +13,5 @@ interface IPrintableException
 	/**
 	 * Output the exception message
 	 */
-	public function show();
+	public function show(): void;
 }

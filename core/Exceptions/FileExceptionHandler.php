@@ -40,7 +40,7 @@ class FileExceptionHandler extends PlainTextHandler
 	/**
 	 * @return string
 	 */
-	private function formatException()
+	private function formatException():string 
 	{
 		$table = new Table(['columnWidths' => [20, self::MAX_COLUMN_LENGTH]]);
 		$table->setDecorator(new Blank());

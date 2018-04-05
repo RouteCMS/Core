@@ -43,12 +43,12 @@ abstract class AbstractCache
 	/**
 	 * Update the cache
 	 */
-	abstract protected function updateCache();
+	abstract protected function updateCache():void;
 
 	/**
 	 * @inheritDoc
 	 */
-	protected function init()
+	protected function init():void
 	{
 		$name = explode('\\', get_class($this));
 		$this->cacheItem = RouteCMS::instance()->getCache()->getItem(array_pop($name));

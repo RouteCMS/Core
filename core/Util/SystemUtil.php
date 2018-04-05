@@ -22,7 +22,7 @@ final class SystemUtil
 	 *
 	 * @return    integer
 	 */
-	public static function getMemoryLimit()
+	public static function getMemoryLimit():int 
 	{
 		if (self::$memoryLimit === null) {
 			self::$memoryLimit = 0;

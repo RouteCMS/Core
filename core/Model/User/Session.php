@@ -60,9 +60,9 @@ class Session
 	protected $lastAction;
 
 	/**
-	 * @return mixed
+	 * @return string
 	 */
-	public function getToken()
+	public function getToken(): string
 	{
 		return $this->token;
 	}
@@ -70,7 +70,7 @@ class Session
 	/**
 	 * @param mixed $token
 	 */
-	public function setToken($token)
+	public function setToken($token): void
 	{
 		$this->token = $token;
 	}
@@ -102,7 +102,7 @@ class Session
 	/**
 	 * @param string $requestUri
 	 */
-	public function setRequestUri(string $requestUri)
+	public function setRequestUri(string $requestUri): void
 	{
 		$this->requestUri = $requestUri;
 	}
@@ -110,7 +110,7 @@ class Session
 	/**
 	 * @return array|null
 	 */
-	public function getData()
+	public function getData(): ?array
 	{
 		return $this->data;
 	}
@@ -118,7 +118,7 @@ class Session
 	/**
 	 * @param array|null $data
 	 */
-	public function setData($data)
+	public function setData($data): void
 	{
 		$this->data = $data;
 	}
@@ -134,7 +134,7 @@ class Session
 	/**
 	 * @param int $lastAction
 	 */
-	public function setLastAction(int $lastAction)
+	public function setLastAction(int $lastAction): void
 	{
 		$this->lastAction = $lastAction;
 	}

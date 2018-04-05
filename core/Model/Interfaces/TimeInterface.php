@@ -30,7 +30,7 @@ trait TimeInterface
 	/**
 	 * @param int $time
 	 */
-	public function setTime(int $time)
+	public function setTime(int $time): void
 	{
 		$this->time = $time;
 	}

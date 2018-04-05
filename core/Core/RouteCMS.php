@@ -46,7 +46,7 @@ class RouteCMS
 	/**
 	 * Load system
 	 */
-	public function load()
+	public function load(): void
 	{
 		Performance::point("Core@load");
 		Performance::point("Core@loadDatabase");
@@ -91,7 +91,7 @@ class RouteCMS
 	/**
 	 * Handle the local request
 	 */
-	public function handle()
+	public function handle(): void
 	{
 		Performance::finish();
 		$performance = Performance::export();
@@ -104,7 +104,7 @@ class RouteCMS
 	/**
 	 * Initialize the Core
 	 */
-	protected function init()
+	protected function init(): void
 	{
 		Performance::point("Core@init");
 		//init exception and error handler

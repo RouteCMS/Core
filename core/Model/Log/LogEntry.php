@@ -46,7 +46,7 @@ abstract class LogEntry
 	/**
 	 * @param string $error
 	 */
-	public function setError(string $error)
+	public function setError(string $error): void
 	{
 		$this->error = $error;
 	}
@@ -62,7 +62,7 @@ abstract class LogEntry
 	/**
 	 * @param string $severity
 	 */
-	public function setSeverity(string $severity)
+	public function setSeverity(string $severity): void
 	{
 		$this->severity = $severity;
 	}

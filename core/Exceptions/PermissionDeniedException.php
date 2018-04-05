@@ -13,7 +13,7 @@ class PermissionDeniedException extends UserException
 	/**
 	 * @inheritdoc
 	 */
-	public function show()
+	public function show(): void
 	{
 		//TODO show 403 page
 	}

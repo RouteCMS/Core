@@ -14,7 +14,7 @@ class NotFoundException extends UserException
 	/**
 	 * @inheritdoc
 	 */
-	public function show()
+	public function show(): void
 	{
 		//TODO show 404 page
 	}

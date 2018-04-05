@@ -30,7 +30,7 @@ trait EnableInterface
 	/**
 	 * @param bool $enable
 	 */
-	public function setEnable(bool $enable)
+	public function setEnable(bool $enable): void
 	{
 		$this->enable = $enable;
 	}

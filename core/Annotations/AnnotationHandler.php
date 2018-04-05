@@ -33,7 +33,7 @@ class AnnotationHandler
 	 * @param string   $path
 	 * @param callable $callback
 	 */
-	public function doCall($annotation, $path, callable $callback)
+	public function doCall($annotation, $path, callable $callback): void
 	{
 		$fileList = $this->getAnnotationsInPath($annotation, $path);
 		foreach ($fileList as $file) {
@@ -86,7 +86,7 @@ class AnnotationHandler
 	 *
 	 * @return boolean
 	 */
-	public function hasAnnotation($class, $annotation)
+	public function hasAnnotation($class, $annotation): bool
 	{
 		$result = false;
 		$this->getAnnotation($class, $annotation, function () use (&$result) {
@@ -101,7 +101,7 @@ class AnnotationHandler
 	 * @param string   $annotation
 	 * @param callable $callback
 	 */
-	public function getAnnotation($class, $annotation, callable $callback)
+	public function getAnnotation($class, $annotation, callable $callback): void
 	{
 		$classInspector = new ClassInspector($class, $this->getReader());
 		$annotations = $classInspector->getClassAnnotations();
@@ -117,7 +117,7 @@ class AnnotationHandler
 	 * @param string   $annotation
 	 * @param callable $callback
 	 */
-	public function getPropertyAnnotation($class, $annotation, callable $callback)
+	public function getPropertyAnnotation($class, $annotation, callable $callback): void
 	{
 		$classInspector = new ClassInspector($class, $this->getReader());
 		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
@@ -150,7 +150,7 @@ class AnnotationHandler
 	/**
 	 * @inheritdoc
 	 */
-	protected function init()
+	protected function init(): void
 	{
 		$this->reader = new CachedReader(new AnnotationReader(), DoctrineCache::instance());
 	}

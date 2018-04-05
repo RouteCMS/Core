@@ -17,7 +17,7 @@ final class HeaderUtil
 	 * @param    boolean $sendStatusCode
 	 * @param    boolean $temporaryRedirect
 	 */
-	public static function redirect(string $location, bool $sendStatusCode = false, bool $temporaryRedirect = true)
+	public static function redirect(string $location, bool $sendStatusCode = false, bool $temporaryRedirect = true): void
 	{
 		if ($sendStatusCode) {
 			if ($temporaryRedirect) @header('HTTP/1.1 307 Temporary Redirect');
@@ -33,7 +33,7 @@ final class HeaderUtil
 	 *
 	 * @return string
 	 */
-	public static function createLink(string $path, bool $isAdmin = false)
+	public static function createLink(string $path, bool $isAdmin = false): string
 	{
 		return (DOMAIN_HTTPS ? "https://" : "http://") . DOMAIN . DOMAIN_PATH . "/" . ($isAdmin ? "admin/" : "") . $path;
 	}

@@ -1,13 +1,12 @@
 <?php
 
-namespace RouteCMS\Model;
+namespace RouteCMS\Model\User;
 
 use RouteCMS\Annotations\Database\ModelCache;
 use RouteCMS\Model\Interfaces\EMailInterface;
 use RouteCMS\Model\Interfaces\IDInterface;
 use RouteCMS\Model\Interfaces\IpAddressInterface;
 use RouteCMS\Model\Interfaces\TimeInterface;
-
 
 /**
  * @author        Olaf Braun
@@ -20,6 +19,7 @@ use RouteCMS\Model\Interfaces\TimeInterface;
  */
 class User
 {
+
 	use IDInterface;
 	use EMailInterface;
 	use TimeInterface;

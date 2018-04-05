@@ -28,12 +28,4 @@ trait IDInterface
 	{
 		return $this->id;
 	}
-
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id): void
-	{
-		$this->id = $id;
-	}
 }

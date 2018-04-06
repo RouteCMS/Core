@@ -113,6 +113,7 @@ class RouteCMS
 		RouteHandler::instance()->handle();
 		Performance::finish();
 		Performance::finish();
+		//TODO change to export, only for debugging results
 		$performance = Performance::results();
 		/** @var ExportHandler $performance */
 		//TODO show this current page
@@ -133,7 +134,7 @@ class RouteCMS
 		$whoops->pushHandler(new FileExceptionHandler());
 		$whoops->register();
 
-		//load annotations before
+		//add ignore annotations before
 		AnnotationReader::addGlobalIgnoredName("mixin");
 		AnnotationReader::addGlobalIgnoredName("Source");
 		Type::addType('ip', IpType::class);

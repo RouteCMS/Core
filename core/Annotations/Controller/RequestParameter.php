@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Annotations\controller;
 
@@ -15,11 +16,13 @@ use Doctrine\Common\Annotations\Annotation\Target;
  */
 class RequestParameter
 {
+
 	/**
 	 * @var int
 	 * @Required
 	 */
 	public $position = 0;
+
 	/**
 	 * @var mixed
 	 */

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Controller;
 
@@ -13,4 +14,5 @@ use RouteCMS\Annotations\Controller\Controller;
  */
 class IndexController extends BaseController
 {
+
 }

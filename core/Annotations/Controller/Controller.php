@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Annotations\Controller;
 
@@ -16,11 +17,13 @@ use Doctrine\Common\Annotations\Annotation\Target;
  */
 class Controller
 {
+
 	/**
 	 * @var string
 	 * @Required
 	 */
 	public $path;
+
 	/**
 	 * @var bool
 	 */

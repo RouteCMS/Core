@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Annotations\Controller;
 
@@ -15,19 +16,23 @@ use Doctrine\Common\Annotations\Annotation\Target;
  */
 class FormParameter
 {
+
 	/**
 	 * @var string
 	 */
 	public $type = "string";
+
 	/**
 	 * @var string
 	 * @Required
 	 */
 	public $name = null;
+
 	/**
 	 * @var mixed
 	 */
 	public $default = null;
+
 	/**
 	 * @var array
 	 */

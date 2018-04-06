@@ -45,18 +45,25 @@ class User
 	protected $groups;
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", nullable=false)
 	 *
 	 * @var string
 	 */
 	protected $password = "";
 
 	/**
-	 * @ORM\Column(type="boolean")
+	 * @ORM\Column(type="boolean", options={"default" : false})
 	 *
 	 * @var bool
 	 */
 	protected $banned = false;
+
+	/**
+	 * @ORM\Column(type="integer", nullable=false, options={"default" : 0})
+	 *
+	 * @var integer
+	 */
+	protected $lastAction = LOCAL_TIME;
 
 	/**
 	 * @inheritDoc
@@ -113,4 +120,21 @@ class User
 	{
 		$this->banned = $banned;
 	}
+
+	/**
+	 * @return int
+	 */
+	public function getLastAction(): int
+	{
+		return $this->lastAction;
+	}
+
+	/**
+	 * @param int $lastAction
+	 */
+	public function setLastAction(int $lastAction): void
+	{
+		$this->lastAction = $lastAction;
+	}
+	
 }

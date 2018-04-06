@@ -32,14 +32,14 @@ class Session
 	protected $token;
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", options={"default" : ""})
 	 *
 	 * @var string
 	 */
 	protected $userAgent;
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", options={"default" : ""})
 	 *
 	 * @var string
 	 */
@@ -54,7 +54,7 @@ class Session
 	protected $data;
 
 	/**
-	 * @ORM\Column(type="integer")
+	 * @ORM\Column(type="integer", options={"default" : 0})
 	 *
 	 * @var integer
 	 */

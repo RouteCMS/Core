@@ -14,7 +14,7 @@ trait TimeInterface
 {
 
 	/**
-	 * @ORM\Column(type="integer", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false, options={"default" : 0})
 	 *
 	 * @var integer
 	 */

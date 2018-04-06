@@ -15,7 +15,7 @@ trait IpAddressInterface
 {
 
 	/**
-	 * @ORM\Column(type="ip", nullable=false)
+	 * @ORM\Column(type="ip", nullable=true)
 	 *
 	 * @var IP
 	 */

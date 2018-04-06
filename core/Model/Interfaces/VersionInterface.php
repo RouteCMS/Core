@@ -14,7 +14,7 @@ trait VersionInterface
 {
 
 	/**
-	 * @ORM\Column(type="string", nullable=false)
+	 * @ORM\Column(type="string", nullable=false, options={"default" : ""})
 	 *
 	 * @var string
 	 */

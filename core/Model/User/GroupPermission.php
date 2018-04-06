@@ -25,7 +25,7 @@ class GroupPermission
 	use TextInterface;
 
 	/**
-	 * @ORM\Column(type="text", nullable=false)
+	 * @ORM\Column(type="text", nullable=false, options={"default" : ""})
 	 *
 	 * @var string
 	 */

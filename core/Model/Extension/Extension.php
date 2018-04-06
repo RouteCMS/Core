@@ -30,14 +30,14 @@ class Extension
 	use VersionInterface;
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", options={"default" : ""})
 	 *
 	 * @var string
 	 */
 	protected $author = "";
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", options={"default" : ""})
 	 *
 	 * @var string
 	 */

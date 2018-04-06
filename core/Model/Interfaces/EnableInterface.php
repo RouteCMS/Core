@@ -14,7 +14,7 @@ trait EnableInterface
 {
 
 	/**
-	 * @ORM\Column(type="boolean")
+	 * @ORM\Column(type="boolean", options={"default" : false})
 	 *
 	 * @var bool
 	 */

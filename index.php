@@ -17,6 +17,7 @@ include GLOBAL_DIR . "config/config.php";
 require_once "vendor/autoload.php";
 $cms = RouteCMS::instance();
 $cms->load();
+$cms->handleRequest();
 
 //define some simple functions
 /**

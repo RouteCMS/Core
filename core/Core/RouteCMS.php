@@ -99,7 +99,7 @@ class RouteCMS
 	/**
 	 * Handle the local request
 	 */
-	public function handle(): void
+	public function handleRequest(): void
 	{
 		Performance::finish();
 		$performance = Performance::export();

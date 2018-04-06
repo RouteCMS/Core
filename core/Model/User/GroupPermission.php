@@ -23,4 +23,27 @@ class GroupPermission
 	use IDNameInterface;
 	use NameInterface;
 	use TextInterface;
+
+	/**
+	 * @ORM\Column(type="text", nullable=false)
+	 *
+	 * @var string
+	 */
+	protected $defaultValue = "";
+
+	/**
+	 * @return string
+	 */
+	public function getDefaultValue(): string
+	{
+		return $this->defaultValue;
+	}
+
+	/**
+	 * @param string $defaultValue
+	 */
+	public function setDefaultValue(string $defaultValue): void
+	{
+		$this->defaultValue = $defaultValue;
+	}
 }

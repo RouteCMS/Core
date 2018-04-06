@@ -102,3 +102,6 @@ composer.phar
 /.web-server-pid
 
 log/*.txt
+config/*.php
+db.sqlite
+caches/*

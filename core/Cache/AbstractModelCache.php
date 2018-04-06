@@ -63,7 +63,7 @@ abstract class AbstractModelCache extends AbstractCache
 	/**
 	 * Load models by cache model ids
 	 */
-	protected function fetchModels()
+	protected function fetchModels(): void
 	{
 		if (empty($this->modelIds)) {
 			$this->models = getDatabase()->getRepository($this->namespace)->findAll();
@@ -108,7 +108,7 @@ abstract class AbstractModelCache extends AbstractCache
 	 *
 	 * @param integer $id
 	 */
-	public function cacheModelID($id)
+	public function cacheModelID($id): void
 	{
 		$this->cacheModelIDs([$id]);
 	}
@@ -118,7 +118,7 @@ abstract class AbstractModelCache extends AbstractCache
 	 *
 	 * @param integer[] $ids
 	 */
-	public function cacheModelIDs(array $ids)
+	public function cacheModelIDs(array $ids): void
 	{
 		foreach ($ids as $id) {
 			if (!isset($this->models[$id])) {
@@ -184,7 +184,7 @@ abstract class AbstractModelCache extends AbstractCache
 	/**
 	 * Update the cache
 	 */
-	protected function updateCache()
+	protected function updateCache(): void
 	{
 		$this->cacheItem->set($this->models)->expiresAfter($this->maxLifetime);
 		RouteCMS::instance()->getCache()->save($this->cacheItem);
@@ -193,7 +193,7 @@ abstract class AbstractModelCache extends AbstractCache
 	/**
 	 * @inheritDoc
 	 */
-	protected function init():void
+	protected function init(): void
 	{
 		parent::init();
 		$cache = $this->getCache();

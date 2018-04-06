@@ -7,6 +7,7 @@ use RouteCMS\Model\Interfaces\EMailInterface;
 use RouteCMS\Model\Interfaces\IDInterface;
 use RouteCMS\Model\Interfaces\IpAddressInterface;
 use RouteCMS\Model\Interfaces\TimeInterface;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @author        Olaf Braun

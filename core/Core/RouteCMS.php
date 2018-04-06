@@ -12,6 +12,9 @@ use Performance\Lib\Handlers\ExportHandler;
 use Performance\Performance;
 use Phpfastcache\CacheManager;
 use Phpfastcache\Core\Pool\ExtendedCacheItemPoolInterface;
+use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
+use RouteCMS\Annotations\AnnotationHandler;
+use RouteCMS\Annotations\Database\EnumColumn;
 use RouteCMS\Cache\DoctrineCache;
 use RouteCMS\Exceptions\ExceptionViewHandler;
 use RouteCMS\Exceptions\FileExceptionHandler;
@@ -53,12 +56,17 @@ class RouteCMS
 		/** @noinspection PhpIncludeInspection */
 		$dbConf = include GLOBAL_DIR . "/config/db.php";
 		//init database
-		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "model"], DEV_MODE, null, DoctrineCache::instance(), false);
+		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "core/Model"], DEV_MODE, null, DoctrineCache::instance(), false);
 		$this->database = EntityManager::create(array_merge([
 			'charset'   => 'utf8mb4',
 			'collation' => 'utf8mb4_unicode_ci',
 			'prefix'    => '',
 		], $dbConf), $config);
+		AnnotationHandler::instance()->doCall(EnumColumn::class, GLOBAL_DIR . "core/", function ($classInspector, $annotation) {
+			/** @var ClassInspector $classInspector */
+			/** @var EnumColumn $annotation */
+			Type::addType($annotation->name, $classInspector->getClassName());
+		});
 		if ($dbConf["update"]) {
 			$tool = new SchemaTool($this->database);
 			$tool->updateSchema($this->database->getMetadataFactory()->getAllMetadata(), false);
@@ -115,6 +123,7 @@ class RouteCMS
 
 		//load annotations before
 		AnnotationReader::addGlobalIgnoredName("mixin");
+		AnnotationReader::addGlobalIgnoredName("Source");
 		Type::addType('ip', IpType::class);
 		define("DOMAIN_HTTPS", InputUtil::server("HTTPS", "string", "off"));
 		define("IS_POST", InputUtil::isPost());

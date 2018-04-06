@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace RouteCMS\Annotations\Database;
+namespace RouteCMS\Annotations;
 
+use Doctrine\Common\Annotations\Annotation\Required;
 use Doctrine\Common\Annotations\Annotation\Target;
 
 
@@ -12,13 +13,20 @@ use Doctrine\Common\Annotations\Annotation\Target;
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *
  * @Annotation
- * @Target({"CLASS"})
+ * @Target("ANNOTATION")
  */
-class EnumColumn
+class Event
 {
 
 	/**
 	 * @var string
+	 * @Required
 	 */
-	public $name = "";
+	public $name;
+
+	/**
+	 * @var string
+	 * @Required
+	 */
+	public $class;
 }

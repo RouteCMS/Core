@@ -5,7 +5,7 @@ namespace RouteCMS\Model\Language;
 
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Model\Interfaces\ExtensionInterface;
-use RouteCMS\Model\Interfaces\IDInterface;
+use RouteCMS\Model\Interfaces\IDNameInterface;
 
 /**
  * @author        Olaf Braun
@@ -18,7 +18,7 @@ use RouteCMS\Model\Interfaces\IDInterface;
 class LanguageItem
 {
 
-	use IDInterface;
+	use IDNameInterface;
 	use ExtensionInterface;
 
 	/**
@@ -28,6 +28,13 @@ class LanguageItem
 	 * @var Language
 	 */
 	protected $language;
+
+	/**
+	 * @ORM\Column(type="text", nullable=false, options={"default" : ""})
+	 *
+	 * @var string
+	 */
+	protected $text = "";
 
 	/**
 	 * @return Language

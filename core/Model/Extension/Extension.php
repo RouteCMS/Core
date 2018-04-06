@@ -5,6 +5,8 @@ namespace RouteCMS\Model\Extension;
 
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Annotations\Database\ModelCache;
+use RouteCMS\Annotations\Event;
+use RouteCMS\Annotations\Events;
 use RouteCMS\Model\Interfaces\IDInterface;
 use RouteCMS\Model\Interfaces\NameInterface;
 use RouteCMS\Model\Interfaces\TextInterface;
@@ -42,4 +44,37 @@ class Extension
 	 * @var string
 	 */
 	protected $website = "";
+
+	/**
+	 * @return string
+	 */
+	public function getAuthor(): string
+	{
+		return $this->author;
+	}
+
+	/**
+	 * @param string $author
+	 */
+	public function setAuthor(string $author): void
+	{
+		$this->author = $author;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getWebsite(): string
+	{
+		return $this->website;
+	}
+
+	/**
+	 * @param string $website
+	 */
+	public function setWebsite(string $website): void
+	{
+		$this->website = $website;
+	}
+	
 }

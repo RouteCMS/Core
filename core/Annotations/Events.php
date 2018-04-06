@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace RouteCMS\Annotations\Database;
+namespace RouteCMS\Annotations;
 
 use Doctrine\Common\Annotations\Annotation\Target;
 
@@ -14,11 +14,12 @@ use Doctrine\Common\Annotations\Annotation\Target;
  * @Annotation
  * @Target({"CLASS"})
  */
-class EnumColumn
+class Events
 {
 
 	/**
-	 * @var string
+	 * @var \RouteCMS\Annotations\Event[]
 	 */
-	public $name = "";
+	public $events = [];
+
 }

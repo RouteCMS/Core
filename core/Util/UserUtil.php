@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Util;
 
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 class UserUtil
 {
@@ -15,7 +16,7 @@ class UserUtil
 	 *
 	 * @return string
 	 */
-	public static function getIpAddress()
+	public static function getIpAddress(): string
 	{
 		$ip = '';
 		if (isset($_SERVER['REMOTE_ADDR']))
@@ -33,7 +34,7 @@ class UserUtil
 	 *
 	 * @return string
 	 */
-	public static function getUserAgent()
+	public static function getUserAgent(): string
 	{
 		if (isset($_SERVER['HTTP_USER_AGENT'])) {
 			$userAgent = $_SERVER['HTTP_USER_AGENT'];
@@ -52,7 +53,7 @@ class UserUtil
 	 *
 	 * @return string
 	 */
-	public static function getUrl()
+	public static function getUrl(): string
 	{
 		$url = '';
 		if (InputUtil::server("REQUEST_URI", 'string') != '') {
@@ -79,7 +80,7 @@ class UserUtil
 	 *
 	 * @return    boolean
 	 */
-	public static function isValidEmail(string $mail)
+	public static function isValidEmail(string $mail): bool
 	{
 		$c = '!#\$%&\'\*\+\-\/0-9=\?a-z\^_`\{\}\|~';
 		$string = '[' . $c . ']*(?:\\\\[\x00-\x7F][' . $c . ']*)*';
@@ -100,7 +101,7 @@ class UserUtil
 	 *
 	 * @return    string
 	 */
-	public static function convertIPv6To4(string $ip)
+	public static function convertIPv6To4(string $ip): string
 	{
 		if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === false) {
 			if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) === false) {

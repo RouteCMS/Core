@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Exceptions;
 
@@ -12,8 +13,8 @@ use Zend\Text\Table\Table;
 
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 class FileExceptionHandler extends PlainTextHandler
 {
@@ -40,7 +41,7 @@ class FileExceptionHandler extends PlainTextHandler
 	/**
 	 * @return string
 	 */
-	private function formatException()
+	private function formatException(): string
 	{
 		$table = new Table(['columnWidths' => [20, self::MAX_COLUMN_LENGTH]]);
 		$table->setDecorator(new Blank());

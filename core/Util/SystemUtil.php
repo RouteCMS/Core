@@ -1,11 +1,12 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Util;
 
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 final class SystemUtil
 {
@@ -22,7 +23,7 @@ final class SystemUtil
 	 *
 	 * @return    integer
 	 */
-	public static function getMemoryLimit()
+	public static function getMemoryLimit(): int
 	{
 		if (self::$memoryLimit === null) {
 			self::$memoryLimit = 0;

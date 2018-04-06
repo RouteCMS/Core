@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Core;
 
@@ -12,7 +13,11 @@ use Performance\Lib\Handlers\ExportHandler;
 use Performance\Performance;
 use Phpfastcache\CacheManager;
 use Phpfastcache\Core\Pool\ExtendedCacheItemPoolInterface;
+use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
+use RouteCMS\Annotations\AnnotationHandler;
+use RouteCMS\Annotations\Database\EnumColumn;
 use RouteCMS\Cache\DoctrineCache;
+use RouteCMS\Event\EventHandler;
 use RouteCMS\Exceptions\ExceptionViewHandler;
 use RouteCMS\Exceptions\FileExceptionHandler;
 use RouteCMS\Util\InputUtil;
@@ -25,8 +30,8 @@ if (!defined("CURRENT_URI"))
 
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 class RouteCMS
 {
@@ -46,26 +51,34 @@ class RouteCMS
 	/**
 	 * Load system
 	 */
-	public function load()
+	public function load(): void
 	{
+		EventHandler::instance()->call("beforeLoad", $this);
 		Performance::point("Core@load");
 		Performance::point("Core@loadDatabase");
 		/** @noinspection PhpIncludeInspection */
 		$dbConf = include GLOBAL_DIR . "/config/db.php";
 		//init database
-		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "model"], DEV_MODE, null, DoctrineCache::instance(), false);
+		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "core/Model"], DEV_MODE, null, DoctrineCache::instance(), false);
 		$this->database = EntityManager::create(array_merge([
 			'charset'   => 'utf8mb4',
 			'collation' => 'utf8mb4_unicode_ci',
 			'prefix'    => '',
 		], $dbConf), $config);
+		AnnotationHandler::instance()->doCall(EnumColumn::class, GLOBAL_DIR . "core/", function ($classInspector, $annotation) {
+			/** @var ClassInspector $classInspector */
+			/** @var EnumColumn $annotation */
+			Type::addType($annotation->name, $classInspector->getClassName());
+		});
 		if ($dbConf["update"]) {
 			$tool = new SchemaTool($this->database);
 			$tool->updateSchema($this->database->getMetadataFactory()->getAllMetadata(), false);
 		}
+		EventHandler::instance()->call("afterLoadDatabase", $this);
 		//close database Core@loadDatabase
 		Performance::finish();
 
+		EventHandler::instance()->call("afterLoad", $this);
 		//close database Core@load
 		Performance::finish();
 	}
@@ -91,12 +104,13 @@ class RouteCMS
 	/**
 	 * Handle the local request
 	 */
-	public function handle()
+	public function handleRequest(): void
 	{
 		Performance::finish();
-		$performance = Performance::export();
+		$performance = Performance::results();
 		/** @var ExportHandler $performance */
 		//TODO show this current page
+		EventHandler::instance()->call("exit", $this);
 		exit;
 	}
 
@@ -104,7 +118,7 @@ class RouteCMS
 	/**
 	 * Initialize the Core
 	 */
-	protected function init()
+	protected function init(): void
 	{
 		Performance::point("Core@init");
 		//init exception and error handler
@@ -115,6 +129,7 @@ class RouteCMS
 
 		//load annotations before
 		AnnotationReader::addGlobalIgnoredName("mixin");
+		AnnotationReader::addGlobalIgnoredName("Source");
 		Type::addType('ip', IpType::class);
 		define("DOMAIN_HTTPS", InputUtil::server("HTTPS", "string", "off"));
 		define("IS_POST", InputUtil::isPost());

@@ -1,10 +1,10 @@
 <?php
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
-
+declare(strict_types=1);
 use Doctrine\ORM\EntityManager;
 use RouteCMS\Core\RouteCMS;
 
@@ -17,6 +17,7 @@ include GLOBAL_DIR . "config/config.php";
 require_once "vendor/autoload.php";
 $cms = RouteCMS::instance();
 $cms->load();
+$cms->handleRequest();
 
 //define some simple functions
 /**

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Model\Interfaces;
 
@@ -6,14 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 trait EMailInterface
 {
 
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", options={"default" : ""})
 	 *
 	 * @var string
 	 */
@@ -30,7 +31,7 @@ trait EMailInterface
 	/**
 	 * @param string $email
 	 */
-	public function setEmail(string $email)
+	public function setEmail(string $email): void
 	{
 		$this->email = $email;
 	}

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Util;
 
@@ -6,8 +7,8 @@ use RouteCMS\Exceptions\SystemException;
 
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 class StringUtil
 {
@@ -112,7 +113,7 @@ class StringUtil
 	 *
 	 * @return    boolean
 	 */
-	public static function isUTF8(string $string): bool
+	public static function isUTF8(string $string)
 	{
 		return preg_match('/(
 				[\xC2-\xDF][\x80-\xBF]			# non-overlong 2-byte

@@ -1,10 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Model\Language;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use RouteCMS\Annotations\Database\ModelCache;
 use RouteCMS\Model\Interfaces\IDInterface;
 
 /**
@@ -14,7 +13,6 @@ use RouteCMS\Model\Interfaces\IDInterface;
  *
  * @ORM\Entity
  * @ORM\Cache
- * @ModelCache
  */
 class LanguageItem
 {
@@ -44,5 +42,5 @@ class LanguageItem
 	{
 		$this->language = $language;
 	}
-	
+
 }

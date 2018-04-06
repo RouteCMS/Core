@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Model\Language;
 
@@ -28,6 +29,7 @@ class Language
 	 * @var string
 	 */
 	protected $code;
+
 	/**
 	 * @ORM\Column(type="boolean", unique=true)
 	 *

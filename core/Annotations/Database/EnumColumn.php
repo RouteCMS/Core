@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Annotations\Database;
 
@@ -14,6 +15,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  */
 class EnumColumn
 {
+
 	/**
 	 * @var string
 	 */

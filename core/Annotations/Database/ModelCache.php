@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Annotations\Database;
 
@@ -17,8 +18,8 @@ class ModelCache
 
 	/**
 	 * Time in seconds
-	 * 
-	 * @var int 
+	 *
+	 * @var int
 	 */
 	public $time = 60 * 5;
 }

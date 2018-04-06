@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Util;
 
@@ -22,7 +23,7 @@ final class SystemUtil
 	 *
 	 * @return    integer
 	 */
-	public static function getMemoryLimit():int 
+	public static function getMemoryLimit(): int
 	{
 		if (self::$memoryLimit === null) {
 			self::$memoryLimit = 0;

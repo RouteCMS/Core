@@ -5,6 +5,7 @@ namespace RouteCMS\Model\User;
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Annotations\Database\ModelCache;
 use RouteCMS\Model\Interfaces\IpAddressInterface;
+use RouteCMS\Model\Interfaces\NullableUserInterface;
 use RouteCMS\Model\Interfaces\TimeInterface;
 
 /**
@@ -21,6 +22,7 @@ class Session
 
 	use TimeInterface;
 	use IpAddressInterface;
+	use NullableUserInterface;
 
 	/**
 	 * @ORM\Id

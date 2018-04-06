@@ -27,27 +27,27 @@ class Language
 	 *
 	 * @var string
 	 */
-	private $code;
+	protected $code;
 	/**
 	 * @ORM\Column(type="boolean", unique=true)
 	 *
 	 * @var bool
 	 */
-	private $default;
+	protected $default;
 
 	/**
 	 * @ORM\Column(type="string", unique=true)
 	 *
 	 * @var string
 	 */
-	private $country;
+	protected $country;
 
 	/**
 	 * @ORM\Column(type="string", unique=true)
 	 *
 	 * @var string
 	 */
-	private $name;
+	protected $name;
 
 	/**
 	 * @return string

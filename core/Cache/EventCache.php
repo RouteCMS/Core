@@ -34,7 +34,7 @@ class EventCache extends AbstractCache
 	 */
 	public function getEvents(string $name)
 	{
-		if (($this->events = $this->getCache()) == null) {
+		if (($this->events = $this->getCache()) === null) {
 			$this->updateCache();
 		}
 

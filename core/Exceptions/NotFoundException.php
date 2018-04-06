@@ -17,6 +17,9 @@ class NotFoundException extends UserException
 	 */
 	public function show(): void
 	{
+		@header('HTTP/1.0 404 Not Found');
+		echo "404";
 		//TODO show 404 page
+		exit;
 	}
 }

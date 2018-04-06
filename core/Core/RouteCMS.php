@@ -54,8 +54,8 @@ class RouteCMS
 	public function load(): void
 	{
 		EventHandler::instance()->call("beforeLoad", $this);
-		Performance::point("Core@load");
-		Performance::point("Core@loadDatabase");
+		Performance::point("RouteCMS@load");
+		Performance::point("RouteCMS@loadDatabase");
 		/** @noinspection PhpIncludeInspection */
 		$dbConf = include GLOBAL_DIR . "/config/db.php";
 		//init database
@@ -75,11 +75,13 @@ class RouteCMS
 			$tool->updateSchema($this->database->getMetadataFactory()->getAllMetadata(), false);
 		}
 		EventHandler::instance()->call("afterLoadDatabase", $this);
-		//close database Core@loadDatabase
+		//close database RouteCMS@loadDatabase
 		Performance::finish();
+		//Init controller system
+		RouteHandler::instance();
 
 		EventHandler::instance()->call("afterLoad", $this);
-		//close database Core@load
+		//close database RouteCMS@load
 		Performance::finish();
 	}
 
@@ -106,6 +108,10 @@ class RouteCMS
 	 */
 	public function handleRequest(): void
 	{
+		Performance::point("RouteCMS@handleRequest");
+		//Handle request
+		RouteHandler::instance()->handle();
+		Performance::finish();
 		Performance::finish();
 		$performance = Performance::results();
 		/** @var ExportHandler $performance */
@@ -116,11 +122,11 @@ class RouteCMS
 
 
 	/**
-	 * Initialize the Core
+	 * Initialize the RouteCMS
 	 */
 	protected function init(): void
 	{
-		Performance::point("Core@init");
+		Performance::point("RouteCMS@init");
 		//init exception and error handler
 		$whoops = new Run();
 		$whoops->pushHandler(new ExceptionViewHandler());

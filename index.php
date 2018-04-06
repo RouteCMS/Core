@@ -5,6 +5,8 @@
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 declare(strict_types=1);
+error_reporting(E_ALL);
+
 use Doctrine\ORM\EntityManager;
 use RouteCMS\Core\RouteCMS;
 

@@ -7,8 +7,8 @@ use RouteCMS\Model\User\User;
 
 /**
  * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       Braun-Development.de License <https://www.braun-development.de/lizenz.html>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 trait UserInterface
 {

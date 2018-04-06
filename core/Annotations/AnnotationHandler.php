@@ -34,7 +34,7 @@ class AnnotationHandler
 	 * @param string   $path
 	 * @param callable $callback
 	 */
-	public function doCall($annotation, $path, callable $callback): void
+	public function doCall(string $annotation, string $path, callable $callback): void
 	{
 		$fileList = $this->getAnnotationsInPath($annotation, $path);
 		foreach ($fileList as $file) {
@@ -55,7 +55,7 @@ class AnnotationHandler
 	 *
 	 * @return Finder
 	 */
-	public function getAnnotationsInPath($annotation, $path): Finder
+	public function getAnnotationsInPath(string $annotation, string $path): Finder
 	{
 		$finder = new Finder();
 		$finder->containsAtLeastOneOf($annotation)->setReader($this->reader)->in($path);
@@ -68,7 +68,7 @@ class AnnotationHandler
 	 *
 	 * @return FileInspector
 	 */
-	public function getFileInspector($file): FileInspector
+	public function getFileInspector(SplFileInfo $file): FileInspector
 	{
 		return new FileInspector($file->getRealPath());
 	}
@@ -87,7 +87,7 @@ class AnnotationHandler
 	 *
 	 * @return boolean
 	 */
-	public function hasAnnotation($class, $annotation): bool
+	public function hasAnnotation(string $class, string $annotation): bool
 	{
 		$result = false;
 		$this->getAnnotation($class, $annotation, function () use (&$result) {
@@ -102,7 +102,7 @@ class AnnotationHandler
 	 * @param string   $annotation
 	 * @param callable $callback
 	 */
-	public function getAnnotation($class, $annotation, callable $callback): void
+	public function getAnnotation(string $class, string $annotation, callable $callback): void
 	{
 		$classInspector = new ClassInspector($class, $this->getReader());
 		$annotations = $classInspector->getClassAnnotations();
@@ -118,7 +118,7 @@ class AnnotationHandler
 	 * @param string   $annotation
 	 * @param callable $callback
 	 */
-	public function getPropertyAnnotation($class, $annotation, callable $callback): void
+	public function getPropertyAnnotation(string $class, string $annotation, callable $callback): void
 	{
 		$classInspector = new ClassInspector($class, $this->getReader());
 		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
@@ -143,7 +143,7 @@ class AnnotationHandler
 	 *
 	 * @return FileInspector
 	 */
-	public function getFileInspectorByPath($path): FileInspector
+	public function getFileInspectorByPath(string $path): FileInspector
 	{
 		return new FileInspector($path);
 	}

@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace RouteCMS\Event;
 
+use RouteCMS\Cache\EventCache;
 use RouteCMS\Core\Singleton;
+use RouteCMS\Event\Events\EventListener;
 
 
 /**
@@ -17,12 +19,23 @@ class EventHandler
 	use Singleton;
 
 	/**
+	 * @var EventListener[] 
+	 */
+	private $cache = [];
+
+	/**
 	 * @param string $name
 	 * @param mixed  $object
 	 * @param array  $parameters
 	 */
-	public function call(string $name, $object, array &$parameters): void
+	public function call(string $name, $object, array &$parameters = []): void
 	{
-		//TODO read all event listener for a special event and call them
+		$prefix = get_class($object) . "@" . $name;
+		foreach (EventCache::instance()->getEvents($prefix) as $event) {
+			$index = $prefix . "@" . $event["class"];
+			if (!isset($this->cache[$index])) $this->cache[$index] = new $event["class"];
+			/** @var */
+			$this->cache[$index]->fire($name, $object, $parameters);
+		}
 	}
 }

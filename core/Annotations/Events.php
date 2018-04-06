@@ -18,7 +18,7 @@ class Events
 {
 
 	/**
-	 * @var \RouteCMS\Annotations\Event[]
+	 * @var array<\RouteCMS\Annotations\Event>
 	 */
 	public $events = [];
 

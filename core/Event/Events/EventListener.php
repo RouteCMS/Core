@@ -18,5 +18,5 @@ interface EventListener
 	 * @param mixed  $object
 	 * @param array  $parameters
 	 */
-	public function fire($name, $object, array &$parameters): void;
+	public function fire($name, $object, array &$parameters = []): void;
 }

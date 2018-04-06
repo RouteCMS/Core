@@ -17,6 +17,7 @@ use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
 use RouteCMS\Annotations\AnnotationHandler;
 use RouteCMS\Annotations\Database\EnumColumn;
 use RouteCMS\Cache\DoctrineCache;
+use RouteCMS\Event\EventHandler;
 use RouteCMS\Exceptions\ExceptionViewHandler;
 use RouteCMS\Exceptions\FileExceptionHandler;
 use RouteCMS\Util\InputUtil;
@@ -52,6 +53,7 @@ class RouteCMS
 	 */
 	public function load(): void
 	{
+		EventHandler::instance()->call("beforeLoad", $this);
 		Performance::point("Core@load");
 		Performance::point("Core@loadDatabase");
 		/** @noinspection PhpIncludeInspection */
@@ -72,9 +74,11 @@ class RouteCMS
 			$tool = new SchemaTool($this->database);
 			$tool->updateSchema($this->database->getMetadataFactory()->getAllMetadata(), false);
 		}
+		EventHandler::instance()->call("afterLoadDatabase", $this);
 		//close database Core@loadDatabase
 		Performance::finish();
 
+		EventHandler::instance()->call("afterLoad", $this);
 		//close database Core@load
 		Performance::finish();
 	}
@@ -103,7 +107,7 @@ class RouteCMS
 	public function handleRequest(): void
 	{
 		Performance::finish();
-		$performance = Performance::export();
+		$performance = Performance::results();
 		/** @var ExportHandler $performance */
 		//TODO show this current page
 		exit;

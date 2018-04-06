@@ -29,4 +29,19 @@ class Event
 	 * @Required
 	 */
 	public $class;
+
+	/**
+	 * @var integer
+	 */
+	public $priority = 10;
+
+	/**
+	 * Return the identifier vor this event
+	 *
+	 * @return string
+	 */
+	public function getIdentifier()
+	{
+		return $this->class . "@" . $this->name;
+	}
 }

@@ -5,7 +5,7 @@ namespace RouteCMS\Model\User;
 
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Annotations\Database\ModelCache;
-use RouteCMS\Model\Interfaces\IDInterface;
+use RouteCMS\Model\Interfaces\IDNameInterface;
 use RouteCMS\Model\Interfaces\NameInterface;
 use RouteCMS\Model\Interfaces\TextInterface;
 
@@ -19,18 +19,10 @@ use RouteCMS\Model\Interfaces\TextInterface;
  * @ORM\Cache
  * @ModelCache
  */
-class Group
+class GroupPermission
 {
 
-	use IDInterface;
+	use IDNameInterface;
 	use NameInterface;
 	use TextInterface;
-	/**
-	 * @ORM\ManyToMany(targetEntity="GroupPermission")
-	 * @ORM\JoinTable(
-	 *     joinColumns={@ORM\JoinColumn(referencedColumnName="id",unique=true)},
-	 *      inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id", unique=true)}
-	 *     )
-	 */
-	protected $permissions;
 }

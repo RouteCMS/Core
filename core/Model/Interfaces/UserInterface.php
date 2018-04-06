@@ -15,7 +15,7 @@ trait UserInterface
 {
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="User")
+	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\User\User")
 	 * @ORM\JoinColumn(name="userID", referencedColumnName="id", nullable=false, onDelete="CASCADE")
 	 *
 	 * @var User

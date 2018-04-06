@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace RouteCMS\Model\Language;
 
 use Doctrine\ORM\Mapping as ORM;
+use RouteCMS\Model\Interfaces\ExtensionInterface;
 use RouteCMS\Model\Interfaces\IDInterface;
 
 /**
@@ -18,6 +19,7 @@ class LanguageItem
 {
 
 	use IDInterface;
+	use ExtensionInterface;
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="Language")

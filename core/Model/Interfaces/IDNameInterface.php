@@ -10,17 +10,16 @@ use Doctrine\ORM\Mapping as ORM;
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
-trait IDInterface
+trait IDNameInterface
 {
 
 	/**
 	 * @ORM\Id
-	 * @ORM\GeneratedValue
-	 * @ORM\Column(type="integer", unique=true)
+	 * @ORM\Column(type="string", unique=true)
 	 *
 	 * @var integer
 	 */
-	protected $id;
+	protected $id = "";
 
 	/**
 	 * @return int
@@ -28,5 +27,13 @@ trait IDInterface
 	public function getId(): int
 	{
 		return $this->id;
+	}
+
+	/**
+	 * @param int $id
+	 */
+	public function setId(int $id): void
+	{
+		$this->id = $id;
 	}
 }

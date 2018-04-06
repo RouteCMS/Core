@@ -5,8 +5,6 @@ namespace RouteCMS\Model\Extension;
 
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Annotations\Database\ModelCache;
-use RouteCMS\Annotations\Event;
-use RouteCMS\Annotations\Events;
 use RouteCMS\Model\Interfaces\IDInterface;
 use RouteCMS\Model\Interfaces\NameInterface;
 use RouteCMS\Model\Interfaces\TextInterface;

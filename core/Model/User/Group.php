@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace RouteCMS\Model\User;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Annotations\Database\ModelCache;
 use RouteCMS\Model\Interfaces\IDInterface;
@@ -25,12 +26,37 @@ class Group
 	use IDInterface;
 	use NameInterface;
 	use TextInterface;
+
 	/**
-	 * @ORM\ManyToMany(targetEntity="GroupPermission")
-	 * @ORM\JoinTable(
-	 *     joinColumns={@ORM\JoinColumn(referencedColumnName="id",unique=true)},
-	 *      inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id", unique=true)}
-	 *     )
+	 * @ORM\OneToMany(targetEntity="GroupPermissionValues", mappedBy="group")
+	 * 
+	 * @var ArrayCollection
 	 */
 	protected $permissions;
+
+	/**
+	 * Group constructor.
+	 */
+	public function __construct()
+	{
+		$this->permissions = new ArrayCollection();
+	}
+
+
+	/**
+	 * @return ArrayCollection
+	 */
+	public function getPermissions(): ArrayCollection
+	{
+		return $this->permissions;
+	}
+
+	/**
+	 * @param ArrayCollection $permissions
+	 */
+	public function setPermissions(ArrayCollection $permissions): void
+	{
+		$this->permissions = $permissions;
+	}
+	
 }

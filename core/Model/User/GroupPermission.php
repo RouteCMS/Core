@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace RouteCMS\Model\User;
 
 use Doctrine\ORM\Mapping as ORM;
-use RouteCMS\Annotations\Database\ModelCache;
 use RouteCMS\Model\Interfaces\IDNameInterface;
 use RouteCMS\Model\Interfaces\NameInterface;
 use RouteCMS\Model\Interfaces\TextInterface;
@@ -17,7 +16,6 @@ use RouteCMS\Model\Interfaces\TextInterface;
  *
  * @ORM\Entity
  * @ORM\Cache
- * @ModelCache
  */
 class GroupPermission
 {

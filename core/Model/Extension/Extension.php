@@ -28,12 +28,14 @@ class Extension
 	use NameInterface;
 	use TextInterface;
 	use VersionInterface;
+
 	/**
 	 * @ORM\Column(type="string")
 	 *
 	 * @var string
 	 */
 	protected $author = "";
+
 	/**
 	 * @ORM\Column(type="string")
 	 *

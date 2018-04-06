@@ -35,5 +35,5 @@ trait VersionInterface
 	{
 		$this->version = $version;
 	}
-	
+
 }

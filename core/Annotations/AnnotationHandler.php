@@ -13,7 +13,7 @@ use RouteCMS\Core\Singleton;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
- * @author        Olaf Braun
+ * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *

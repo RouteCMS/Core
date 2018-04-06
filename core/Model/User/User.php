@@ -29,6 +29,13 @@ class User
 	use IpAddressInterface;
 
 	/**
+	 * @ORM\Column(type="string", unique=true)
+	 *
+	 * @var string
+	 */
+	protected $email = "";
+
+	/**
 	 * @ORM\ManyToMany(targetEntity="Group")
 	 * @ORM\JoinTable(
 	 *     joinColumns={@ORM\JoinColumn(referencedColumnName="id",unique=true)},
@@ -36,6 +43,20 @@ class User
 	 *     )
 	 */
 	protected $groups;
+
+	/**
+	 * @ORM\Column(type="string")
+	 *
+	 * @var string
+	 */
+	protected $password = "";
+
+	/**
+	 * @ORM\Column(type="boolean")
+	 *
+	 * @var bool
+	 */
+	protected $banned = false;
 
 	/**
 	 * @inheritDoc
@@ -59,5 +80,37 @@ class User
 	public function setGroups(ArrayCollection $groups): void
 	{
 		$this->groups = $groups;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPassword(): string
+	{
+		return $this->password;
+	}
+
+	/**
+	 * @param string $password
+	 */
+	public function setPassword(string $password): void
+	{
+		$this->password = $password;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function isBanned(): bool
+	{
+		return $this->banned;
+	}
+
+	/**
+	 * @param bool $banned
+	 */
+	public function setBanned(bool $banned): void
+	{
+		$this->banned = $banned;
 	}
 }

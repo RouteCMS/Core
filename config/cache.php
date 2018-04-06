@@ -11,6 +11,6 @@ return [
 	"driver" => "Files", //Files cache driver only for testing
 	"config" => new Config([
 		"ignoreSymfonyNotice" => true,
-		'path'                => GLOBAL_DIR."/caches/",
+		'path'                => "/caches/",
 	])
 ];

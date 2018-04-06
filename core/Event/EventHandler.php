@@ -19,7 +19,7 @@ class EventHandler
 	use Singleton;
 
 	/**
-	 * @var EventListener[] 
+	 * @var EventListener[]
 	 */
 	private $cache = [];
 
@@ -34,7 +34,7 @@ class EventHandler
 		foreach (EventCache::instance()->getEvents($prefix) as $event) {
 			$index = $prefix . "@" . $event["class"];
 			if (!isset($this->cache[$index])) $this->cache[$index] = new $event["class"];
-			/** @var */
+			
 			$this->cache[$index]->fire($name, $object, $parameters);
 		}
 	}

@@ -110,6 +110,7 @@ class RouteCMS
 		$performance = Performance::results();
 		/** @var ExportHandler $performance */
 		//TODO show this current page
+		EventHandler::instance()->call("exit", $this);
 		exit;
 	}
 

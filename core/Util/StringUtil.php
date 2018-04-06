@@ -113,7 +113,7 @@ class StringUtil
 	 *
 	 * @return    boolean
 	 */
-	public static function isUTF8(string $string): bool
+	public static function isUTF8(string $string)
 	{
 		return preg_match('/(
 				[\xC2-\xDF][\x80-\xBF]			# non-overlong 2-byte

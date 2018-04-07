@@ -15,6 +15,7 @@ trait IDNameInterface
 
 	/**
 	 * @ORM\Id
+	 * @ORM\GeneratedValue(strategy="NONE")
 	 * @ORM\Column(type="string", unique=true)
 	 *
 	 * @var integer

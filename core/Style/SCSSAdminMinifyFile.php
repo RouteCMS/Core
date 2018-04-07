@@ -50,9 +50,9 @@ class SCSSAdminMinifyFile extends MinifyFile
 			$this->out = self::PATH . $css;
 		} elseif (file_exists(self::PATH . "scss/" .  $file)) {
 			$this->source = self::PATH . "scss/" . $file;
-			$this->sourceOut = self::PATH . $css;
+			$this->sourceOut = self::PATH . str_replace(".scss", ".css", $file);
 			$this->in = $this->sourceOut;
-			$this->out = str_replace(".scss", ".min.css", $this->sourceOut);
+			$this->out = self::PATH . $css;
 		}
 	}
 

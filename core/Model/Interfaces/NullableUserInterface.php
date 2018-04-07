@@ -15,7 +15,7 @@ trait NullableUserInterface
 {
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\User\User", fetch="EAGER")
+	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\User\User")
 	 * @ORM\JoinColumn(name="userID", referencedColumnName="id", nullable=true, onDelete="SET NULL")
 	 *
 	 * @var User|null

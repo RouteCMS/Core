@@ -18,7 +18,7 @@ class LanguageItemValue
 
 	/**
 	 * @ORM\Id
-	 * @ORM\ManyToOne(targetEntity="LanguageItem", fetch="EAGER")
+	 * @ORM\ManyToOne(targetEntity="LanguageItem")
 	 * @ORM\Cache(usage="READ_WRITE")
 	 * @ORM\JoinColumn(unique=true, referencedColumnName="id", onDelete="CASCADE")
 	 *
@@ -28,7 +28,7 @@ class LanguageItemValue
 
 	/**
 	 * @ORM\Id
-	 * @ORM\ManyToOne(targetEntity="Language", fetch="EAGER")
+	 * @ORM\ManyToOne(targetEntity="Language")
 	 * @ORM\Cache(usage="READ_WRITE")
 	 * @ORM\JoinColumn(unique=true, referencedColumnName="id", onDelete="CASCADE")
 	 *

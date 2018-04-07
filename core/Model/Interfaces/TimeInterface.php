@@ -1,19 +1,20 @@
 <?php
+declare(strict_types=1);
 
 namespace RouteCMS\Model\Interfaces;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @author        Olaf Braun
- * @copyright     2013-2017 Olaf Braun - Software Development
- * @license       GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
+ * @author        Olaf Braun <info@braun-development.de>
+ * @copyright     2013-2018 Olaf Braun - Software Development
+ * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
 trait TimeInterface
 {
 
 	/**
-	 * @ORM\Column(type="integer", nullable=false)
+	 * @ORM\Column(type="integer", nullable=false, options={"default" : 0})
 	 *
 	 * @var integer
 	 */
@@ -30,7 +31,7 @@ trait TimeInterface
 	/**
 	 * @param int $time
 	 */
-	public function setTime(int $time)
+	public function setTime(int $time): void
 	{
 		$this->time = $time;
 	}

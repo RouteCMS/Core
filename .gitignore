@@ -102,3 +102,10 @@ composer.phar
 /.web-server-pid
 
 log/*.txt
+config/*.php
+db.sqlite
+caches/*
+admin/style/*.css
+admin/style/cache/*
+admin/style/*.meta
+admin/js/*.min.js

@@ -40,18 +40,19 @@ class SCSSAdminMinifyFile extends MinifyFile
 	 */
 	protected function loadFile(string $file): void
 	{
-		if (!StringUtil::endsWith($file, ".css")) {
-			//Don´t
+		if (!StringUtil::endsWith($file, ".scss")) {
+			//Don´t compile other files
 			return;
 		}
-		if (file_exists(self::PATH . $file)) {
-			$this->in = self::PATH . $file;
-			$this->out = self::PATH . str_replace(".css", ".min.css", $file);
-		} elseif (file_exists(self::PATH . "scss/" . str_replace(".css", ".scss", $file))) {
-			$this->source = self::PATH . "scss/" . str_replace(".css", ".scss", $file);
-			$this->sourceOut = self::PATH . $file;
+		$css = str_replace(".scss", ".min.css", $file);
+		if (file_exists(self::PATH . $css)) {
+			$this->in = self::PATH . "scss/" . $file;
+			$this->out = self::PATH . $css;
+		} elseif (file_exists(self::PATH . "scss/" .  $file)) {
+			$this->source = self::PATH . "scss/" . $file;
+			$this->sourceOut = self::PATH . $css;
 			$this->in = $this->sourceOut;
-			$this->out = str_replace(".css", ".min.css", $this->sourceOut);
+			$this->out = str_replace(".scss", ".min.css", $this->sourceOut);
 		}
 	}
 
@@ -62,7 +63,7 @@ class SCSSAdminMinifyFile extends MinifyFile
 	{
 		if (empty($this->sourceOut) || empty($this->source)) return;
 
-		$compiler = new StyleCompiler($this->source, $this->sourceOut, self::PATH);
+		$compiler = new StyleCompiler($this->source, $this->sourceOut, self::PATH."scss/");
 		if ($compiler->needsCompile()) {
 			$compiler->compileStyle();
 		}

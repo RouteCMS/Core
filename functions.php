@@ -50,3 +50,16 @@ function img(string $path, $admin = false): void
 	global $link;
 	echo $link->imageLink($path, $admin);
 }
+/**
+ * Print an style(css) link
+ *
+ * @param string $path
+ * @param bool   $admin
+ *
+ * @return void
+ */
+function css(string $path, $admin = false): void
+{
+	global $link;
+	echo $link->styleLink($path, $admin);
+}

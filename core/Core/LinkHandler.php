@@ -55,11 +55,31 @@ class LinkHandler
 			if (isset($args["image"]) && $args["image"] === true) {
 				$link .= "images/";
 			}
+			if (isset($args["css"]) && $args["css"] === true) {
+				$link .= "style/";
+			}
 			//TODO dynamic link generation for objects and more
 			if (!empty($args["path"])) $link .= $args["path"];
 		}
 		EventHandler::instance()->call("afterBuildLink", $this, $param);
 
 		return $link;
+	}
+
+	/**
+	 * Return an generated link for an style(css) file
+	 *
+	 * @param string $path
+	 * @param bool   $admin
+	 *
+	 * @return string
+	 */
+	public function styleLink(string $path, $admin = false): string
+	{
+		return $this->buildLink([
+			"path"  => $path,
+			"admin" => $admin,
+			"css"   => true
+		]);
 	}
 }

@@ -22,8 +22,8 @@ class StyleHandler
 	 * @var string[]
 	 */
 	protected $style = [
-		"core.css",
-		"font-awesome.css"
+		"core.scss",
+		"font-awesome.scss"
 	];
 
 	/**

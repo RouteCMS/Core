@@ -36,5 +36,7 @@ StyleHandler::instance()->compile(true);
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="msapplication-TileImage" content="<?php img("touch-icon/ms-icon-144x144.png", true) ?>"/>
     <meta name="theme-color" content="#ffffff"/>
+    <link rel="stylesheet" href="<?php css("core.min.css", true) ?>"/>
+    <link rel="stylesheet" href="<?php css("font-awesome.min.css", true) ?>"/>
 </head>
 <body>

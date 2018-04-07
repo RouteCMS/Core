@@ -19,6 +19,7 @@ use RouteCMS\Model\Interfaces\TextInterface;
  * @ORM\Entity
  * @ORM\Cache
  * @ModelCache
+ * @ORM\Table(name="groups")
  */
 class Group
 {
@@ -28,7 +29,7 @@ class Group
 	use TextInterface;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="GroupPermissionValues", mappedBy="group")
+	 * @ORM\OneToMany(targetEntity="GroupPermissionValues", mappedBy="group", cascade={"persist"})
 	 * 
 	 * @var ArrayCollection
 	 */
@@ -41,7 +42,6 @@ class Group
 	{
 		$this->permissions = new ArrayCollection();
 	}
-
 
 	/**
 	 * @return ArrayCollection

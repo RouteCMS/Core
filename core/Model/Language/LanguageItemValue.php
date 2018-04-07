@@ -18,7 +18,7 @@ class LanguageItemValue
 
 	/**
 	 * @ORM\Id
-	 * @ORM\ManyToOne(targetEntity="LanguageItem")
+	 * @ORM\ManyToOne(targetEntity="LanguageItem", cascade={"persist"})
 	 * @ORM\Cache(usage="READ_WRITE")
 	 * @ORM\JoinColumn(unique=true, referencedColumnName="id", onDelete="CASCADE")
 	 *
@@ -28,7 +28,7 @@ class LanguageItemValue
 
 	/**
 	 * @ORM\Id
-	 * @ORM\ManyToOne(targetEntity="Language")
+	 * @ORM\ManyToOne(targetEntity="Language", cascade={"persist"})
 	 * @ORM\Cache(usage="READ_WRITE")
 	 * @ORM\JoinColumn(unique=true, referencedColumnName="id", onDelete="CASCADE")
 	 *
@@ -57,6 +57,22 @@ class LanguageItemValue
 	public function setLanguage(Language $language): void
 	{
 		$this->language = $language;
+	}
+
+	/**
+	 * @return LanguageItem
+	 */
+	public function getItem(): LanguageItem
+	{
+		return $this->item;
+	}
+
+	/**
+	 * @param LanguageItem $item
+	 */
+	public function setItem(LanguageItem $item): void
+	{
+		$this->item = $item;
 	}
 
 	/**

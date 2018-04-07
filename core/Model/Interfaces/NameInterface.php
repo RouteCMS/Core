@@ -15,7 +15,7 @@ trait NameInterface
 {
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\Language\LanguageItem")
+	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\Language\LanguageItem", cascade={"persist"})
 	 * @ORM\JoinColumn(referencedColumnName="id", nullable=false, onDelete="CASCADE")
 	 *
 	 * @var LanguageItem

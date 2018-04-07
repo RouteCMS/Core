@@ -28,7 +28,7 @@ class Group
 	use TextInterface;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="GroupPermissionValues", mappedBy="group")
+	 * @ORM\OneToMany(targetEntity="GroupPermissionValues", mappedBy="group", fetch="EAGER")
 	 * 
 	 * @var ArrayCollection
 	 */

@@ -36,7 +36,7 @@ class User
 	protected $email = "";
 
 	/**
-	 * @ORM\ManyToMany(targetEntity="Group")
+	 * @ORM\ManyToMany(targetEntity="Group", fetch="EAGER")
 	 * @ORM\JoinTable(
 	 *     joinColumns={@ORM\JoinColumn(referencedColumnName="id",unique=true)},
 	 *      inverseJoinColumns={@ORM\JoinColumn(referencedColumnName="id", unique=true)}

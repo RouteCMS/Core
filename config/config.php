@@ -10,3 +10,4 @@ define("DOMAIN", "localhost:63342");
 define("HTML_FORMATTER", true);
 define("HTML_MINIFY", false);
 define("DEV_MODE", true);
+define("COOKIE_PREFIX", "route_cms_");

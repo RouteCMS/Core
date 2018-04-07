@@ -12,6 +12,7 @@ use RouteCMS\Core\LinkHandler;
 use RouteCMS\Core\RouteCMS;
 use RouteCMS\Event\EventHandler;
 use RouteCMS\Model\Language\Language;
+use RouteCMS\Core\SessionHandler;
 
 if (!defined('GLOBAL_DIR')) {
 	define('GLOBAL_DIR', str_replace('\\', '/', dirname(__FILE__)) . '/');
@@ -20,13 +21,14 @@ require_once "vendor/autoload.php";
 /** @noinspection PhpIncludeInspection */
 include "config/config.php";
 /**
- * @global RouteCMS      $cms
- * @global EventHandler  $event
- * @global Language      $lng
- * @global EntityManager $db
- * @global LinkHandler   $link
+ * @global RouteCMS       $cms
+ * @global EventHandler   $event
+ * @global Language       $lng
+ * @global EntityManager  $db
+ * @global LinkHandler    $link
+ * @global SessionHandler $session
  */
-global $cms, $event, $lng, $db, $link;
+global $cms, $event, $lng, $db, $link, $session;
 $link = LinkHandler::instance();
 $event = EventHandler::instance();
 $cms = RouteCMS::instance();
@@ -35,6 +37,8 @@ include "functions.php";
 //define global variable
 $lng = $cms->getLanguage();
 $db = $cms->getDatabase();
+//init session
+$session = SessionHandler::instance();
 
 //handle the request and print content
 $cms->handleRequest();

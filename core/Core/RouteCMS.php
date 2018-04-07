@@ -26,7 +26,7 @@ use Whoops\Run;
 if (!defined("LOCAL_TIME")) define("LOCAL_TIME", time());
 if (!defined("MAX_COOKIE_TIME")) define("MAX_COOKIE_TIME", 60 * 60 * 24 * 365);
 if (!defined("CURRENT_URI"))
-	define("CURRENT_URI", parse_url(InputUtil::server("REQUEST_URI", "string", ""), PHP_URL_PATH));
+	define("CURRENT_URI", parse_url(str_replace("index.php?/", "", InputUtil::server("REQUEST_URI", "string", "")), PHP_URL_PATH));
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
@@ -54,8 +54,6 @@ class RouteCMS
 	public function load(): void
 	{
 		EventHandler::instance()->call("beforeLoad", $this);
-		Performance::point("RouteCMS@load");
-		Performance::point("RouteCMS@loadDatabase");
 		/** @noinspection PhpIncludeInspection */
 		$dbConf = include GLOBAL_DIR . "/config/db.php";
 		//init database
@@ -75,14 +73,10 @@ class RouteCMS
 			$tool->updateSchema($this->database->getMetadataFactory()->getAllMetadata(), false);
 		}
 		EventHandler::instance()->call("afterLoadDatabase", $this);
-		//close database RouteCMS@loadDatabase
-		Performance::finish();
 		//Init controller system
 		RouteHandler::instance();
 
 		EventHandler::instance()->call("afterLoad", $this);
-		//close database RouteCMS@load
-		Performance::finish();
 	}
 
 	/**
@@ -108,14 +102,7 @@ class RouteCMS
 	 */
 	public function handleRequest(): void
 	{
-		Performance::point("RouteCMS@handleRequest");
-		//Handle request
 		RouteHandler::instance()->handle();
-		Performance::finish();
-		Performance::finish();
-		//TODO change to export, only for debugging results
-		$performance = Performance::results();
-		/** @var ExportHandler $performance */
 		//TODO show this current page
 		EventHandler::instance()->call("exit", $this);
 		exit;
@@ -127,7 +114,6 @@ class RouteCMS
 	 */
 	protected function init(): void
 	{
-		Performance::point("RouteCMS@init");
 		//init exception and error handler
 		$whoops = new Run();
 		$whoops->pushHandler(new ExceptionViewHandler());
@@ -138,7 +124,7 @@ class RouteCMS
 		AnnotationReader::addGlobalIgnoredName("mixin");
 		AnnotationReader::addGlobalIgnoredName("Source");
 		Type::addType('ip', IpType::class);
-		define("DOMAIN_HTTPS", InputUtil::server("HTTPS", "string", "off"));
+		define("DOMAIN_HTTPS", InputUtil::server("HTTPS", "string", "off") != "off");
 		define("IS_POST", InputUtil::isPost());
 		//init cache handler
 		/** @noinspection PhpIncludeInspection */
@@ -147,6 +133,5 @@ class RouteCMS
 			$config["config"]["path"] = GLOBAL_DIR . (!empty($config["config"]["path"]) ? $config["config"]["path"] : "/caches/");
 		}
 		$this->cache = CacheManager::getInstance($config["driver"], $config["config"]);
-		Performance::finish();
 	}
 }

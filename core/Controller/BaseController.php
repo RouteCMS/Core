@@ -48,16 +48,24 @@ abstract class BaseController
 	private $isAdmin = false;
 
 	/**
+	 * @var string 
+	 */
+	protected $templateName = "";
+
+	/**
+	 * @var bool 
+	 */
+	protected $useTemplate = true;
+
+	/**
 	 * BaseController constructor.
 	 */
 	public final function __construct()
 	{
-		$isAdmin = false;
 		AnnotationHandler::instance()->getAnnotation(get_called_class(), Controller::class, function ($annotation) use (&$isAdmin) {
 			/** @var Controller $annotation */
-			$isAdmin = $annotation->admin;
+			$this->isAdmin = $annotation->admin;
 		});
-		$this->isAdmin = $isAdmin;
 	}
 
 	/**
@@ -99,7 +107,19 @@ abstract class BaseController
 	 */
 	protected function show(): void
 	{
-		//TODO show this page
+		if ($this->useTemplate) {
+			$classList = explode('\\', get_class($this));
+
+			$this->templateName = str_replace("Controller", "", lcfirst(array_pop($classList)));
+
+			if (!empty($this->templateName)) {
+				/** @noinspection PhpIncludeInspection */
+				include GLOBAL_DIR . ($this->isAdmin ? "/admin" : "/public") . "/pages/$this->templateName.php";
+				$this->content = ob_get_contents();
+				//TODO load current template files
+			}
+			$this->sendContent();
+		}
 	}
 
 	/**

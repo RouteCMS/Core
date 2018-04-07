@@ -52,6 +52,13 @@ class User
 	protected $password = "";
 
 	/**
+	 * @ORM\Column(type="string", nullable=false, unique=true)
+	 *
+	 * @var string
+	 */
+	protected $username = "";
+
+	/**
 	 * @ORM\Column(type="boolean", options={"default" : false})
 	 *
 	 * @var bool
@@ -136,5 +143,20 @@ class User
 	{
 		$this->lastAction = $lastAction;
 	}
-	
+
+	/**
+	 * @return string
+	 */
+	public function getUsername(): string
+	{
+		return $this->username;
+	}
+
+	/**
+	 * @param string $username
+	 */
+	public function setUsername(string $username): void
+	{
+		$this->username = $username;
+	}
 }

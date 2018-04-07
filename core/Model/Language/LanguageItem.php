@@ -25,7 +25,7 @@ class LanguageItem
 	/**
 	 * @ORM\OneToMany(targetEntity="LanguageItemValue", mappedBy="language", fetch="EAGER")
 	 *
-	 * @var ArrayCollection<LanguageItemValue>
+	 * @var ArrayCollection|LanguageItemValue[]
 	 */
 	protected $values;
 

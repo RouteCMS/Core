@@ -59,7 +59,6 @@ class ControllerCache extends AbstractCache
 	 */
 	protected function updateCache(): void
 	{
-		Performance::point("ControllerCache@register");
 		$this->collector = new RouteCollector();
 		AnnotationHandler::instance()->doCall(Controller::class, GLOBAL_DIR . "core/Controller/", function ($classInspector, $annotation) {
 			/** @var ClassInspector $classInspector */
@@ -71,8 +70,6 @@ class ControllerCache extends AbstractCache
 			}
 		});
 		$this->cacheItem->set($this->collector)->expiresAfter($this->maxLifetime);
-
-		Performance::finish();
 
 		RouteCMS::instance()->getCache()->save($this->cacheItem);
 	}

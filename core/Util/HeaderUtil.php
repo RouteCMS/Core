@@ -36,6 +36,6 @@ final class HeaderUtil
 	 */
 	public static function createLink(string $path, bool $isAdmin = false): string
 	{
-		return (DOMAIN_HTTPS ? "https://" : "http://") . DOMAIN . DOMAIN_PATH . "/" . ($isAdmin ? "admin/" : "") . $path;
+		return (DOMAIN_HTTPS ? "https://" : "http://") . DOMAIN . "/" . DOMAIN_PATH . "/" . ($isAdmin ? "admin/" : "") . $path;
 	}
 }

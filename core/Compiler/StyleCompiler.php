@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace RouteCMS\Style;
+namespace RouteCMS\Compiler;
 
 use Leafo\ScssPhp\Compiler;
 
@@ -41,6 +41,16 @@ class StyleCompiler
 		$this->out = $out;
 		$this->scss = new Compiler();
 		$this->scss->setImportPaths($path);
+		global $event;
+		$event->call("compile", $this);
+	}
+
+	/**
+	 * @return Compiler
+	 */
+	public function getScss(): Compiler
+	{
+		return $this->scss;
 	}
 
 	/**

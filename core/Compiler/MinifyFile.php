@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace RouteCMS\Style;
+namespace RouteCMS\Compiler;
 
 use RouteCMS\Util\InputUtil;
 

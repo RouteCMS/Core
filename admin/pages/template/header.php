@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
@@ -6,10 +7,11 @@
  *
  * @var \RouteCMS\Controller\BaseController $this
  */
-//Compile style files
-use RouteCMS\Style\StyleHandler;
 
-StyleHandler::instance()->compile(true);
+//Compile style files
+use RouteCMS\Compiler\AdminStyleHandler;
+
+AdminStyleHandler::instance()->compile();
 ?>
 <!doctype html>
 <html lang="en"><!-- TODO load language code dynamic -->
@@ -36,7 +38,8 @@ StyleHandler::instance()->compile(true);
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="msapplication-TileImage" content="<?php img("touch-icon/ms-icon-144x144.png", true) ?>"/>
     <meta name="theme-color" content="#ffffff"/>
-    <link rel="stylesheet" href="<?php css("core.min.css", true) ?>"/>
-    <link rel="stylesheet" href="<?php css("font-awesome.min.css", true) ?>"/>
+	<?php foreach (AdminStyleHandler::instance()->getStyle() as $css) { ?>
+        <link rel="stylesheet" href="<?php css(str_replace(".scss", ".min.css", $css), true) ?>"/>
+	<?php } ?>
 </head>
 <body>

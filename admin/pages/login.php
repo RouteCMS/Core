@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development

@@ -63,3 +63,17 @@ function css(string $path, $admin = false): void
 	global $link;
 	echo $link->styleLink($path, $admin);
 }
+
+/**
+ * Print an JavaScript(js) link
+ *
+ * @param string $path
+ * @param bool   $admin
+ *
+ * @return void
+ */
+function js(string $path, $admin = false): void
+{
+	global $link;
+	echo $link->jsLink($path, $admin);
+}

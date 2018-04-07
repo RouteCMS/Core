@@ -52,12 +52,10 @@ class LinkHandler
 		EventHandler::instance()->call("beforeBuildLink", $this, $param);
 
 		if (!$complete) {
-			if (isset($args["image"]) && $args["image"] === true) {
-				$link .= "images/";
-			}
-			if (isset($args["css"]) && $args["css"] === true) {
-				$link .= "style/";
-			}
+			if (isset($args["image"]) && $args["image"] === true) $link .= "images/";
+			if (isset($args["css"]) && $args["css"] === true) $link .= "style/";
+			if (isset($args["js"]) && $args["js"] === true) $link .= "js/";
+
 			//TODO dynamic link generation for objects and more
 			if (!empty($args["path"])) $link .= $args["path"];
 		}
@@ -80,6 +78,23 @@ class LinkHandler
 			"path"  => $path,
 			"admin" => $admin,
 			"css"   => true
+		]);
+	}
+
+	/**
+	 * Return an generated link for an JavaScript(js) file
+	 *
+	 * @param string $path
+	 * @param bool   $admin
+	 *
+	 * @return string
+	 */
+	public function jsLink(string $path, $admin = false): string
+	{
+		return $this->buildLink([
+			"path"  => $path,
+			"admin" => $admin,
+			"js"    => true
 		]);
 	}
 }

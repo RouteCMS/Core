@@ -7,18 +7,18 @@ declare(strict_types=1);
  *
  * @var \RouteCMS\Controller\BaseController $this
  */
-
+global $lng;
 //Compile style files
 use RouteCMS\Compiler\AdminStyleHandler;
 
 AdminStyleHandler::instance()->compile();
 ?>
 <!doctype html>
-<html lang="en"><!-- TODO load language code dynamic -->
+<html lang="<?php echo $lng->getCode() ?>">
 <head>
     <base href="http<?php echo(DOMAIN_HTTPS ? "s" : "") ?>://<?php echo DOMAIN . "/" . DOMAIN_PATH ?>/admin"/>
     <meta charset="utf-8"/>
-    <title><?php pr($this->title) ?></title>
+    <title><?php pr($this->title) ?> - RouteCMS</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="apple-touch-icon" sizes="57x57" href="<?php img("touch-icon/apple-icon-57x57.png", true) ?>"/>

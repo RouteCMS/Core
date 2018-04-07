@@ -1,9 +1,11 @@
 <?php
+declare(strict_types=1);
+
 /**
  * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
- *                
+ *
  * File to define simple functions to make it easy print text, links and more
  */
 
@@ -50,6 +52,7 @@ function img(string $path, $admin = false): void
 	global $link;
 	echo $link->imageLink($path, $admin);
 }
+
 /**
  * Print an style(css) link
  *

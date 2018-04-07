@@ -6,7 +6,10 @@
  *
  * @var \RouteCMS\Controller\BaseController $this
  */
+//Compile style files
+use RouteCMS\Style\StyleHandler;
 
+StyleHandler::instance()->compile(true);
 ?>
 <!doctype html>
 <html lang="en"><!-- TODO load language code dynamic -->

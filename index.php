@@ -10,6 +10,7 @@ error_reporting(E_ALL); //TODO set error reporting by dev level
 use Doctrine\ORM\EntityManager;
 use RouteCMS\Core\LinkHandler;
 use RouteCMS\Core\RouteCMS;
+use RouteCMS\Event\EventHandler;
 use RouteCMS\Model\Language\Language;
 
 if (!defined('GLOBAL_DIR')) {
@@ -19,13 +20,15 @@ require_once "vendor/autoload.php";
 /** @noinspection PhpIncludeInspection */
 include "config/config.php";
 /**
- * @global RouteCMS $cms
- * @global Language $lng
+ * @global RouteCMS      $cms
+ * @global EventHandler  $event
+ * @global Language      $lng
  * @global EntityManager $db
- * @global LinkHandler $link
+ * @global LinkHandler   $link
  */
-global $cms, $lng, $db, $link;
+global $cms, $event, $lng, $db, $link;
 $link = LinkHandler::instance();
+$event = EventHandler::instance();
 $cms = RouteCMS::instance();
 $cms->load();
 include "functions.php";

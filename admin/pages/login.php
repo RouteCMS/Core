@@ -9,7 +9,7 @@
 include "template/header.php";
 ?>
 <div>
-	Login-Page default template
+    <h1>Login-Page default template</h1>
 </div>
 
 <?php

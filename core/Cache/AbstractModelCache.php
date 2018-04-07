@@ -67,11 +67,11 @@ abstract class AbstractModelCache extends AbstractCache
 	protected function fetchModels(): void
 	{
 		if (empty($this->modelIds)) {
-			$this->models = getDatabase()->getRepository($this->namespace)->findAll();
+			$this->models = db()->getRepository($this->namespace)->findAll();
 		} else {
 			$expr = Criteria::expr();
 			$criteria = Criteria::create()->where($expr->in($this->index, $this->modelIds));
-			$this->models = getDatabase()->getRepository($this->namespace)->matching($criteria);
+			$this->models = db()->getRepository($this->namespace)->matching($criteria);
 		}
 	}
 

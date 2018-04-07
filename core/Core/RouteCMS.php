@@ -9,8 +9,6 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Tools\Setup;
-use Performance\Lib\Handlers\ExportHandler;
-use Performance\Performance;
 use Phpfastcache\CacheManager;
 use Phpfastcache\Core\Pool\ExtendedCacheItemPoolInterface;
 use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
@@ -20,6 +18,8 @@ use RouteCMS\Cache\DoctrineCache;
 use RouteCMS\Event\EventHandler;
 use RouteCMS\Exceptions\ExceptionViewHandler;
 use RouteCMS\Exceptions\FileExceptionHandler;
+use RouteCMS\Exceptions\SystemException;
+use RouteCMS\Model\Language\Language;
 use RouteCMS\Util\InputUtil;
 use Whoops\Run;
 
@@ -49,6 +49,11 @@ class RouteCMS
 	private $cache;
 
 	/**
+	 * @var Language
+	 */
+	private $language;
+
+	/**
 	 * Load system
 	 */
 	public function load(): void
@@ -75,8 +80,21 @@ class RouteCMS
 		EventHandler::instance()->call("afterLoadDatabase", $this);
 		//Init controller system
 		RouteHandler::instance();
+		//define language
+		$this->language = $this->database->getRepository(Language::class)->findOneBy([
+			"default" => true
+		], null, 1);
+		if($this->language === null) throw new SystemException("Default language could´t find.");
 
 		EventHandler::instance()->call("afterLoad", $this);
+	}
+
+	/**
+	 * @return Language
+	 */
+	public function getLanguage(): Language
+	{
+		return $this->language;
 	}
 
 	/**
@@ -107,7 +125,6 @@ class RouteCMS
 		EventHandler::instance()->call("exit", $this);
 		exit;
 	}
-
 
 	/**
 	 * Initialize the RouteCMS

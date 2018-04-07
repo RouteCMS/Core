@@ -31,7 +31,7 @@ class Language
 	protected $code;
 
 	/**
-	 * @ORM\Column(type="boolean", unique=true)
+	 * @ORM\Column(name="isDefault", type="boolean", unique=true)
 	 *
 	 * @var bool
 	 */
@@ -113,5 +113,18 @@ class Language
 	public function setName(string $name): void
 	{
 		$this->name = $name;
+	}
+
+	/**
+	 * Return the content of a variable
+	 *
+	 * @param string $name
+	 *
+	 * @return string
+	 */
+	public function getValue(string $name): string
+	{
+		//TODO get value and cache them
+		return $name;
 	}
 }

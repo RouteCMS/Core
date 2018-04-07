@@ -5,8 +5,6 @@ namespace RouteCMS\Model\Extension;
 
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Annotations\Database\ModelCache;
-use RouteCMS\Annotations\Event;
-use RouteCMS\Annotations\Events;
 use RouteCMS\Model\Interfaces\IDInterface;
 use RouteCMS\Model\Interfaces\NameInterface;
 use RouteCMS\Model\Interfaces\TextInterface;
@@ -14,7 +12,7 @@ use RouteCMS\Model\Interfaces\TimeInterface;
 use RouteCMS\Model\Interfaces\VersionInterface;
 
 /**
- * @author        Olaf Braun
+ * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *

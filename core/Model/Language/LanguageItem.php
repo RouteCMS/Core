@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace RouteCMS\Model\Language;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use RouteCMS\Model\Interfaces\ExtensionInterface;
 use RouteCMS\Model\Interfaces\IDNameInterface;
 
 /**
- * @author        Olaf Braun
+ * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *
@@ -22,34 +23,63 @@ class LanguageItem
 	use ExtensionInterface;
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="Language")
-	 * @ORM\JoinColumn(name="languageID", referencedColumnName="id", onDelete="CASCADE")
+	 * @ORM\OneToMany(targetEntity="LanguageItemValue", mappedBy="language", fetch="EAGER")
 	 *
-	 * @var Language
+	 * @var ArrayCollection|LanguageItemValue[]
 	 */
-	protected $language;
+	protected $values;
 
 	/**
-	 * @ORM\Column(type="text", nullable=false, options={"default" : ""})
-	 *
-	 * @var string
+	 * LanguageItem constructor.
 	 */
-	protected $text = "";
-
-	/**
-	 * @return Language
-	 */
-	public function getLanguage(): Language
+	public function __construct()
 	{
-		return $this->language;
+		$this->values = new ArrayCollection();
 	}
 
 	/**
-	 * @param Language $language
+	 * @return ArrayCollection
 	 */
-	public function setLanguage(Language $language): void
+	public function getValues(): ArrayCollection
 	{
-		$this->language = $language;
+		return $this->values;
 	}
 
+	/**
+	 * @param ArrayCollection $values
+	 */
+	public function setValues(ArrayCollection $values): void
+	{
+		$this->values = $values;
+	}
+
+	/**
+	 * @param LanguageItemValue $value
+	 */
+	public function addValue(LanguageItemValue $value): void
+	{
+		$this->values[$value->getKey()] = $value;
+	}
+
+	/**
+	 * Print this value for the current language
+	 */
+	public function __toString()
+	{
+		return $this->getTextForLanguage();
+	}
+
+	/**
+	 * @param Language|null $language
+	 *
+	 * @return string
+	 */
+	public function getTextForLanguage(?Language $language = null): string
+	{
+		//TODO get default language if null
+		$key = $this->getId() . ":" . $language->getCode();
+		if (isset($this->values[$key])) return $this->values[$key]->getText();
+
+		return $key;
+	}
 }

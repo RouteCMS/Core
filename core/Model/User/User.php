@@ -12,7 +12,7 @@ use RouteCMS\Model\Interfaces\IpAddressInterface;
 use RouteCMS\Model\Interfaces\TimeInterface;
 
 /**
- * @author        Olaf Braun
+ * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *
@@ -50,6 +50,13 @@ class User
 	 * @var string
 	 */
 	protected $password = "";
+
+	/**
+	 * @ORM\Column(type="string", nullable=false, unique=true)
+	 *
+	 * @var string
+	 */
+	protected $username = "";
 
 	/**
 	 * @ORM\Column(type="boolean", options={"default" : false})
@@ -136,5 +143,20 @@ class User
 	{
 		$this->lastAction = $lastAction;
 	}
-	
+
+	/**
+	 * @return string
+	 */
+	public function getUsername(): string
+	{
+		return $this->username;
+	}
+
+	/**
+	 * @param string $username
+	 */
+	public function setUsername(string $username): void
+	{
+		$this->username = $username;
+	}
 }

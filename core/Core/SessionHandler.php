@@ -179,7 +179,8 @@ class SessionHandler
 	 */
 	private function setCookie(string $key, $value, $expire = (LOCAL_TIME + MAX_COOKIE_TIME)): void
 	{
-		setcookie(COOKIE_PREFIX . $key, $value, $expire, "/");
+		//TODO load dynamic from database the domain and path for cookies
+		setcookie(COOKIE_PREFIX . $key, $value, $expire, "/".DOMAIN_PATH);
 	}
 
 	/**

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace RouteCMS\Compiler;
 
-use RouteCMS\Util\InputUtil;
-
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
@@ -13,11 +11,6 @@ use RouteCMS\Util\InputUtil;
  */
 abstract class MinifyFile
 {
-
-	/**
-	 * @var string
-	 */
-	protected $protocol = "";
 
 	/**
 	 * @var string
@@ -40,28 +33,12 @@ abstract class MinifyFile
 	protected $out;
 
 	/**
-	 * @var string
-	 */
-	protected $contentType = "text/plain";
-
-	/**
-	 * @var integer
-	 */
-	protected $expires = 31536000;
-
-	/**
-	 * @var string
-	 */
-	protected $emptyBody = "/* File not found */\n";
-
-	/**
 	 * MinifyFile constructor.
 	 *
 	 * @param string $file
 	 */
 	public function __construct(string $file)
 	{
-		$this->protocol = InputUtil::server("SERVER_PROTOCOL", "string", "HTTP/1.0");
 		if (empty($file)) {
 			throw new \InvalidArgumentException('The $file variable is empty');
 		}
@@ -104,6 +81,14 @@ abstract class MinifyFile
 		$mtimeIn = filemtime($this->in);
 
 		return $mtimeOut < $mtimeIn;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getOut(): string
+	{
+		return $this->out;
 	}
 
 	/**

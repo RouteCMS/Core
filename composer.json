@@ -41,7 +41,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "test/"
+      "Tests\\": "tests/"
     }
   },
   "require-dev": {

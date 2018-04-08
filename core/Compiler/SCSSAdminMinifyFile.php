@@ -65,7 +65,7 @@ class SCSSAdminMinifyFile extends MinifyFile
 
 		$compiler = new StyleCompiler($this->source, $this->sourceOut, self::PATH."scss/");
 		if ($compiler->needsCompile()) {
-			$compiler->compileStyle();
+			$compiler->compileFile();
 		}
 	}
 }

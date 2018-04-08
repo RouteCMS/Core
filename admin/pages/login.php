@@ -9,9 +9,7 @@ declare(strict_types=1);
  */
 include "template/header.php";
 ?>
-<div>
-    <h1>Login-Page default template</h1>
-</div>
+
 
 <?php
 include "template/footer.php";

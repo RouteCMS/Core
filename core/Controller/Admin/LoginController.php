@@ -21,6 +21,11 @@ class LoginController extends PostController
 {
 
 	/**
+	 * @var string
+	 */
+	public $uniqueBodyId = "login";
+
+	/**
 	 * @FormParameter(name="username", default="")
 	 * @var string
 	 */

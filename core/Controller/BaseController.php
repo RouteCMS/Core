@@ -18,6 +18,11 @@ abstract class BaseController
 {
 
 	/**
+	 * @var string 
+	 */
+	public $uniqueBodyId = "";
+
+	/**
 	 * @var string
 	 */
 	public $title = "";

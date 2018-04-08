@@ -45,8 +45,15 @@ class StyleCompiler extends AbstractFileCompiler
 	 */
 	public function compileFile(): void
 	{
+		//clear old files
+		$fileMin = str_replace(".css", ".min.css", $this->out);
+		$fileMeta = str_replace(".css", ".css.meta", $this->out);
+		if (file_exists($this->out)) @unlink($this->out);
+		if (file_exists($fileMin)) @unlink($fileMin);
+		if (file_exists($fileMeta)) @unlink($fileMeta);
+		
 		$start = microtime(true);
-		$css = $this->scss->compile(file_get_contents($this->in), $this->in);
+		$css = $this->scss->compile(file_get_contents($this->in));
 		$elapsed = round((microtime(true) - $start), 4);
 
 		$t = date('r');

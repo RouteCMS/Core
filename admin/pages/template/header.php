@@ -42,4 +42,4 @@ AdminStyleHandler::instance()->compile();
         <link rel="stylesheet" href="<?php css(str_replace(".scss", DEV_MODE ? ".css" :".min.css", $css), true) ?>"/>
 	<?php } ?>
 </head>
-<body>
+<body id="<?php echo $this->uniqueBodyId?>">

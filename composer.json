@@ -36,8 +36,12 @@
   },
   "autoload": {
     "psr-4": {
-      "RouteCMS\\": "core/"
-    }
+      "RouteCMS\\": "core/",
+      "Fresh\\DoctrineEnumBundle\\": "vendor/fresh/doctrine-enum-bundle/"
+    },
+    "exclude-from-classmap": [
+      "vendor/fresh/doctrine-enum-bundle/Tests/"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
@@ -63,6 +67,8 @@
   ],
   "config": {
     "sort-packages": true,
-    "htaccess-protect": true
+    "htaccess-protect": true,
+    "optimize-autoloader": true,
+    "discard-changes": true
   }
 }

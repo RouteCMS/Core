@@ -31,7 +31,8 @@
     "phpmailer/phpmailer": "6.*",
     "phramz/doctrine-annotation-scanner": "1.*",
     "phroute/phroute": "2.*",
-    "voku/html-min": "3.*"
+    "voku/html-min": "3.*",
+    "zendframework/zend-text": "2.*"
   },
   "autoload": {
     "psr-4": {

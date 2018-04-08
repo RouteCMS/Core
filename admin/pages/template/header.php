@@ -39,7 +39,7 @@ AdminStyleHandler::instance()->compile();
     <meta name="msapplication-TileImage" content="<?php img("touch-icon/ms-icon-144x144.png", true) ?>"/>
     <meta name="theme-color" content="#ffffff"/>
 	<?php foreach (AdminStyleHandler::instance()->getStyle() as $css) { ?>
-        <link rel="stylesheet" href="<?php css(str_replace(".scss", ".min.css", $css), true) ?>"/>
+        <link rel="stylesheet" href="<?php css(str_replace(".scss", DEV_MODE ? ".css" :".min.css", $css), true) ?>"/>
 	<?php } ?>
 </head>
 <body>

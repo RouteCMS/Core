@@ -109,3 +109,5 @@ admin/style/*.css
 admin/style/cache/*
 admin/style/*.meta
 admin/js/*.min.js
+admin/js/combined.js
+admin/js/*.meta

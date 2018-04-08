@@ -2,3 +2,16 @@ language: php
 sudo: false
 php:
   - 7.2
+  - nigthly
+
+before_install:
+  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
+  - composer self-update
+  
+install:
+  - rm composer.lock
+  - travis_retry composer update --prefer-dist
+  
+cache:
+  directories:
+    - $HOME/.composer/cache

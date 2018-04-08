@@ -5,12 +5,15 @@ php:
   - nigthly
 
 before_install:
-  - mv ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini{,.disabled} || echo "xdebug not available"
   - composer self-update
+  - composer clear-cache
   
 install:
-  - travis_retry composer update --prefer-dist
+  - travis_retry composer update
   
 cache:
   directories:
     - $HOME/.composer/cache
+    
+notifications:
+  email: false

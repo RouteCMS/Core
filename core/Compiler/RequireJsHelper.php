@@ -10,41 +10,18 @@ use RouteCMS\Util\StringUtil;
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
-class RequireJsHelper
+class RequireJsHelper extends AbstractFileCompiler
 {
 
 	/**
-	 * @var string
+	 * Compile the current file
 	 */
-	protected $path;
-
-	/**
-	 * @var string
-	 */
-	protected $out;
-
-	/**
-	 * RequireJsHelper constructor.
-	 *
-	 * @param string $path
-	 * @param string $out
-	 */
-	public function __construct(string $path, string $out)
+	public function compileFile(): void
 	{
-		$this->path = $path;
-		$this->out = $out;
-	}
-
-	/**
-	 * Compile the js files to only one
-	 */
-	public function compile()
-	{
-		if (!$this->needsCompile()) return; //file already created, then don´t compile
 		$content = "";
 		$files = [];
 		$start = microtime(true);
-		foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->path)) as $filename) {
+		foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($this->in)) as $filename) {
 			/** @var \SplFileInfo $filename */
 			if (!$filename->isFile()) continue;
 			if (!StringUtil::endsWith($filename->getFilename(), "js") || StringUtil::endsWith($filename->getFilename(), "min.js")) continue;
@@ -70,50 +47,6 @@ class RequireJsHelper
 	}
 
 	/**
-	 * Check if this file don´t need to compile again
-	 *
-	 * @return bool
-	 */
-	protected function needsCompile(): bool
-	{
-		if (!is_file($this->out)) {
-			return true;
-		}
-
-		$mtime = filemtime($this->out);
-
-		$metadataName = $this->metadataName();
-
-		if (is_readable($metadataName)) {
-			$metadata = unserialize(file_get_contents($metadataName));
-
-			foreach ($metadata['imports'] as $import => $originalMtime) {
-				if (!file_exists($import)) return true;
-				
-				$currentMtime = filemtime($import);
-
-				if ($currentMtime !== $originalMtime || $currentMtime > $mtime) {
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Get path to meta data
-	 *
-	 * @return string
-	 */
-	protected function metadataName(): string
-	{
-		return $this->out . '.meta';
-	}
-
-	/**
 	 * @param \SplFileInfo $filename
 	 *
 	 * @return string
@@ -136,7 +69,7 @@ class RequireJsHelper
 	protected function getNamespace(\SplFileInfo &$filename): string
 	{
 		//remove start path
-		$path = mb_substr($filename->getRealPath(), mb_strlen($this->path));
+		$path = mb_substr($filename->getRealPath(), mb_strlen($this->in));
 
 		return str_replace(".js", "", $path);
 	}

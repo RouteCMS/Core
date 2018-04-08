@@ -245,7 +245,7 @@ class Formatter
 	private function is_closed_tag()
 	{
 		$closed_tags = [
-			'meta', 'link', 'img', 'hr', 'br', 'input',
+			'meta', 'link', 'img', 'hr', 'br', 'input', 'base',
 		];
 
 		$current_tag = '';

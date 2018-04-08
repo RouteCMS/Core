@@ -38,14 +38,14 @@ class AdminStyleHandler
 			$compiler->minifyFile();
 		}
 		//only minify require.js and and dev mode compile the other js files
-		$compiler = new JavaScriptMinifyFile(GLOBAL_DIR."admin/js/require.js");
+		$compiler = new JavaScriptMinifyFile(GLOBAL_DIR . "admin/js/require.js");
 		$compiler->minifyFile();
-		
-		if(!DEV_MODE){
-			$helper = new RequireJsHelper(GLOBAL_DIR."admin/js/require/", GLOBAL_DIR."admin/js/combined.js");
-			$helper->compile();
+
+		if (!DEV_MODE) {
+			$helper = new RequireJsHelper(GLOBAL_DIR . "admin/js/require/", GLOBAL_DIR . "admin/js/combined.js");
+			if ($helper->needsCompile()) $helper->compileFile();
 		}
-		
+
 		$event->call("compile", $this, $this->style);
 	}
 
@@ -54,6 +54,7 @@ class AdminStyleHandler
 	 */
 	public function clearCache(): void
 	{
+		global $event;
 		//delete style files
 		foreach ($this->style as $file) {
 			$file = SCSSAdminMinifyFile::PATH . str_replace(".scss", ".css", $file);
@@ -63,9 +64,11 @@ class AdminStyleHandler
 			if (file_exists($fileMin)) @unlink($fileMin);
 			if (file_exists($fileMeta)) @unlink($fileMeta);
 		}
-		if(file_exists(GLOBAL_DIR."admin/js/combined.js")) @unlink(GLOBAL_DIR."admin/js/combined.js");
-		if(file_exists(GLOBAL_DIR."admin/js/combined.min.js")) @unlink(GLOBAL_DIR."admin/js/combined.min.js");
-		if(file_exists(GLOBAL_DIR."admin/js/combined.meta")) @unlink(GLOBAL_DIR."admin/js/combined.meta");
+		if (file_exists(GLOBAL_DIR . "admin/js/combined.js")) @unlink(GLOBAL_DIR . "admin/js/combined.js");
+		if (file_exists(GLOBAL_DIR . "admin/js/combined.min.js")) @unlink(GLOBAL_DIR . "admin/js/combined.min.js");
+		if (file_exists(GLOBAL_DIR . "admin/js/combined.meta")) @unlink(GLOBAL_DIR . "admin/js/combined.meta");
+
+		$event->call("clearCache", $this, $this->style);
 	}
 
 	/**

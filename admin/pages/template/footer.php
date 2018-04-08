@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @var \RouteCMS\Controller\BaseController $this
  */
 ?>
+<?php inline("beforeRequireJs@footer") ?>
 <script type="application/javascript" src="<?php js(DEV_MODE ? "require.js" : "require.min.js", true) ?>"></script>
 <?php if (!DEV_MODE) { ?>
     <script type="application/javascript" src="<?php js("combined.min.js", true) ?>"></script>
@@ -16,13 +17,13 @@ declare(strict_types=1);
 <script type="text/javascript">
     requirejs.config({
         baseUrl: "<?php js("require/", true) ?>"
+        <?php inline("requireJsConfig@footer") ?>
     });
 
     require(["jquery", "popper"], function ($, p) {
-        console.log($, p);
-        require(["bootstrap"], function (b) {
-        });
+        <!-- init jquery an popper first -->
     });
+    <?php inline("javascript@footer") ?>
 </script>
 </body>
 </html>

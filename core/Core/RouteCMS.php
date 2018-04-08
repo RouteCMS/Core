@@ -12,7 +12,6 @@ use Doctrine\ORM\Tools\Setup;
 use Phpfastcache\CacheManager;
 use Phpfastcache\Core\Pool\ExtendedCacheItemPoolInterface;
 use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
-use RouteCMS\Annotations\AnnotationHandler;
 use RouteCMS\Annotations\Database\EnumColumn;
 use RouteCMS\Cache\DoctrineCache;
 use RouteCMS\Exceptions\ExceptionViewHandler;

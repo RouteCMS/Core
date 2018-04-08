@@ -80,3 +80,17 @@ function js(string $path, $admin = false): void
 	global $link;
 	echo $link->jsLink($path, $admin);
 }
+
+/**
+ * Execute an inline event
+ *
+ * @param string $eventName
+ * @param array  $params
+ *
+ * @return void
+ */
+function inline(string $eventName, array &$params = []): void
+{
+	global $event;
+	$event->callInline($eventName, $params);
+}

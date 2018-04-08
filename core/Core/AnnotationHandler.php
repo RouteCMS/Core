@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace RouteCMS\Annotations;
+namespace RouteCMS\Core;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
@@ -9,7 +9,6 @@ use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
 use Phramz\Doctrine\Annotation\Scanner\FileInspector;
 use Phramz\Doctrine\Annotation\Scanner\Finder;
 use RouteCMS\Cache\DoctrineCache;
-use RouteCMS\Core\Singleton;
 use Symfony\Component\Finder\SplFileInfo;
 
 /**

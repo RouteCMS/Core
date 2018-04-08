@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace RouteCMS\Annotations;
+namespace RouteCMS\Annotations\Event;
 
 use Doctrine\Common\Annotations\Annotation\Required;
 use Doctrine\Common\Annotations\Annotation\Target;
@@ -13,7 +13,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *
  * @Annotation
- * @Target("ANNOTATION")
+ * @Target("CLASS")
  */
 class Event
 {

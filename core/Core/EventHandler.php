@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace RouteCMS\Core;
 
 use RouteCMS\Cache\EventCache;
+use RouteCMS\Cache\InlineEventCache;
 use RouteCMS\Events\EventListener;
+use RouteCMS\Events\InlineEventListener;
 
 
 /**
@@ -23,6 +25,13 @@ class EventHandler
 	private $cache = [];
 
 	/**
+	 * @var InlineEventListener[]
+	 */
+	private $cacheInline = [];
+
+	/**
+	 * Call events
+	 * 
 	 * @param string $name
 	 * @param mixed  $object
 	 * @param array  $parameters
@@ -33,8 +42,25 @@ class EventHandler
 		foreach (EventCache::instance()->getEvents($prefix) as $event) {
 			$index = $prefix . "@" . $event["class"];
 			if (!isset($this->cache[$index])) $this->cache[$index] = new $event["class"];
-			
+
 			$this->cache[$index]->fire($name, $object, $parameters);
+		}
+	}
+
+	/**
+	 * Call inline events
+	 * 
+	 * @param string $eventName
+	 * @param array  $parameters
+	 */
+	public function callInline(string $eventName, array &$parameters = []): void
+	{
+		$prefix = $eventName;
+		foreach (InlineEventCache::instance()->getEvents($prefix) as $event) {
+			$index = $prefix . "@" . $event["class"];
+			if (!isset($this->cacheInline[$index])) $this->cacheInline[$index] = new $event["class"];
+
+			$this->cacheInline[$index]->fire($eventName, $parameters);
 		}
 	}
 }

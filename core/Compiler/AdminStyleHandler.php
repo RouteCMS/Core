@@ -63,6 +63,9 @@ class AdminStyleHandler
 			if (file_exists($fileMin)) @unlink($fileMin);
 			if (file_exists($fileMeta)) @unlink($fileMeta);
 		}
+		if(file_exists(GLOBAL_DIR."admin/js/combined.js")) @unlink(GLOBAL_DIR."admin/js/combined.js");
+		if(file_exists(GLOBAL_DIR."admin/js/combined.min.js")) @unlink(GLOBAL_DIR."admin/js/combined.min.js");
+		if(file_exists(GLOBAL_DIR."admin/js/combined.meta")) @unlink(GLOBAL_DIR."admin/js/combined.meta");
 	}
 
 	/**

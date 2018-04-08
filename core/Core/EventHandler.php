@@ -1,11 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace RouteCMS\Event;
+namespace RouteCMS\Core;
 
 use RouteCMS\Cache\EventCache;
-use RouteCMS\Core\Singleton;
-use RouteCMS\Event\Events\EventListener;
+use RouteCMS\Events\EventListener;
 
 
 /**

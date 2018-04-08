@@ -10,7 +10,7 @@ error_reporting(E_ALL); //TODO set error reporting by dev level
 use Doctrine\ORM\EntityManager;
 use RouteCMS\Core\LinkHandler;
 use RouteCMS\Core\RouteCMS;
-use RouteCMS\Event\EventHandler;
+use RouteCMS\Core\EventHandler;
 use RouteCMS\Model\Language\Language;
 use RouteCMS\Core\SessionHandler;
 

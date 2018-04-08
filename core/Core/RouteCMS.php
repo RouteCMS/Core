@@ -15,7 +15,6 @@ use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
 use RouteCMS\Annotations\AnnotationHandler;
 use RouteCMS\Annotations\Database\EnumColumn;
 use RouteCMS\Cache\DoctrineCache;
-use RouteCMS\Event\EventHandler;
 use RouteCMS\Exceptions\ExceptionViewHandler;
 use RouteCMS\Exceptions\FileExceptionHandler;
 use RouteCMS\Exceptions\SystemException;

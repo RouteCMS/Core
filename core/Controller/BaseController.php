@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace RouteCMS\Controller;
 
-use RouteCMS\Annotations\AnnotationHandler;
 use RouteCMS\Annotations\Controller\Controller;
 use RouteCMS\Annotations\controller\RequestParameter;
+use RouteCMS\Core\AnnotationHandler;
 use RouteCMS\Util\Formatter;
 use voku\helper\HtmlMin;
 

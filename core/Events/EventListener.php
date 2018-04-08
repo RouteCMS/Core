@@ -1,6 +1,6 @@
 <?php
 
-namespace RouteCMS\Event\Events;
+namespace RouteCMS\Events;
 
 
 /**

@@ -15,7 +15,7 @@ trait ExtensionInterface
 {
 
 	/**
-	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\Extension\Extension")
+	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\Extension\Extension", cascade={"persist"})
 	 * @ORM\JoinColumn(referencedColumnName="id", nullable=false, onDelete="CASCADE")
 	 *
 	 * @var Extension

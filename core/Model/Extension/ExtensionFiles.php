@@ -21,7 +21,7 @@ class ExtensionFiles
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="NONE")
-	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\Extension\Extension")
+	 * @ORM\ManyToOne(targetEntity="RouteCMS\Model\Extension\Extension", cascade={"persist"})
 	 * @ORM\JoinColumn(referencedColumnName="id", nullable=false,unique=true, onDelete="CASCADE")
 	 *
 	 * @var Extension

@@ -122,6 +122,8 @@ class StyleCompiler
 			$metadata = unserialize(file_get_contents($metadataName));
 
 			foreach ($metadata['imports'] as $import => $originalMtime) {
+				if (!file_exists($import)) return true;
+
 				$currentMtime = filemtime($import);
 
 				if ($currentMtime !== $originalMtime || $currentMtime > $mtime) {

@@ -3,7 +3,7 @@
   * Copyright 2011-2017 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
-var bootstrap = (function (exports, $, Popper) {
+define('bootstrap', ['jquery', 'popper'], function($, Popper) {
     'use strict';
 
     $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
@@ -3832,7 +3832,8 @@ var bootstrap = (function (exports, $, Popper) {
             throw new Error('Bootstrap\'s JavaScript requires at least jQuery v1.9.1 but less than v4.0.0');
         }
     })($);
-
+    var exports = {};
+    
     exports.Util = Util;
     exports.Alert = Alert;
     exports.Button = Button;
@@ -3847,4 +3848,4 @@ var bootstrap = (function (exports, $, Popper) {
 
     return exports;
 
-}({}, $, Popper));
+});

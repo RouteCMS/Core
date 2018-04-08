@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace RouteCMS\Controller;
 
-use RouteCMS\Annotations\AnnotationHandler;
 use RouteCMS\Annotations\Controller\Form;
 use RouteCMS\Annotations\Controller\FormParameter;
 use RouteCMS\Controller\Parser\FormParser;
+use RouteCMS\Core\AnnotationHandler;
 use RouteCMS\Exceptions\InputException;
 use RouteCMS\Exceptions\SystemException;
 use RouteCMS\Util\InputUtil;

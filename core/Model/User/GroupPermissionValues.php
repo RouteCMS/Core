@@ -18,7 +18,7 @@ class GroupPermissionValues
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="NONE")
-	 * @ORM\ManyToOne(targetEntity="Group")
+	 * @ORM\ManyToOne(targetEntity="Group", cascade={"persist"})
 	 * @ORM\JoinColumn(referencedColumnName="id", nullable=false, onDelete="CASCADE")
 	 *
 	 * @var Group
@@ -27,7 +27,7 @@ class GroupPermissionValues
 	/**
 	 * @ORM\Id
 	 * @ORM\GeneratedValue(strategy="NONE")
-	 * @ORM\ManyToOne(targetEntity="GroupPermission")
+	 * @ORM\ManyToOne(targetEntity="GroupPermission", cascade={"persist"})
 	 * @ORM\JoinColumn(referencedColumnName="id", nullable=false, onDelete="CASCADE")
 	 *
 	 * @var GroupPermission

@@ -26,7 +26,6 @@
     "indigophp/doctrine-annotation-autoload": "0.1.0",
     "leafo/scssphp": "0.*",
     "matthiasmullie/minify": "1.*",
-    "monolog/monolog": "1.*",
     "mtdowling/cron-expression": "1.*",
     "phpfastcache/phpfastcache": "7.0.0-beta3",
     "phpmailer/phpmailer": "6.*",

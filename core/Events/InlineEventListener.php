@@ -1,25 +1,21 @@
 <?php
-declare(strict_types=1);
 
-namespace RouteCMS\Annotations;
-
-use Doctrine\Common\Annotations\Annotation\Target;
+namespace RouteCMS\Events;
 
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
- *
- * @Annotation
- * @Target({"CLASS"})
  */
-class Events
+interface InlineEventListener
 {
 
 	/**
-	 * @var array<\RouteCMS\Annotations\Event>
+	 * Execute an inline event
+	 * 
+	 * @param string $name
+	 * @param array  $parameters
 	 */
-	public $events = [];
-
+	public function fire($name, array &$parameters = []): void;
 }

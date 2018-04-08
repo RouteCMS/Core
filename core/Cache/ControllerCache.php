@@ -6,8 +6,8 @@ namespace RouteCMS\Cache;
 use Performance\Performance;
 use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
 use Phroute\Phroute\RouteCollector;
-use RouteCMS\Annotations\AnnotationHandler;
 use RouteCMS\Annotations\Controller\Controller;
+use RouteCMS\Core\AnnotationHandler;
 use RouteCMS\Core\RouteCMS;
 
 

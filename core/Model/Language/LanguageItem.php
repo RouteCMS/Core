@@ -23,7 +23,7 @@ class LanguageItem
 	use ExtensionInterface;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="LanguageItemValue", mappedBy="language", fetch="EAGER")
+	 * @ORM\OneToMany(targetEntity="LanguageItemValue", cascade={"persist"}, mappedBy="language", fetch="EAGER")
 	 *
 	 * @var ArrayCollection|LanguageItemValue[]
 	 */
@@ -66,7 +66,7 @@ class LanguageItem
 	 */
 	public function __toString()
 	{
-		return $this->getTextForLanguage();
+		return "";
 	}
 
 	/**

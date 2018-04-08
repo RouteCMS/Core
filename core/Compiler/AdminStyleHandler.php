@@ -27,17 +27,6 @@ class AdminStyleHandler
 	];
 
 	/**
-	 * List of javascript files to minify
-	 *
-	 * @var string[]
-	 */
-	protected $script = [
-		"jquery.js",
-		"popper.js",
-		"bootstrap.js"
-	];
-
-	/**
 	 * Compile all style files, if it need and minifiy them
 	 */
 	public function compile(): void
@@ -48,10 +37,15 @@ class AdminStyleHandler
 			$compiler = new SCSSAdminMinifyFile($file);
 			$compiler->minifyFile();
 		}
-		foreach ($this->script as $file) {
-			$compiler = new JavaScriptAdminMinifyFile($file);
-			$compiler->minifyFile();
+		//only minify require.js and and dev mode compile the other js files
+		$compiler = new JavaScriptMinifyFile(GLOBAL_DIR."admin/js/require.js");
+		$compiler->minifyFile();
+		
+		if(!DEV_MODE){
+			$helper = new RequireJsHelper(GLOBAL_DIR."admin/js/require/", GLOBAL_DIR."admin/js/combined.js");
+			$helper->compile();
 		}
+		
 		$event->call("compile", $this, $this->style);
 	}
 
@@ -69,10 +63,6 @@ class AdminStyleHandler
 			if (file_exists($fileMin)) @unlink($fileMin);
 			if (file_exists($fileMeta)) @unlink($fileMeta);
 		}
-		foreach ($this->script as $file) {
-			$file = JavaScriptAdminMinifyFile::PATH . str_replace(".js", ".min.jss", $file);
-			if (file_exists($file)) @unlink($file);
-		}
 	}
 
 	/**
@@ -86,28 +76,10 @@ class AdminStyleHandler
 	}
 
 	/**
-	 * Add a javascript file witch should compile
-	 *
-	 * @param string $file
-	 */
-	public function addScript(string $file): void
-	{
-		$this->style[] = $file;
-	}
-
-	/**
 	 * @return string[]
 	 */
 	public function getStyle(): array
 	{
 		return $this->style;
-	}
-
-	/**
-	 * @return string[]
-	 */
-	public function getScript(): array
-	{
-		return $this->script;
 	}
 }

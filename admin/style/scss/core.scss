@@ -2,8 +2,4 @@
 @import "bootstrap/bootstrap";
 
 $image-path: "../images/";
-#login {
-  background: #488bc5 url('#{$image-path}login_bg.png') no-repeat;
-  background-size: cover;
-  opacity: 0.8;
-}
+@import "login";

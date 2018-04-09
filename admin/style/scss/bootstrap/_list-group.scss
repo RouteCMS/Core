@@ -11,6 +11,7 @@
   margin-bottom: 0;
 }
 
+
 // Interactive list items
 //
 // Use anchor or button elements instead of `li`s or `div`s to create interactive
@@ -33,6 +34,7 @@
     background-color: $list-group-action-active-bg;
   }
 }
+
 
 // Individual list items
 //
@@ -57,6 +59,7 @@
   }
 
   @include hover-focus {
+    z-index: 1; // Place hover/active items above their siblings for proper border styling
     text-decoration: none;
   }
 
@@ -68,12 +71,13 @@
 
   // Include both here for `<a>`s and `<button>`s
   &.active {
-    z-index: 1; // Place active items above their siblings for proper border styling
+    z-index: 2; // Place active items above their siblings for proper border styling
     color: $list-group-active-color;
     background-color: $list-group-active-bg;
     border-color: $list-group-active-border-color;
   }
 }
+
 
 // Flush list items
 //
@@ -99,6 +103,7 @@
     }
   }
 }
+
 
 // Contextual variants
 //

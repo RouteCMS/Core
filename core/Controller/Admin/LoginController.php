@@ -24,6 +24,11 @@ class LoginController extends PostController
 	 * @var string
 	 */
 	public $uniqueBodyId = "login";
+	
+	/**
+	 * @var string
+	 */
+	public $title = "route-cms/core/login";
 
 	/**
 	 * @FormParameter(name="username", default="")

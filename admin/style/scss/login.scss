@@ -1,6 +1,5 @@
 html,
 body {
-  min-height: 100%;
   height: 100%;
 }
 
@@ -10,37 +9,31 @@ body {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
-  -ms-flex-align: center;
   -ms-flex-pack: center;
-  -webkit-box-align: center;
-  align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-
-  .login-panel {
-    width: 100%;
+  .cover-container {
     max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-
-    .card {
-      color: $white;
-      .card-header {
-        background: transparentize(#262626, 20%);
-      }
-      .card-body {
-        background: transparentize(#262626, 30%);
-      }
-      .card-footer {
-        background: transparentize(#336e9a, 5%);
-        .btn-link {
-          color: $white;
-          &:hover {
-            text-decoration: none;
-            cursor: pointer;
-            opacity: 0.8;
+    > main {
+      padding-top: 50px;
+      padding-bottom: 40px;
+      .card {
+        color: $white;
+        .card-header {
+          background: transparentize(#262626, 20%);
+        }
+        .card-body {
+          background: transparentize(#262626, 30%);
+        }
+        .card-footer {
+          background: transparentize(#336e9a, 5%);
+          .btn-link {
+            color: $white;
+            &:hover {
+              text-decoration: none;
+              cursor: pointer;
+              opacity: 0.8;
+            }
           }
         }
       }

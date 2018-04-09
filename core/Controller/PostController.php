@@ -9,6 +9,7 @@ use RouteCMS\Controller\Parser\FormParser;
 use RouteCMS\Core\AnnotationHandler;
 use RouteCMS\Exceptions\InputException;
 use RouteCMS\Exceptions\SystemException;
+use RouteCMS\Exceptions\UserException;
 use RouteCMS\Util\InputUtil;
 
 
@@ -24,6 +25,11 @@ abstract class PostController extends BaseController
 	 * @var FormParser[]
 	 */
 	protected $parser = [];
+
+	/**
+	 * @var UserException
+	 */
+	protected $error;
 
 	/**
 	 * @inheritdoc
@@ -52,7 +58,7 @@ abstract class PostController extends BaseController
 				$this->validate();
 				$this->submit();
 			} catch (InputException $ex) {
-				$ex->show();
+				$this->error = $ex;
 			}
 
 			$this->show();
@@ -71,6 +77,14 @@ abstract class PostController extends BaseController
 			$parser->returnValue();
 			$this->$name = $parser->getValue();
 		}
+	}
+
+	/**
+	 * @return UserException
+	 */
+	public function getError(): UserException
+	{
+		return $this->error;
 	}
 
 	/**

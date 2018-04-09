@@ -6,6 +6,7 @@ use RouteCMS\Annotations\Controller\Controller;
 use RouteCMS\Annotations\Controller\Form;
 use RouteCMS\Annotations\Controller\FormParameter;
 use RouteCMS\Controller\PostController;
+use RouteCMS\Exceptions\InputException;
 use RouteCMS\Model\User\User;
 
 
@@ -24,7 +25,7 @@ class LoginController extends PostController
 	 * @var string
 	 */
 	public $uniqueBodyId = "login";
-	
+
 	/**
 	 * @var string
 	 */
@@ -53,6 +54,16 @@ class LoginController extends PostController
 	public function validate(): void
 	{
 		parent::validate();
-		//TODO validate login data from user
+		global $db;
+		$this->user = $db->getRepository(User::class)->findOneBy([
+			"username" => $this->username
+		]);
+		if ($this->user == null) {
+			throw new InputException("username", txt("route-cms/global/form/invalid/username"));
+		}
+		if (!password_verify($this->password, $this->user->getPassword())) {
+			throw new InputException("password", txt("route-cms/global/form/invalid/password"));
+		}
+		//TODO check user has admin permission
 	}
 }

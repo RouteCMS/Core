@@ -10,7 +10,8 @@ declare(strict_types=1);
 include "template/header.php";
 global $link;
 ?>
-    <div class="login-panel text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
+        <header class="mb-auto"></header>
         <main role="main" class="inner cover">
             <h1 class="cover-heading">
                 <a href="<?php echo $link->buildLink([
@@ -31,7 +32,7 @@ global $link;
                                     <span class="fa fa-user" aria-hidden="true"></span>
                                 </span>
                             </div>
-                            <input type="text" class="form-control" placeholder="<?php pr("route-cms/global/username") ?>" aria-label="<?php pr("route-cms/global/username") ?>">
+                            <input type="text" name="username" class="form-control" placeholder="<?php pr("route-cms/global/username") ?>" aria-label="<?php pr("route-cms/global/username") ?>">
                         </div>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
@@ -39,7 +40,7 @@ global $link;
                                     <span class="fa fa-lock" aria-hidden="true"></span>
                                 </span>
                             </div>
-                            <input type="password" class="form-control" placeholder="<?php pr("route-cms/global/password") ?>" aria-label="<?php pr("route-cms/global/password") ?>">
+                            <input type="password" name="password" class="form-control" placeholder="<?php pr("route-cms/global/password") ?>" aria-label="<?php pr("route-cms/global/password") ?>">
                         </div>
                     </div>
                     <div class="card-footer rounded-0 border-0">
@@ -50,6 +51,7 @@ global $link;
                 </form>
             </div>
         </main>
+        <footer class="mt-auto"></footer>
     </div>
 <?php
 include "template/footer.php";

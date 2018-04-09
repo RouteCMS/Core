@@ -17,29 +17,16 @@ class InputException extends UserException
 	private $field;
 
 	/**
-	 * @var string
-	 */
-	private $type;
-
-	/**
 	 * InputException constructor.
 	 *
 	 * @param string $field
 	 * @param string $message
 	 */
-	public function __construct($field, $message = 'Bitte ausfüllen')
+	public function __construct(string $field,string $message)
 	{
 		$this->field = $field;
-		$this->type = $message;
+		$this->message = $message;
 		parent::__construct();
-	}
-
-	/**
-	 * Output the exception message
-	 */
-	public function show(): void
-	{
-
 	}
 
 	/**
@@ -48,13 +35,5 @@ class InputException extends UserException
 	public function getField(): string
 	{
 		return $this->field;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getType(): string
-	{
-		return $this->type;
 	}
 }

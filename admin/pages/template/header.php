@@ -41,5 +41,7 @@ AdminStyleHandler::instance()->compile();
 	<?php foreach (AdminStyleHandler::instance()->getStyle() as $css) { ?>
         <link rel="stylesheet" href="<?php css(str_replace(".scss", DEV_MODE ? ".css" :".min.css", $css), true) ?>"/>
 	<?php } ?>
+	<?php inline("head@header") ?>
 </head>
 <body id="<?php echo $this->uniqueBodyId?>">
+    <?php inline("afterBody@header") ?>

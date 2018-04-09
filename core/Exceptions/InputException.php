@@ -22,10 +22,10 @@ class InputException extends UserException
 	 * @param string $field
 	 * @param string $message
 	 */
-	public function __construct(string $field,string $message)
+	public function __construct(string $field, string $message = "")
 	{
 		$this->field = $field;
-		$this->message = $message;
+		$this->message = $message ?: txt("route-cms/global/form/invalid/empty");
 		parent::__construct();
 	}
 

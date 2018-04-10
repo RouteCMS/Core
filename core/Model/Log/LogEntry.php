@@ -28,13 +28,13 @@ abstract class LogEntry
 	 *
 	 * @var string
 	 */
-	private $error = null;
+	protected $error = null;
 
 	/**
 	 * @var string
 	 * @ORM\Column(name="severity",type="logSeverity", nullable=false)
 	 */
-	private $severity = LogSeverity::NONE;
+	protected $severity = LogSeverity::NONE;
 
 	/**
 	 * @return string

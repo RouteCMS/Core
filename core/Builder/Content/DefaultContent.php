@@ -14,7 +14,7 @@ class DefaultContent implements Content
 	/**
 	 * @var string
 	 */
-	protected $tag = "div";
+	protected $tag = "span";
 
 	/**
 	 * @var string

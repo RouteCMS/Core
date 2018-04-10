@@ -8,46 +8,25 @@ namespace RouteCMS\Builder\Content;
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
-abstract class Container implements Content
+interface Container extends Content
 {
-
-	/**
-	 * @var Content[]
-	 */
-	protected $elements = [];
 
 	/**
 	 * @param Content $element
 	 *
 	 * @return Container
 	 */
-	public function addContent(Content $element): Container
-	{
-		$this->elements[] = $element;
-
-		return $this;
-	}
+	public function addContent(Content $element): Container;
 
 	/**
 	 * Return all elements from this container
 	 *
 	 * @return Content[]
 	 */
-	public function getElements(): array
-	{
-		return $this->elements;
-	}
+	public function getElements(): array;
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getHtml(): string
-	{
-		$html = "";
-		foreach ($this->elements as $element) {
-			$html .= $element->getHtml();
-		}
-
-		return $html;
-	}
+	public function getContent(): string;
 }

@@ -64,6 +64,13 @@ interface FormParser
 	 * @return mixed
 	 */
 	public function getValue();
+	
+	/**
+	 * Return the current value to output
+	 *
+	 * @return mixed
+	 */
+	public function getValueOut();
 
 	/**
 	 * Validate the value of given

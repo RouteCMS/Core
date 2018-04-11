@@ -23,6 +23,8 @@ class AnnotationHandler
 
 	use Singleton;
 
+	const BREAK_LOOP = "break_loop";
+
 	/**
 	 * @var CachedReader
 	 */
@@ -91,6 +93,8 @@ class AnnotationHandler
 		$result = false;
 		$this->getAnnotation($class, $annotation, function () use (&$result) {
 			$result = true;
+
+			return self::BREAK_LOOP;
 		});
 
 		return $result;
@@ -107,7 +111,9 @@ class AnnotationHandler
 		$annotations = $classInspector->getClassAnnotations();
 		foreach ($annotations as $item) {
 			if (is_a($item, $annotation)) {
-				$callback($item);
+				if ($callback($item) === self::BREAK_LOOP) {
+					break;
+				}
 			}
 		}
 	}
@@ -123,7 +129,30 @@ class AnnotationHandler
 		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
 			foreach ($properties as $property) {
 				if (is_a($property, $annotation)) {
-					$callback($name, $property);
+					if ($callback($name, $property) === self::BREAK_LOOP) {
+						break 2;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Find an annotations and execute an callback with a list of all annotations for this field/element
+	 * 
+	 * @param string   $class
+	 * @param string   $annotation
+	 * @param callable $callback
+	 */
+	public function getPropertyAnnotationWithOther(string $class, string $annotation, callable $callback): void
+	{
+		$classInspector = new ClassInspector($class, $this->getReader());
+		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
+			foreach ($properties as $property) {
+				if (is_a($property, $annotation)) {
+					if ($callback($name, $property, $properties) === self::BREAK_LOOP) {
+						break 2;
+					}
 				}
 			}
 		}

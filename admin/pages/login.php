@@ -9,10 +9,6 @@ declare(strict_types=1);
  * @var \RouteCMS\Controller\Admin\LoginController $this
  */
 
-use RouteCMS\Bootstrap\BootstrapContentBuilder;
-use RouteCMS\Builder\Bootstrap\Content\InputGroup;
-use RouteCMS\Builder\Content\Input\FormTypes;
-
 include "template/header.php";
 global $link;
 ?>
@@ -36,20 +32,7 @@ global $link;
 				]); ?>">
                     <div class="card-body rounded-0 border-0">
 						<?php
-						$contentBuilder = new BootstrapContentBuilder("form");
-						$contentBuilder->addContent((new InputGroup())
-							->addPrependIcon("user")
-							->addInput($this->username, FormTypes::TEXT, "username", "route-cms/global/username", [
-								"aria-label" => txt("route-cms/global/username")
-							])
-						);
-						$contentBuilder->addContent((new InputGroup())
-							->addPrependIcon("lock")
-							->addInput($this->password, FormTypes::PASSWORD, "password", "route-cms/global/password", [
-								"aria-label" => txt("route-cms/global/password")
-							])
-						);
-						echo $contentBuilder->getHtml();
+						echo $this->getContentBuilder()->getHtml();
 						?>
                     </div>
                     <div class="card-footer rounded-0 border-0">

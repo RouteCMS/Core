@@ -10,7 +10,7 @@ use RouteCMS\Builder\Content\Content;
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
-abstract class DefaultContentBuilder implements ContentBuilder
+class DefaultContentBuilder implements ContentBuilder
 {
 
 	/**

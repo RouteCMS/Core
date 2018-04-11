@@ -18,6 +18,7 @@ class InputGroup extends DefaultContainer
 {
 
 	const TEXT = "text";
+	const ICON = "icon";
 
 	const CONTENT = "default";
 
@@ -57,6 +58,9 @@ class InputGroup extends DefaultContainer
 			switch ($type) {
 				case self::TEXT:
 					$div->addContent((new DefaultContent("span", $item))->addClass('input-group-text'));
+					break;
+				case self::ICON:
+					$div->addContent((new DefaultContent("span", '<span class="fa fa-' . $item . '" aria-hidden="true"></span>'))->addClass('input-group-text'));
 					break;
 				case self::CONTENT:
 				default:
@@ -104,7 +108,7 @@ class InputGroup extends DefaultContainer
 	public function addPrependIcon(string $icon): InputGroup
 	{
 		$this->addPrependContent([
-			self::TEXT => '<span class="fa fa-' . $icon . '" aria-hidden="true"></span>'
+			self::ICON => $icon
 		]);
 
 		return $this;

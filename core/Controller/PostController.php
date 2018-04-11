@@ -36,18 +36,7 @@ abstract class PostController extends BaseController
 	 */
 	public function handle(...$args): void
 	{
-		if (AnnotationHandler::instance()->hasAnnotation(get_called_class(), Form::class)) {
-			$parser = $this->parser;
-			AnnotationHandler::instance()->getPropertyAnnotation(get_called_class(), FormParameter::class, function ($name, $annotation) use (&$parser) {
-				/** @var FormParameter $annotation */
-				$parserClass = 'RouteCMS\\Controller\\Parser\\' . ucfirst($annotation->type) . "FormParser";
-				if (!class_exists($parserClass) && is_subclass_of($parserClass, FormParser::class)) {
-					throw new SystemException("Form parser of type '$annotation->type' couldn't found!");
-				}
-				$parser[$name] = new $parserClass($name, $annotation->default, $annotation->options);
-			});
-			$this->parser = $parser;
-		}
+		$this->initAnnotations();
 		if (mb_strtoupper(InputUtil::server("REQUEST_METHOD", "string", "GET")) == "POST") {
 			$this->checkPermissions();
 			if (!empty($args)) {
@@ -69,6 +58,27 @@ abstract class PostController extends BaseController
 	}
 
 	/**
+	 * Load all annotations in this class
+	 */
+	protected function initAnnotations(): void
+	{
+		if (AnnotationHandler::instance()->hasAnnotation(get_called_class(), Form::class)) {
+			$parser = $this->parser;
+			AnnotationHandler::instance()->getPropertyAnnotation(get_called_class(), FormParameter::class, function ($name, $annotation) use (&$parser) {
+				/** @var FormParameter $annotation */
+				$parserClass = 'RouteCMS\\Controller\\Parser\\' . ucfirst($annotation->type) . "FormParser";
+				if (!class_exists($parserClass) && is_subclass_of($parserClass, FormParser::class)) {
+					throw new SystemException("Form parser of type '$annotation->type' couldn't found!");
+				}
+				$parser[$name] = new $parserClass($name, $annotation->default, $annotation->options);
+			});
+			$this->parser = $parser;
+		}
+		global $event;
+		$event->call("initAnnotations", $this);
+	}
+
+	/**
 	 * Read POST request parameters
 	 */
 	public function readPostParameters(): void
@@ -77,14 +87,6 @@ abstract class PostController extends BaseController
 			$parser->returnValue();
 			$this->$name = $parser->getValue();
 		}
-	}
-
-	/**
-	 * @return UserException
-	 */
-	public function getError(): UserException
-	{
-		return $this->error;
 	}
 
 	/**
@@ -104,5 +106,13 @@ abstract class PostController extends BaseController
 	public function submit(): void
 	{
 		//do nothing by default
+	}
+
+	/**
+	 * @return UserException
+	 */
+	public function getError(): UserException
+	{
+		return $this->error;
 	}
 }

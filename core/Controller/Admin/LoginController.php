@@ -3,9 +3,11 @@
 namespace RouteCMS\Controller\Admin;
 
 use RouteCMS\Annotations\Controller\Controller;
+use RouteCMS\Annotations\Controller\ElementPrepend;
 use RouteCMS\Annotations\Controller\Form;
+use RouteCMS\Annotations\Controller\FormElement;
 use RouteCMS\Annotations\Controller\FormParameter;
-use RouteCMS\Controller\PostController;
+use RouteCMS\Controller\FormController;
 use RouteCMS\Exceptions\InputException;
 use RouteCMS\Model\User\User;
 
@@ -18,7 +20,7 @@ use RouteCMS\Model\User\User;
  * @Controller(path="/login/", method={"GET", "POST"}, admin=true)
  * @Form
  */
-class LoginController extends PostController
+class LoginController extends FormController
 {
 
 	/**
@@ -33,12 +35,16 @@ class LoginController extends PostController
 
 	/**
 	 * @FormParameter(name="username", default="")
+	 * @FormElement(placeholder="route-cms/global/username")
+	 * @ElementPrepend(type="icon", content="user")
 	 * @var string
 	 */
 	public $username = "";
 
 	/**
 	 * @FormParameter(name="password", default="")
+	 * @FormElement(placeholder="route-cms/global/password")
+	 * @ElementPrepend(type="icon", content="lock")
 	 * @var string
 	 */
 	public $password = "";

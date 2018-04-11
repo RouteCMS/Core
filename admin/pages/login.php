@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 /**
  * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
@@ -38,20 +39,18 @@ global $link;
 						$contentBuilder = new BootstrapContentBuilder("form");
 						$contentBuilder->addContent((new InputGroup())
 							->addPrependIcon("user")
-							->addInput($this->username, FormTypes::TEXT, "username", txt("route-cms/global/username"), [
+							->addInput($this->username, FormTypes::TEXT, "username", "route-cms/global/username", [
 								"aria-label" => txt("route-cms/global/username")
+							])
+						);
+						$contentBuilder->addContent((new InputGroup())
+							->addPrependIcon("lock")
+							->addInput($this->password, FormTypes::PASSWORD, "password", "route-cms/global/password", [
+								"aria-label" => txt("route-cms/global/password")
 							])
 						);
 						echo $contentBuilder->getHtml();
 						?>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <span class="fa fa-lock" aria-hidden="true"></span>
-                                </span>
-                            </div>
-                            <input type="password" name="password" class="form-control" placeholder="<?php pr("route-cms/global/password") ?>" aria-label="<?php pr("route-cms/global/password") ?>">
-                        </div>
                     </div>
                     <div class="card-footer rounded-0 border-0">
                         <button type="submit" class="btn btn-link">

@@ -35,13 +35,13 @@ class LoginController extends PostController
 	 * @FormParameter(name="username", default="")
 	 * @var string
 	 */
-	protected $username = "";
+	public $username = "";
 
 	/**
 	 * @FormParameter(name="password", default="")
 	 * @var string
 	 */
-	protected $password = "";
+	public $password = "";
 
 	/**
 	 * @var User

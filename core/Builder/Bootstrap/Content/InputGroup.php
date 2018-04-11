@@ -88,7 +88,7 @@ class InputGroup extends DefaultContainer
 				->addClasses($classList)
 				->addClass("form-control")
 				->addPropertyValues($properties)
-				->addPropertyValue("placeholder", $placeholder)
+				->addPropertyValue("placeholder", txt($placeholder))
 		);
 
 		return $this;

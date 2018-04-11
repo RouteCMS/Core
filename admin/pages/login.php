@@ -38,7 +38,7 @@ global $link;
 						$contentBuilder = new BootstrapContentBuilder("form");
 						$contentBuilder->addContent((new InputGroup())
 							->addPrependIcon("user")
-							->addInput($this->username, FormTypes::TEXT, "username", txt("route-cms/global/username"), [], [
+							->addInput($this->username, FormTypes::TEXT, "username", txt("route-cms/global/username"), [
 								"aria-label" => txt("route-cms/global/username")
 							])
 						);

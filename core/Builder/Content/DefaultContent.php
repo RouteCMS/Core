@@ -121,6 +121,7 @@ class DefaultContent implements Content
 
 		return $this;
 	}
+
 	/**
 	 * @param string[] $class
 	 *
@@ -172,6 +173,7 @@ class DefaultContent implements Content
 		$html = "<$this->tag";
 		if (count($this->classList) > 0) $html .= ' class="' . implode(" ", $this->classList) . '"';
 		foreach ($this->propertyList as $key => $value) {
+			if ($key == "class") continue; //ignore class
 			$html .= ' ' . $key . '="' . $value . '"';
 		}
 		$html .= ">";

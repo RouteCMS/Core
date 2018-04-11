@@ -81,7 +81,7 @@ class InputGroup extends DefaultContainer
 	 *
 	 * @return InputGroup
 	 */
-	public function addInput(string $value, string $type = FormTypes::TEXT, string $name = "", string $placeholder = "", array $classList = [], array $properties = []): InputGroup
+	public function addInput(string $value, string $type = FormTypes::TEXT, string $name = "", string $placeholder = "", array $properties = [], array $classList = []): InputGroup
 	{
 		$this->addContent(
 			(new DefaultInput($value, $type, $name))

@@ -111,11 +111,26 @@ class DefaultContent implements Content
 
 	/**
 	 * @param string $class
+	 *
+	 * @return DefaultContent
 	 */
-	public function addClass(string $class): void
+	public function addClass(string $class): DefaultContent
 	{
 		$this->classList[] = $class;
 		$this->classList = array_unique($this->classList);
+
+		return $this;
+	}
+	/**
+	 * @param string[] $class
+	 *
+	 * @return DefaultContent
+	 */
+	public function addClasses(array $class): DefaultContent
+	{
+		$this->classList = array_unique(array_merge($this->classList, $class));
+
+		return $this;
 	}
 
 	/**
@@ -123,10 +138,30 @@ class DefaultContent implements Content
 	 *
 	 * @param string $key
 	 * @param string $value
+	 *
+	 * @return DefaultContent
 	 */
-	public function addPropertyValue(string $key, string $value): void
+	public function addPropertyValue(string $key, string $value): DefaultContent
 	{
 		$this->propertyList[$key] = $value;
+
+		return $this;
+	}
+
+	/**
+	 * Add a list of property values
+	 *
+	 * @param array propertyList
+	 *
+	 * @return DefaultContent
+	 */
+	public function addPropertyValues(array $propertyList): DefaultContent
+	{
+		foreach ($propertyList as $key => $value) {
+			$this->propertyList[$key] = $value;
+		}
+
+		return $this;
 	}
 
 	/**
@@ -136,7 +171,7 @@ class DefaultContent implements Content
 	{
 		$html = "<$this->tag";
 		if (count($this->classList) > 0) $html .= ' class="' . implode(" ", $this->classList) . '"';
-		foreach ($this->classList as $key => $value) {
+		foreach ($this->propertyList as $key => $value) {
 			$html .= ' ' . $key . '="' . $value . '"';
 		}
 		$html .= ">";

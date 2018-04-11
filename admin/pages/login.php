@@ -7,6 +7,11 @@ declare(strict_types=1);
  *
  * @var \RouteCMS\Controller\Admin\LoginController $this
  */
+
+use RouteCMS\Bootstrap\BootstrapContentBuilder;
+use RouteCMS\Builder\Bootstrap\Content\InputGroup;
+use RouteCMS\Builder\Content\Input\FormTypes;
+
 include "template/header.php";
 global $link;
 ?>
@@ -24,16 +29,21 @@ global $link;
                 <div class="card-header rounded-0 border-0">
 					<?php pr("route-cms/core/login/area") ?>
                 </div>
-                <form method="post">
+                <form method="post" action="<?php echo $link->buildLink([
+					"admin" => true,
+					"path"  => "login"
+				]); ?>">
                     <div class="card-body rounded-0 border-0">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <span class="fa fa-user" aria-hidden="true"></span>
-                                </span>
-                            </div>
-                            <input type="text" name="username" class="form-control" placeholder="<?php pr("route-cms/global/username") ?>" aria-label="<?php pr("route-cms/global/username") ?>">
-                        </div>
+						<?php
+						$contentBuilder = new BootstrapContentBuilder("form");
+						$contentBuilder->addContent((new InputGroup())
+							->addPrependIcon("user")
+							->addInput($this->username, FormTypes::TEXT, "username", txt("route-cms/global/username"), [], [
+								"aria-label" => txt("route-cms/global/username")
+							])
+						);
+						echo $contentBuilder->getHtml();
+						?>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">

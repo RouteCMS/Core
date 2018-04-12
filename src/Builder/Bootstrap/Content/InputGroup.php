@@ -18,6 +18,7 @@ class InputGroup extends DefaultContainer
 {
 
 	const TEXT = "text";
+
 	const ICON = "icon";
 
 	const CONTENT = "default";

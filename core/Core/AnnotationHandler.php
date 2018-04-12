@@ -35,7 +35,7 @@ class AnnotationHandler
 	 * @param string   $path
 	 * @param callable $callback
 	 */
-	public function doCall(string $annotation, string $path, callable $callback): void
+	public function doCall(string $annotation, string $path, $callback): void
 	{
 		$fileList = $this->getAnnotationsInPath($annotation, $path);
 		foreach ($fileList as $file) {
@@ -44,7 +44,7 @@ class AnnotationHandler
 			$annotations = $classInspector->getClassAnnotations();
 			foreach ($annotations as $item) {
 				if (is_a($item, $annotation)) {
-					$callback($classInspector, $item);
+					call_user_func($callback, $classInspector, $item);
 				}
 			}
 		}
@@ -105,13 +105,13 @@ class AnnotationHandler
 	 * @param string   $annotation
 	 * @param callable $callback
 	 */
-	public function getAnnotation(string $class, string $annotation, callable $callback): void
+	public function getAnnotation(string $class, string $annotation, $callback): void
 	{
 		$classInspector = new ClassInspector($class, $this->getReader());
 		$annotations = $classInspector->getClassAnnotations();
 		foreach ($annotations as $item) {
 			if (is_a($item, $annotation)) {
-				if ($callback($item) === self::BREAK_LOOP) {
+				if (call_user_func($callback, $item) === self::BREAK_LOOP) {
 					break;
 				}
 			}
@@ -123,13 +123,13 @@ class AnnotationHandler
 	 * @param string   $annotation
 	 * @param callable $callback
 	 */
-	public function getPropertyAnnotation(string $class, string $annotation, callable $callback): void
+	public function getPropertyAnnotation(string $class, string $annotation, $callback): void
 	{
 		$classInspector = new ClassInspector($class, $this->getReader());
 		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
 			foreach ($properties as $property) {
 				if (is_a($property, $annotation)) {
-					if ($callback($name, $property) === self::BREAK_LOOP) {
+					if (call_user_func($callback, $name, $property) === self::BREAK_LOOP) {
 						break 2;
 					}
 				}
@@ -144,13 +144,13 @@ class AnnotationHandler
 	 * @param string   $annotation
 	 * @param callable $callback
 	 */
-	public function getPropertyAnnotationWithOther(string $class, string $annotation, callable $callback): void
+	public function getPropertyAnnotationWithOther(string $class, string $annotation, $callback): void
 	{
 		$classInspector = new ClassInspector($class, $this->getReader());
 		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
 			foreach ($properties as $property) {
 				if (is_a($property, $annotation)) {
-					if ($callback($name, $property, $properties) === self::BREAK_LOOP) {
+					if (call_user_func($callback, $name, $property, $properties) === self::BREAK_LOOP) {
 						break 2;
 					}
 				}

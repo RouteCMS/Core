@@ -29,38 +29,52 @@ abstract class FormController extends PostController
 		global $event;
 		$event->call("beforeBuildContent", $this);
 
-		AnnotationHandler::instance()->getPropertyAnnotationWithOther(get_called_class(), FormElement::class, function ($name, $annotation, $annotations) {
-			/** @var FormElement $annotation */
-			/** @var array $annotations */
-			$afterPrepend = [];
-			$container = new InputGroup();
-			foreach ($annotations as $item) {
-				switch (get_class($item)) {
-					case ElementPrepend::class:
-						if (!$item->before) {
-							$afterPrepend[] = $item;
-							continue;
-						}
-						$container->addPrependContent([
-							$item->type => $item->content
-						]);
-						break;
-				}
-			}
-			if (!isset($this->parser[$name])) return;
-			$formParameter = $this->parser[$name];
-
-			$container->addInput($formParameter->getValueOut(), $annotation->type, $name, $annotation->placeholder, $annotation->properties, $annotation->classList);
-			foreach ($afterPrepend as $item) {
-				$container->addPrependContent([
-					$item->type => $item->content
-				]);
-			}
-			$this->contentBuilder->addContent($container);
-		});
-		
-		global $event;
+		AnnotationHandler::instance()->getPropertyAnnotationWithOther(get_called_class(), FormElement::class, [$this, 'eventContentBuilder']);
 		$event->call("afterBuildContent", $this);
 		parent::show();
+	}
+
+	/**
+	 * @param string      $name
+	 * @param FormElement $annotation
+	 * @param array       $annotations
+	 */
+	public function eventContentBuilder($name, $annotation, $annotations)
+	{
+		global $event;
+		$afterPrepend = [];
+		$container = new InputGroup();
+		foreach ($annotations as $item) {
+			switch (get_class($item)) {
+				case ElementPrepend::class:
+					if (!$item->before) {
+						$afterPrepend[] = $item;
+						continue;
+					}
+					$container->addPrependContent([
+						$item->type => $item->content
+					]);
+					break;
+				default:
+			}
+		}
+		if (!isset($this->parser[$name])) return;
+		
+		$formParameter = $this->parser[$name];
+		$params = [
+			"parser"      => &$formParameter,
+			"annotation"  => $annotation,
+			"name"        => $name,
+			"annotations" => $annotations
+		];
+		$event->call("contentBuilder", $this, $params);
+
+		$container->addInput($formParameter->getValueOut(), $annotation->type, $name, $annotation->placeholder, $annotation->properties, $annotation->classList);
+		foreach ($afterPrepend as $item) {
+			$container->addPrependContent([
+				$item->type => $item->content
+			]);
+		}
+		$this->contentBuilder->addContent($container);
 	}
 }

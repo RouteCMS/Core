@@ -35,7 +35,7 @@ class LoginController extends FormController
 
 	/**
 	 * @FormParameter(name="username", default="")
-	 * @FormElement(placeholder="route-cms/global/username")
+	 * @FormElement(placeholder="route-cms/global/username", properties={"required":null})
 	 * @ElementPrepend(type="icon", content="user")
 	 * @var string
 	 */
@@ -43,7 +43,7 @@ class LoginController extends FormController
 
 	/**
 	 * @FormParameter(name="password", default="")
-	 * @FormElement(placeholder="route-cms/global/password")
+	 * @FormElement(placeholder="route-cms/global/password", properties={"required":null})
 	 * @ElementPrepend(type="icon", content="lock")
 	 * @var string
 	 */

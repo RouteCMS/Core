@@ -129,7 +129,9 @@ class DefaultContent implements Content
 	 */
 	public function addClasses(array $class): DefaultContent
 	{
-		$this->classList = array_unique(array_merge($this->classList, $class));
+		if (count($class) > 0) {
+			$this->classList = array_unique(array_merge($this->classList, $class));
+		}
 
 		return $this;
 	}
@@ -174,7 +176,7 @@ class DefaultContent implements Content
 		if (count($this->classList) > 0) $html .= ' class="' . implode(" ", $this->classList) . '"';
 		foreach ($this->propertyList as $key => $value) {
 			if ($key == "class") continue; //ignore class
-			$html .= ' ' . $key . '="' . $value . '"';
+			$html .= ' ' . $key . ($value === null ? "" : '="' . $value . '"');
 		}
 		$html .= ">";
 		$html .= $this->getContent();

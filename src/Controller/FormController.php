@@ -6,6 +6,7 @@ namespace RouteCMS\Controller;
 use RouteCMS\Annotations\Controller\ElementPrepend;
 use RouteCMS\Annotations\Controller\FormElement;
 use RouteCMS\Builder\Bootstrap\Content\InputGroup;
+use RouteCMS\Builder\Content\DefaultContent;
 use RouteCMS\Builder\DefaultContentBuilder;
 use RouteCMS\Builder\FormBuilder;
 use RouteCMS\Core\AnnotationHandler;
@@ -68,8 +69,10 @@ abstract class FormController extends PostController
 			"annotations" => $annotations
 		];
 		$event->call("contentBuilder", $this, $params);
-
 		$container->addInput($formParameter->getValueOut(), $annotation->type, $name, $annotation->placeholder, $annotation->properties, $annotation->classList);
+		if($this->error !== null && $this->error->getField() == $name){
+			$container->addContent((new DefaultContent("div", $this->error->getMessage()))->addClass('invalid-feedback'));
+		}
 		foreach ($afterPrepend as $item) {
 			$container->addPrependContent([
 				$item->type => $item->content

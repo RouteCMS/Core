@@ -9,7 +9,6 @@ use RouteCMS\Controller\Parser\FormParser;
 use RouteCMS\Core\AnnotationHandler;
 use RouteCMS\Exceptions\InputException;
 use RouteCMS\Exceptions\SystemException;
-use RouteCMS\Exceptions\UserException;
 use RouteCMS\Util\InputUtil;
 
 
@@ -27,7 +26,7 @@ abstract class PostController extends BaseController
 	protected $parser = [];
 
 	/**
-	 * @var UserException
+	 * @var InputException
 	 */
 	protected $error;
 
@@ -109,9 +108,9 @@ abstract class PostController extends BaseController
 	}
 
 	/**
-	 * @return UserException
+	 * @return InputException
 	 */
-	public function getError(): UserException
+	public function getError(): InputException
 	{
 		return $this->error;
 	}

@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 /**
  * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
@@ -7,6 +8,7 @@ declare(strict_types=1);
  *
  * @var \RouteCMS\Controller\Admin\LoginController $this
  */
+
 include "template/header.php";
 global $link;
 ?>
@@ -24,24 +26,14 @@ global $link;
                 <div class="card-header rounded-0 border-0">
 					<?php pr("route-cms/core/login/area") ?>
                 </div>
-                <form method="post">
+                <form method="post" action="<?php echo $link->buildLink([
+					"admin" => true,
+					"path"  => "login"
+				]); ?>">
                     <div class="card-body rounded-0 border-0">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <span class="fa fa-user" aria-hidden="true"></span>
-                                </span>
-                            </div>
-                            <input type="text" name="username" class="form-control" placeholder="<?php pr("route-cms/global/username") ?>" aria-label="<?php pr("route-cms/global/username") ?>">
-                        </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <span class="fa fa-lock" aria-hidden="true"></span>
-                                </span>
-                            </div>
-                            <input type="password" name="password" class="form-control" placeholder="<?php pr("route-cms/global/password") ?>" aria-label="<?php pr("route-cms/global/password") ?>">
-                        </div>
+						<?php
+						echo $this->getContentBuilder()->getHtml();
+						?>
                     </div>
                     <div class="card-footer rounded-0 border-0">
                         <button type="submit" class="btn btn-link">

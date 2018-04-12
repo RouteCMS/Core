@@ -24,7 +24,7 @@ abstract class DefaultFormParser implements FormParser
 	protected $default = "";
 
 	/**
-	 * @var null
+	 * @var mixed
 	 */
 	protected $value = null;
 
@@ -75,6 +75,14 @@ abstract class DefaultFormParser implements FormParser
 		foreach ($values as $name => $value) {
 			$this->options[$name] = $value;
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getValueOut()
+	{
+		return $this->value;
 	}
 
 	/**

@@ -36,7 +36,7 @@
   },
   "autoload": {
     "psr-4": {
-      "RouteCMS\\": "core/",
+      "RouteCMS\\": "src/",
       "Fresh\\DoctrineEnumBundle\\": "vendor/fresh/doctrine-enum-bundle/"
     },
     "exclude-from-classmap": [

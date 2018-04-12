@@ -60,13 +60,13 @@ class RouteCMS
 		/** @noinspection PhpIncludeInspection */
 		$dbConf = include GLOBAL_DIR . "/config/db.php";
 		//init database
-		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "core/Model"], DEV_MODE, null, DoctrineCache::instance(), false);
+		$config = Setup::createAnnotationMetadataConfiguration([GLOBAL_DIR . "src/Model"], DEV_MODE, null, DoctrineCache::instance(), false);
 		$this->database = EntityManager::create(array_merge([
 			'charset'   => 'utf8mb4',
 			'collation' => 'utf8mb4_unicode_ci',
 			'prefix'    => '',
 		], $dbConf), $config);
-		AnnotationHandler::instance()->doCall(EnumColumn::class, GLOBAL_DIR . "core/", function ($classInspector, $annotation) {
+		AnnotationHandler::instance()->doCall(EnumColumn::class, GLOBAL_DIR . "src/", function ($classInspector, $annotation) {
 			/** @var ClassInspector $classInspector */
 			/** @var EnumColumn $annotation */
 			Type::addType($annotation->name, $classInspector->getClassName());

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace RouteCMS\Controller\Parser;
 
 use RouteCMS\Exceptions\InputException;
+use RouteCMS\Util\StringUtil;
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
@@ -12,6 +13,16 @@ use RouteCMS\Exceptions\InputException;
  */
 class StringFormParser extends DefaultFormParser
 {
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getValueOut()
+	{
+		if ($this->value === null) return "";
+
+		return StringUtil::htmlEncode($this->value);
+	}
 
 	/**
 	 * @inheritdoc

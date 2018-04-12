@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace RouteCMS\Cache;
 
 use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
-use RouteCMS\Annotations\Event\Event;
+use RouteCMS\Annotations\Event\TemplateEvent;
 use RouteCMS\Core\AnnotationHandler;
 use RouteCMS\Core\RouteCMS;
 
@@ -14,7 +14,7 @@ use RouteCMS\Core\RouteCMS;
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  */
-class EventCache extends AbstractCache
+class InlineEventCache extends AbstractCache
 {
 
 	/**
@@ -47,13 +47,12 @@ class EventCache extends AbstractCache
 	protected function updateCache(): void
 	{
 		$this->events = [];
-		AnnotationHandler::instance()->doCall(Event::class, GLOBAL_DIR . "core/Events", function ($classInspector, $item) {
+		AnnotationHandler::instance()->doCall(TemplateEvent::class, GLOBAL_DIR . "src/Events", function ($classInspector, $item) {
 			/** @var ClassInspector $classInspector */
-			/** @var Event $item */
-			$identifier = $item->getIdentifier();
-			if (!isset($this->events[$identifier])) $this->events[$identifier] = [];
+			/** @var TemplateEvent $item */
+			if (!isset($this->events[$item->name])) $this->events[$item->name] = [];
 
-			$this->events[$identifier][] = ["class" => $classInspector->getClassName(), "priority" => $item->priority];
+			$this->events[$item->name][] = ["class" => $classInspector->getClassName(), "priority" => $item->priority];
 		});
 		//sort events by priority
 		foreach ($this->events as &$itemList) {
@@ -69,5 +68,4 @@ class EventCache extends AbstractCache
 
 		RouteCMS::instance()->getCache()->save($this->cacheItem);
 	}
-
 }

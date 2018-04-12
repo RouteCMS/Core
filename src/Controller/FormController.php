@@ -68,9 +68,10 @@ abstract class FormController extends PostController
 			"name"        => $name,
 			"annotations" => $annotations
 		];
+		$error = $this->error !== null && $this->error->getField() == $name;
 		$event->call("contentBuilder", $this, $params);
-		$container->addInput($formParameter->getValueOut(), $annotation->type, $name, $annotation->placeholder, $annotation->properties, $annotation->classList);
-		if($this->error !== null && $this->error->getField() == $name){
+		$container->addInput($formParameter->getValueOut(), $annotation->type, $name, $annotation->placeholder, $annotation->properties, $error ? array_merge(['is-invalid'], $annotation->classList) : $annotation->classList);
+		if($error){
 			$container->addContent((new DefaultContent("div", $this->error->getMessage()))->addClass('invalid-feedback'));
 		}
 		foreach ($afterPrepend as $item) {

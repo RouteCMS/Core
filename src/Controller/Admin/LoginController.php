@@ -43,7 +43,7 @@ class LoginController extends FormController
 
 	/**
 	 * @FormParameter(name="password", default="")
-	 * @FormElement(placeholder="route-cms/global/password", properties={"required":null})
+	 * @FormElement(placeholder="route-cms/global/password", type="password", properties={"required":null})
 	 * @ElementPrepend(type="icon", content="lock")
 	 * @var string
 	 */

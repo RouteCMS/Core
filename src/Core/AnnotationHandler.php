@@ -5,11 +5,8 @@ namespace RouteCMS\Core;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
-use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
-use Phramz\Doctrine\Annotation\Scanner\FileInspector;
-use Phramz\Doctrine\Annotation\Scanner\Finder;
+use RouteCMS\Cache\AnnotationCache;
 use RouteCMS\Cache\DoctrineCache;
-use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
@@ -37,41 +34,16 @@ class AnnotationHandler
 	 */
 	public function doCall(string $annotation, string $path, $callback): void
 	{
-		$fileList = $this->getAnnotationsInPath($annotation, $path);
-		foreach ($fileList as $file) {
-			/** @var SplFileInfo $file */
-			$classInspector = $this->getFileInspector($file)->getClassInspector($this->getReader());
-			$annotations = $classInspector->getClassAnnotations();
+		foreach (AnnotationCache::instance()->getInfoByPath($annotation, $path, $this->getReader()) as $info) {
+			$annotations = $info->getClassAnnotations();
 			foreach ($annotations as $item) {
 				if (is_a($item, $annotation)) {
-					call_user_func($callback, $classInspector, $item);
+					if(call_user_func($callback, $info->getClassName(), $item) == self::BREAK_LOOP){
+						break 2;
+					}
 				}
 			}
 		}
-	}
-
-	/**
-	 * @param string $annotation
-	 * @param string $path
-	 *
-	 * @return Finder
-	 */
-	public function getAnnotationsInPath(string $annotation, string $path): Finder
-	{
-		$finder = new Finder();
-		$finder->containsAtLeastOneOf($annotation)->setReader($this->reader)->in($path);
-
-		return $finder;
-	}
-
-	/**
-	 * @param SplFileInfo $file
-	 *
-	 * @return FileInspector
-	 */
-	public function getFileInspector(SplFileInfo $file): FileInspector
-	{
-		return new FileInspector($file->getRealPath());
 	}
 
 	/**
@@ -107,9 +79,8 @@ class AnnotationHandler
 	 */
 	public function getAnnotation(string $class, string $annotation, $callback): void
 	{
-		$classInspector = new ClassInspector($class, $this->getReader());
-		$annotations = $classInspector->getClassAnnotations();
-		foreach ($annotations as $item) {
+		$classInfo = AnnotationCache::instance()->getClassInfo($class, $this->getReader());
+		foreach ($classInfo->getClassAnnotations() as $item) {
 			if (is_a($item, $annotation)) {
 				if (call_user_func($callback, $item) === self::BREAK_LOOP) {
 					break;
@@ -125,8 +96,8 @@ class AnnotationHandler
 	 */
 	public function getPropertyAnnotation(string $class, string $annotation, $callback): void
 	{
-		$classInspector = new ClassInspector($class, $this->getReader());
-		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
+		$classInfo = AnnotationCache::instance()->getClassInfo($class, $this->getReader());
+		foreach ($classInfo->getPropertyAnnotations() as $name => $properties) {
 			foreach ($properties as $property) {
 				if (is_a($property, $annotation)) {
 					if (call_user_func($callback, $name, $property) === self::BREAK_LOOP) {
@@ -146,8 +117,8 @@ class AnnotationHandler
 	 */
 	public function getPropertyAnnotationWithOther(string $class, string $annotation, $callback): void
 	{
-		$classInspector = new ClassInspector($class, $this->getReader());
-		foreach ($classInspector->getPropertyAnnotations() as $name => $properties) {
+		$classInfo = AnnotationCache::instance()->getClassInfo($class, $this->getReader());
+		foreach ($classInfo->getPropertyAnnotations() as $name => $properties) {
 			foreach ($properties as $property) {
 				if (is_a($property, $annotation)) {
 					if (call_user_func($callback, $name, $property, $properties) === self::BREAK_LOOP) {
@@ -164,16 +135,6 @@ class AnnotationHandler
 	public function __call($name, $arguments)
 	{
 		return call_user_func([$this->reader, $name], $arguments);
-	}
-
-	/**
-	 * @param string $path
-	 *
-	 * @return FileInspector
-	 */
-	public function getFileInspectorByPath(string $path): FileInspector
-	{
-		return new FileInspector($path);
 	}
 
 	/**

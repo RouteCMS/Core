@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace RouteCMS\Core;
 
+use RouteCMS\Annotations\Controller\Controller;
 use RouteCMS\Util\HeaderUtil;
 
 /**
@@ -54,6 +55,14 @@ class LinkHandler
 			if (isset($args["image"]) && $args["image"] === true) $link .= "images/";
 			if (isset($args["css"]) && $args["css"] === true) $link .= "style/";
 			if (isset($args["js"]) && $args["js"] === true) $link .= "js/";
+			if (isset($args["class"])) {
+				AnnotationHandler::instance()->getAnnotation($args["class"], Controller::class, function ($annotation) use (&$link) {
+					/** @var Controller $annotation */
+					$link = HeaderUtil::createLink($annotation->path, $annotation->admin);
+
+					return AnnotationHandler::BREAK_LOOP;
+				});
+			}
 
 			//TODO dynamic link generation for objects and more
 			if (!empty($args["path"])) $link .= $args["path"];

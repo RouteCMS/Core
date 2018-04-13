@@ -11,7 +11,6 @@ use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\Tools\Setup;
 use Phpfastcache\CacheManager;
 use Phpfastcache\Core\Pool\ExtendedCacheItemPoolInterface;
-use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
 use RouteCMS\Annotations\Database\EnumColumn;
 use RouteCMS\Cache\DoctrineCache;
 use RouteCMS\Exceptions\ExceptionViewHandler;
@@ -66,10 +65,9 @@ class RouteCMS
 			'collation' => 'utf8mb4_unicode_ci',
 			'prefix'    => '',
 		], $dbConf), $config);
-		AnnotationHandler::instance()->doCall(EnumColumn::class, GLOBAL_DIR . "src/", function ($classInspector, $annotation) {
-			/** @var ClassInspector $classInspector */
+		AnnotationHandler::instance()->doCall(EnumColumn::class, GLOBAL_DIR . "src/", function ($className, $annotation) {
 			/** @var EnumColumn $annotation */
-			Type::addType($annotation->name, $classInspector->getClassName());
+			Type::addType($annotation->name, $className);
 		});
 		if ($dbConf["update"]) {
 			$tool = new SchemaTool($this->database);

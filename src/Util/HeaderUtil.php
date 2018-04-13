@@ -36,6 +36,14 @@ final class HeaderUtil
 	 */
 	public static function createLink(string $path, bool $isAdmin = false): string
 	{
-		return (DOMAIN_HTTPS ? "https://" : "http://") . DOMAIN . "/" . DOMAIN_PATH . "/" . ($isAdmin ? "admin/" : "") . $path;
+		$result = DOMAIN_HTTPS ? "https://" : "http://";
+		$result .= DOMAIN . "/" . DOMAIN_PATH . "/";
+		if ($isAdmin) {
+			$result .= "admin/";
+		}
+		if(StringUtil::startsWith("/", $path)){
+			$result .= mb_substr($path, 1, mb_strlen($path) - 1);
+		}
+		return $result;
 	}
 }

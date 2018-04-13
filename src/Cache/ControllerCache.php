@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace RouteCMS\Cache;
 
-use Performance\Performance;
-use Phramz\Doctrine\Annotation\Scanner\ClassInspector;
 use Phroute\Phroute\RouteCollector;
 use RouteCMS\Annotations\Controller\Controller;
 use RouteCMS\Core\AnnotationHandler;
@@ -60,10 +58,9 @@ class ControllerCache extends AbstractCache
 	protected function updateCache(): void
 	{
 		$this->collector = new RouteCollector();
-		AnnotationHandler::instance()->doCall(Controller::class, GLOBAL_DIR . "src/Controller/", function ($classInspector, $annotation) {
-			/** @var ClassInspector $classInspector */
+		AnnotationHandler::instance()->doCall(Controller::class, GLOBAL_DIR . "src/Controller/", function ($className, $annotation) {
 			/** @var Controller $annotation */
-			$routeController = [$classInspector->getClassName(), "handle"];
+			$routeController = [$className, "handle"];
 
 			foreach ($annotation->method as $method) {
 				$this->collector->addRoute($method, DOMAIN_PATH . ($annotation->admin ? "/admin" : "") . $annotation->path, $routeController);

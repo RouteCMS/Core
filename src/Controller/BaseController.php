@@ -70,6 +70,8 @@ abstract class BaseController
 		AnnotationHandler::instance()->getAnnotation(get_called_class(), Controller::class, function ($annotation) use (&$isAdmin) {
 			/** @var Controller $annotation */
 			$this->isAdmin = $annotation->admin;
+			
+			return AnnotationHandler::BREAK_LOOP;
 		});
 	}
 

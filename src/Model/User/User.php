@@ -19,6 +19,8 @@ use RouteCMS\Model\Interfaces\TimeInterface;
  * @ORM\Entity
  * @ORM\Cache
  * @ModelCache
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\EntityListeners({"RouteCMS\Doctrine\Listener\UserPasswordEntityListeners"})
  */
 class User
 {

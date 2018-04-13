@@ -78,9 +78,9 @@ class UserUtil
 	 *
 	 * @param    string $mail
 	 *
-	 * @return    boolean
+	 * @return    bool|int|mixed
 	 */
-	public static function isValidEmail(string $mail): bool
+	public static function isValidEmail(string $mail): object
 	{
 		$c = '!#\$%&\'\*\+\-\/0-9=\?a-z\^_`\{\}\|~';
 		$string = '[' . $c . ']*(?:\\\\[\x00-\x7F][' . $c . ']*)*';

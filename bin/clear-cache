@@ -9,4 +9,7 @@ declare(strict_types=1);
 use RouteCMS\Compiler\AdminStyleHandler;
 
 include "console.php";
+global $cms;
 AdminStyleHandler::instance()->clearCache();
+$cms->getCache()->clear();
+$cms->getCache()->detachAllItems();

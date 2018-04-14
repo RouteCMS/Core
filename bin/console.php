@@ -9,15 +9,18 @@ error_reporting(E_ALL);
  */
 
 use RouteCMS\Core\EventHandler;
-use RouteCMS\Core\LinkHandler;
 use RouteCMS\Core\RouteCMS;
 
 if (!defined('GLOBAL_DIR')) {
 	define('GLOBAL_DIR', str_replace('\\', '/', dirname(__FILE__)) . '/../');
 }
+include "../config/config.php";
 require_once "../vendor/autoload.php";
-global $cms, $event, $lng, $db, $link, $session;
-$link = LinkHandler::instance();
+/**
+ * @global RouteCMS     $cms
+ * @global EventHandler $event
+ */
+global $cms, $event, $session;
 $event = EventHandler::instance();
 $cms = RouteCMS::instance();
 include "../functions.php";

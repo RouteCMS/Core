@@ -18,12 +18,27 @@ use RouteCMS\Exceptions\FileExceptionHandler;
 use RouteCMS\Exceptions\SystemException;
 use RouteCMS\Model\Language\Language;
 use RouteCMS\Util\InputUtil;
+use RouteCMS\Util\StringUtil;
 use Whoops\Run;
 
-if (!defined("LOCAL_TIME")) define("LOCAL_TIME", time());
-if (!defined("MAX_COOKIE_TIME")) define("MAX_COOKIE_TIME", 60 * 60 * 24 * 365);
-if (!defined("CURRENT_URI"))
+if (!defined("LOCAL_TIME")) {
+	define("LOCAL_TIME", time());
+}
+if (!defined("MAX_COOKIE_TIME")) {
+	define("MAX_COOKIE_TIME", 60 * 60 * 24 * 365);
+}
+if (!defined("CURRENT_URI")) {
 	define("CURRENT_URI", parse_url(str_replace("index.php?/", "", InputUtil::server("REQUEST_URI", "string", "")), PHP_URL_PATH));
+}
+if (!defined("IS_ADMIN")) {
+	define("IS_ADMIN", StringUtil::startsWith("/".DOMAIN_PATH . "/admin/", CURRENT_URI));
+}
+if (!defined("DOMAIN_HTTPS")) {
+	define("DOMAIN_HTTPS", InputUtil::server("HTTPS", "string", "off") != "off");
+}
+if (!defined("IS_POST")) {
+	define("IS_POST", InputUtil::isPost());
+}
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
@@ -80,7 +95,7 @@ class RouteCMS
 		$this->language = $this->database->getRepository(Language::class)->findOneBy([
 			"default" => true
 		], null, 1);
-		if($this->language === null) throw new SystemException("Default language could´t find.");
+		if ($this->language === null) throw new SystemException("Default language could´t find.");
 
 		EventHandler::instance()->call("afterLoad", $this);
 	}
@@ -137,8 +152,6 @@ class RouteCMS
 		AnnotationReader::addGlobalIgnoredName("mixin");
 		AnnotationReader::addGlobalIgnoredName("Source");
 		Type::addType('ip', IpType::class);
-		define("DOMAIN_HTTPS", InputUtil::server("HTTPS", "string", "off") != "off");
-		define("IS_POST", InputUtil::isPost());
 		//init cache handler
 		/** @noinspection PhpIncludeInspection */
 		$config = include GLOBAL_DIR . "/config/cache.php";

@@ -58,8 +58,8 @@ class AdminStyleHandler
 		//delete style files
 		foreach ($this->style as $file) {
 			$file = SCSSAdminMinifyFile::PATH . str_replace(".scss", ".css", $file);
-			$fileMin = SCSSAdminMinifyFile::PATH . str_replace(".scss", ".min.css", $file);
-			$fileMeta = SCSSAdminMinifyFile::PATH . str_replace(".scss", ".css.meta", $file);
+			$fileMin = str_replace(".css", ".min.css", $file);
+			$fileMeta = str_replace(".css", ".css.meta", $file);
 			if (file_exists($file)) @unlink($file);
 			if (file_exists($fileMin)) @unlink($fileMin);
 			if (file_exists($fileMeta)) @unlink($fileMeta);
@@ -67,7 +67,7 @@ class AdminStyleHandler
 		if (file_exists(GLOBAL_DIR . "admin/js/combined.js")) @unlink(GLOBAL_DIR . "admin/js/combined.js");
 		if (file_exists(GLOBAL_DIR . "admin/js/require.min.js")) @unlink(GLOBAL_DIR . "admin/js/require.min.js");
 		if (file_exists(GLOBAL_DIR . "admin/js/combined.min.js")) @unlink(GLOBAL_DIR . "admin/js/combined.min.js");
-		if (file_exists(GLOBAL_DIR . "admin/js/combined.meta")) @unlink(GLOBAL_DIR . "admin/js/combined.meta");
+		if (file_exists(GLOBAL_DIR . "admin/js/combined.js.meta")) @unlink(GLOBAL_DIR . "admin/js/combined.js.meta");
 
 		$event->call("clearCache", $this, $this->style);
 	}

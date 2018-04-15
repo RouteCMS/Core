@@ -21,16 +21,27 @@
           }
         },
         "identifier" : {
-          "type" : "string",
-          "pattern" : "^([a-zA-Z]{2,15}.[a-zA-Z]{2,30}.[a-zA-Z]{5,30}(.[a-zA-Z]{2,50})?)$"
+          "$ref" : "types/identifier.schema.json"
         },
         "date" : {
-          "type" : "string",
-          "pattern": "^(\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01]))$"
+          "$ref" : "types/date.schema.json"
         },
         "version" : {
-          "type" : "string",
-          "pattern" : "^((\\d+\\.?)+)$"
+          "$ref" : "types/version.schema.json"
+        },
+        "requirement" : {
+          "type" : "array",
+          "additionalItems" : false,
+          "items" : {
+            "$ref" : "types/extension.schema.json"
+          }
+        },
+        "exclude" : {
+          "type" : "array",
+          "additionalItems" : false,
+          "items" : {
+            "$ref" : "types/extension.schema.json"
+          }
         }
       },
       "required" : [

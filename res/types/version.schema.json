@@ -1,0 +1,9 @@
+{
+  "name" : "Version",
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "https://www.route-cms.de/schema/version.schema.json",
+  "additionalProperties" : false,
+  "additionalItems" : false,
+  "type" : "string",
+  "pattern" : "^((\\d+\\.?)+)$"
+}

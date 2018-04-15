@@ -7,6 +7,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\CachedReader;
 use RouteCMS\Cache\AnnotationCache;
 use RouteCMS\Cache\DoctrineCache;
+use RouteCMS\Plugin\PluginHandler;
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
@@ -29,17 +30,19 @@ class AnnotationHandler
 
 	/**
 	 * @param string   $annotation
-	 * @param string   $path
+	 * @param string   $type
 	 * @param callable $callback
 	 */
-	public function doCall(string $annotation, string $path, $callback): void
+	public function doCall(string $annotation, string $type, $callback): void
 	{
-		foreach (AnnotationCache::instance()->getInfoByPath($annotation, $path, $this->getReader()) as $info) {
-			$annotations = $info->getClassAnnotations();
-			foreach ($annotations as $item) {
-				if (is_a($item, $annotation)) {
-					if(call_user_func($callback, $info->getClassName(), $item) == self::BREAK_LOOP){
-						break 2;
+		foreach (PluginHandler::instance()->getPath($type) as $path) {
+			foreach (AnnotationCache::instance()->getInfoByPath($annotation, $path, $this->getReader()) as $info) {
+				$annotations = $info->getClassAnnotations();
+				foreach ($annotations as $item) {
+					if (is_a($item, $annotation)) {
+						if (call_user_func($callback, $info->getClassName(), $item) == self::BREAK_LOOP) {
+							break 2;
+						}
 					}
 				}
 			}
@@ -110,7 +113,7 @@ class AnnotationHandler
 
 	/**
 	 * Find an annotations and execute an callback with a list of all annotations for this field/element
-	 * 
+	 *
 	 * @param string   $class
 	 * @param string   $annotation
 	 * @param callable $callback

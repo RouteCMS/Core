@@ -46,7 +46,7 @@ class InlineEventCache extends AbstractCache
 	protected function updateCache(): void
 	{
 		$this->events = [];
-		AnnotationHandler::instance()->doCall(TemplateEvent::class, GLOBAL_DIR . "src/Events", function ($className, $item) {
+		AnnotationHandler::instance()->doCall(TemplateEvent::class, "inlineEvents", function ($className, $item) {
 			/** @var TemplateEvent $item */
 			if (!isset($this->events[$item->name])) $this->events[$item->name] = [];
 

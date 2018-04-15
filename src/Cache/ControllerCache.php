@@ -58,7 +58,7 @@ class ControllerCache extends AbstractCache
 	protected function updateCache(): void
 	{
 		$this->collector = new RouteCollector();
-		AnnotationHandler::instance()->doCall(Controller::class, GLOBAL_DIR . "src/Controller/", function ($className, $annotation) {
+		AnnotationHandler::instance()->doCall(Controller::class, "controller", function ($className, $annotation) {
 			/** @var Controller $annotation */
 			$routeController = [$className, "handle"];
 

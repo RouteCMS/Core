@@ -13,6 +13,7 @@ use RouteCMS\Core\RouteCMS;
 use RouteCMS\Core\EventHandler;
 use RouteCMS\Model\Language\Language;
 use RouteCMS\Core\SessionHandler;
+use RouteCMS\Plugin\PluginHandler;
 
 if (!defined('GLOBAL_DIR')) {
 	define('GLOBAL_DIR', str_replace('\\', '/', dirname(__FILE__)) . '/');
@@ -27,11 +28,13 @@ include "config/config.php";
  * @global EntityManager  $db
  * @global LinkHandler    $link
  * @global SessionHandler $session
+ * @global PluginHandler $plugin
  */
-global $cms, $event, $lng, $db, $link, $session;
+global $cms, $event, $lng, $db, $link, $session, $plugin;
 $link = LinkHandler::instance();
 $event = EventHandler::instance();
 $cms = RouteCMS::instance();
+$plugin = PluginHandler::instance();
 $cms->load();
 include "functions.php";
 //define global variable

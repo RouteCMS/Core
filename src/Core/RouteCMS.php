@@ -80,7 +80,7 @@ class RouteCMS
 			'collation' => 'utf8mb4_unicode_ci',
 			'prefix'    => '',
 		], $dbConf), $config);
-		AnnotationHandler::instance()->doCall(EnumColumn::class, GLOBAL_DIR . "src/", function ($className, $annotation) {
+		AnnotationHandler::instance()->doCall(EnumColumn::class, "enumColumn", function ($className, $annotation) {
 			/** @var EnumColumn $annotation */
 			Type::addType($annotation->name, $className);
 		});

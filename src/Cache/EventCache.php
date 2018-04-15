@@ -46,7 +46,7 @@ class EventCache extends AbstractCache
 	protected function updateCache(): void
 	{
 		$this->events = [];
-		AnnotationHandler::instance()->doCall(Event::class, GLOBAL_DIR . "src/Events", function ($className, $item) {
+		AnnotationHandler::instance()->doCall(Event::class, "events", function ($className, $item) {
 			/** @var Event $item */
 			$identifier = $item->getIdentifier();
 			if (!isset($this->events[$identifier])) $this->events[$identifier] = [];

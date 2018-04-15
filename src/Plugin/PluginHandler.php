@@ -20,7 +20,7 @@ class PluginHandler
 	 */
 	protected $paths = [
 		"events"       => [
-			GLOBAL_DIR . "src/Events"
+			GLOBAL_DIR . "src/Events",
 		],
 		"inlineEvents" => [
 			GLOBAL_DIR . "src/Events"
@@ -65,7 +65,7 @@ class PluginHandler
 	}
 
 	/**
-	 * Load and enable plugins 
+	 * Load and enable plugins
 	 */
 	public function enablePlugins(): void
 	{

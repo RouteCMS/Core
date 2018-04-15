@@ -1,0 +1,46 @@
+{
+  "name" : "Plugin",
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "https://www.route-cms.de/schema/plugin.schema.json",
+  "type" : "object",
+  "properties" : {
+    "package" : {
+      "type" : "object",
+      "properties" : {
+        "title" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "types/language.schema.json"
+          }
+        },
+        "description" : {
+          "type" : "array",
+          "additionalItems" : false,
+          "items" : {
+            "$ref" : "types/language.schema.json"
+          }
+        },
+        "identifier" : {
+          "type" : "string",
+          "pattern" : "^([a-zA-Z]{2,15}.[a-zA-Z]{2,30}.[a-zA-Z]{5,30}(.[a-zA-Z]{2,50})?)$"
+        },
+        "date" : {
+          "type" : "string",
+          "pattern": "^(\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01]))$"
+        },
+        "version" : {
+          "type" : "string"
+        }
+      },
+      "required" : [
+        "title",
+        "identifier",
+        "date",
+        "version"
+      ]
+    }
+  },
+  "required" : [
+    "package"
+  ]
+}

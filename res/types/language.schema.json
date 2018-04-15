@@ -1,0 +1,29 @@
+{
+  "name" : "Language",
+  "additionalProperties": false,
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "https://www.route-cms.de/schema/types/language.schema.json",
+  "type" : "object",
+  "properties" : {
+    "language" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "pattern" : "^[a-z]{2}-[A-Z]{2}$"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties": false,
+      "required" : [
+        "code",
+        "value"
+      ]
+    }
+  },
+  "required" : [
+    "language"
+  ]
+}

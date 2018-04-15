@@ -35,6 +35,7 @@ $link = LinkHandler::instance();
 $event = EventHandler::instance();
 $cms = RouteCMS::instance();
 $plugin = PluginHandler::instance();
+$plugin->enablePlugins(); //enable plugins first
 $cms->load();
 include "functions.php";
 //define global variable

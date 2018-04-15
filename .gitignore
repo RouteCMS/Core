@@ -110,3 +110,5 @@ admin/style/*.meta
 admin/js/*.min.js
 admin/js/combined.js
 admin/js/*.meta
+public/extension/*
+!public/extension/index.php

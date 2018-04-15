@@ -8,6 +8,8 @@
       "type" : "object",
       "properties" : {
         "title" : {
+          "description" : "Title of the plugin",
+          "additionalItems" : false,
           "type" : "array",
           "items" : {
             "$ref" : "types/language.schema.json"
@@ -21,15 +23,23 @@
           }
         },
         "identifier" : {
+          "description" : "The unique identifier from this plugin",
           "$ref" : "types/identifier.schema.json"
         },
         "date" : {
+          "description" : "Last modification date",
           "$ref" : "types/date.schema.json"
         },
         "version" : {
+          "description" : "Current version",
           "$ref" : "types/version.schema.json"
         },
+        "class" : {
+          "description" : "Relative path to the main plugin file which implements `RouteCMS\\Plugin\\Plugin`",
+          "type" : "string"
+        },
         "requirement" : {
+          "description" : "A list of plugins/extension which this plugin need",
           "type" : "array",
           "additionalItems" : false,
           "items" : {
@@ -37,6 +47,7 @@
           }
         },
         "exclude" : {
+          "description" : "A list of plugins/extension which are incompatible with this plugin",
           "type" : "array",
           "additionalItems" : false,
           "items" : {
@@ -48,6 +59,7 @@
         "title",
         "identifier",
         "date",
+        "class",
         "version"
       ]
     }

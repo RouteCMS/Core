@@ -34,6 +34,15 @@ class PluginHandler
 	];
 
 	/**
+	 * List of active plugins
+	 * 
+	 * @var string[] 
+	 */
+	protected $plugins = [
+		
+	];
+
+	/**
 	 * Set if the plugins loaded
 	 *
 	 * @var bool
@@ -79,6 +88,6 @@ class PluginHandler
 	 */
 	protected function init(): void
 	{
-		//TODO read active plugins
+		$this->plugins = glob(GLOBAL_DIR."public/extension/*/plugin.json");
 	}
 }

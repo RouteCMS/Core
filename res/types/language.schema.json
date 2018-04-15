@@ -9,6 +9,7 @@
       "type" : "object",
       "properties" : {
         "code" : {
+          "description" : "Language code",
           "type" : "string",
           "pattern" : "^[a-z]{2}-[A-Z]{2}$"
         },

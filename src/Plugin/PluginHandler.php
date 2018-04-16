@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace RouteCMS\Plugin;
 
+use Phramz\Doctrine\Annotation\Scanner\FileInspector;
 use RouteCMS\Core\Singleton;
 
 /**
@@ -35,11 +36,20 @@ class PluginHandler
 
 	/**
 	 * List of active plugins
-	 * 
-	 * @var string[] 
+	 *
+	 * @var array
 	 */
 	protected $plugins = [
-		
+
+	];
+
+	/**
+	 * List of active plugins
+	 *
+	 * @var Plugin[]
+	 */
+	protected $pluginsLoaded = [
+
 	];
 
 	/**
@@ -80,7 +90,14 @@ class PluginHandler
 	{
 		if ($this->enable) return; //Don´t load plugins twice
 		$this->enable = true;
-		//TODO enable active plugins
+		foreach ($this->plugins as $path => $plugin) {
+			$file = $path . "/" . $plugin["package"]["class"];
+			$main = new FileInspector($file);
+			/** @noinspection PhpIncludeInspection */
+			require_once $file;
+			$class = $main->getFullQualifiedClassname();
+			$this->pluginsLoaded[$path] = new $class($path);
+		}
 	}
 
 	/**
@@ -88,6 +105,8 @@ class PluginHandler
 	 */
 	protected function init(): void
 	{
-		$this->plugins = glob(GLOBAL_DIR."public/extension/*/plugin.json");
+		foreach (glob(GLOBAL_DIR . "public/extension/*/plugin.json") as $file) {
+			$this->plugins[dirname($file)] = json_decode(file_get_contents($file), true);
+		}
 	}
 }

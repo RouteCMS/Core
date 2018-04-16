@@ -15,10 +15,8 @@ interface Plugin
 	 * Init plugin(Init paths and any more)
 	 *
 	 * @param string $path
-	 *
-	 * @return void
 	 */
-	public function init(string $path): void;
+	public function __construct(string $path);
 
 	/**
 	 * Install this plugin

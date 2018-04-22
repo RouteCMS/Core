@@ -6,9 +6,9 @@ namespace RouteCMS\Controller;
 use RouteCMS\Annotations\Controller\Form;
 use RouteCMS\Annotations\Controller\FormParameter;
 use RouteCMS\Controller\Parser\FormParser;
+use RouteCMS\Controller\Parser\FormParserHandler;
 use RouteCMS\Core\AnnotationHandler;
 use RouteCMS\Exceptions\InputException;
-use RouteCMS\Exceptions\SystemException;
 use RouteCMS\Util\InputUtil;
 
 
@@ -65,11 +65,7 @@ abstract class PostController extends BaseController
 			$parser = $this->parser;
 			AnnotationHandler::instance()->getPropertyAnnotation(get_called_class(), FormParameter::class, function ($name, $annotation) use (&$parser) {
 				/** @var FormParameter $annotation */
-				$parserClass = 'RouteCMS\\Controller\\Parser\\' . ucfirst($annotation->type) . "FormParser";
-				if (!class_exists($parserClass) && is_subclass_of($parserClass, FormParser::class)) {
-					throw new SystemException("Form parser of type '$annotation->type' couldn't found!");
-				}
-				$parser[$name] = new $parserClass($name, $annotation->default, $annotation->options);
+				$parser[$name] = FormParserHandler::instance()->getParser($annotation->type, $annotation->default, $annotation->options);
 			});
 			$this->parser = $parser;
 		}

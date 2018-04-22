@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+if (!defined("GLOBAL_DIR")) die("Exit!");
 
 /**
  * @author        Olaf Braun <info@braun-development.de>

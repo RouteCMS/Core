@@ -86,7 +86,7 @@ class PluginHandler
 	/**
 	 * Load and enable plugins
 	 */
-	public function enablePlugins(): void
+	public function loadEnabledPlugins(): void
 	{
 		if ($this->enable) return; //Don´t load plugins twice
 		$this->enable = true;

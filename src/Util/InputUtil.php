@@ -33,7 +33,7 @@ class InputUtil
 	 *
 	 * @return mixed
 	 */
-	public static function arrayRequest(string $var, string $type = '', array $allowed, $default = null)
+	public static function arrayRequest(string $var, string $type = '', array $allowed = [], $default = null)
 	{
 		$current = self::request($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -110,7 +110,7 @@ class InputUtil
 	 *
 	 * @return mixed
 	 */
-	public static function arrayPost(string $var, string $type = '', array $allowed, $default = null)
+	public static function arrayPost(string $var, string $type = '', array $allowed = [], $default = null)
 	{
 		$current = self::post($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -142,7 +142,7 @@ class InputUtil
 	 *
 	 * @return mixed
 	 */
-	public static function arrayGet(string $var, string $type = '', array $allowed, $default = null)
+	public static function arrayGet(string $var, string $type = '', array $allowed = [], $default = null)
 	{
 		$current = self::get($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -174,7 +174,7 @@ class InputUtil
 	 *
 	 * @return mixed
 	 */
-	public static function arrayServer(string $var, string $type = '', array $allowed, $default = null)
+	public static function arrayServer(string $var, string $type = '', array $allowed = [], $default = null)
 	{
 		$current = self::server($var, $type, $default);
 		if (!in_array($current, $allowed)) {
@@ -206,7 +206,7 @@ class InputUtil
 	 *
 	 * @return mixed
 	 */
-	public static function arrayCookie(string $var, string $type = '', array $allowed, $default = null)
+	public static function arrayCookie(string $var, string $type = '', array $allowed = [], $default = null)
 	{
 		$current = self::server($var, $type, $default);
 		if (!in_array($current, $allowed)) {

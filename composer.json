@@ -17,6 +17,8 @@
   },
   "require" : {
     "php" : ">=7.2.0",
+    "ext-json" : "*",
+    "ext-openssl" : "*",
     "darsyn/ip" : "3.*",
     "doctrine/annotations" : "1.6.*",
     "doctrine/dbal" : "2.*",

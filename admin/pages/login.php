@@ -26,7 +26,7 @@ global $link;
                 <div class="card-header rounded-0 border-0">
 					<?php pr("route-cms/core/login/area") ?>
                 </div>
-                <form method="post" action="<?php echo $link->buildLink(["class" => get_called_class()]); ?>">
+                <form method="post" action="<?php echo "";//$link->buildLink(["class" => get_called_class()]); ?>">
                     <div class="card-body rounded-0 border-0">
 						<?php
 						echo $this->getContentBuilder()->getHtml();

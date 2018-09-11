@@ -6,7 +6,6 @@ namespace RouteCMS\Controller\Parser;
 use Phramz\Doctrine\Annotation\Scanner\FileInspector;
 use RouteCMS\Core\Singleton;
 use RouteCMS\Exceptions\SystemException;
-use RouteCMS\Util\StringUtil;
 use Symfony\Component\Finder\Finder;
 
 /**

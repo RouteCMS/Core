@@ -3,7 +3,7 @@
   "description" : "RouteCMS",
   "type" : "project",
   "homepage" : "https://www.route-cms.de",
-  "license" : "MIT",
+  "license" : "LGPL-3.0",
   "authors" : [
     {
       "name" : "Cyperghost",

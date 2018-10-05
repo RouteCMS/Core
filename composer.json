@@ -29,7 +29,7 @@
     "leafo/scssphp" : "0.*",
     "matthiasmullie/minify" : "1.*",
     "mtdowling/cron-expression" : "1.*",
-    "phpfastcache/phpfastcache" : "7.0.0-beta3",
+    "phpfastcache/phpfastcache" : "7.*",
     "phpmailer/phpmailer" : "6.*",
     "phramz/doctrine-annotation-scanner" : "1.*",
     "phroute/phroute" : "2.*",

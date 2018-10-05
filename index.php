@@ -10,9 +10,10 @@ error_reporting(E_ALL); //TODO set error reporting by dev level
 use Doctrine\ORM\EntityManager;
 use RouteCMS\Core\LinkHandler;
 use RouteCMS\Core\RouteCMS;
-use RouteCMS\Event\EventHandler;
+use RouteCMS\Core\EventHandler;
 use RouteCMS\Model\Language\Language;
 use RouteCMS\Core\SessionHandler;
+use RouteCMS\Plugin\PluginHandler;
 
 if (!defined('GLOBAL_DIR')) {
 	define('GLOBAL_DIR', str_replace('\\', '/', dirname(__FILE__)) . '/');
@@ -27,11 +28,14 @@ include "config/config.php";
  * @global EntityManager  $db
  * @global LinkHandler    $link
  * @global SessionHandler $session
+ * @global PluginHandler $plugin
  */
-global $cms, $event, $lng, $db, $link, $session;
+global $cms, $event, $lng, $db, $link, $session, $plugin;
 $link = LinkHandler::instance();
 $event = EventHandler::instance();
 $cms = RouteCMS::instance();
+$plugin = PluginHandler::instance();
+$plugin->loadEnabledPlugins(); //enable plugins first
 $cms->load();
 include "functions.php";
 //define global variable

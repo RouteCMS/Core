@@ -80,7 +80,6 @@ composer.phar
 # Managed by Composer
 /app/bootstrap.php.cache
 /var/bootstrap.php.cache
-/bin/*
 !bin/console
 !bin/symfony_requirements
 
@@ -109,3 +108,7 @@ admin/style/*.css
 admin/style/cache/*
 admin/style/*.meta
 admin/js/*.min.js
+admin/js/combined.js
+admin/js/*.meta
+public/extension/*
+!public/extension/index.php

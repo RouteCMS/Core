@@ -1,0 +1,40 @@
+html,
+body {
+  height: 100%;
+}
+
+#login {
+  background: #488bc5 url('#{$image-path}login_bg.png') no-repeat;
+  background-size: cover;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-pack: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  main {
+    padding-top: 50px;
+    padding-bottom: 40px;
+    width: 350px;
+    .card {
+      color: $white;
+      .card-header {
+        background: transparentize(#262626, 20%);
+      }
+      .card-body {
+        background: transparentize(#262626, 30%);
+      }
+      .card-footer {
+        background: transparentize(#336e9a, 5%);
+        .btn-link {
+          color: $white;
+          &:hover {
+            text-decoration: none;
+            cursor: pointer;
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+}

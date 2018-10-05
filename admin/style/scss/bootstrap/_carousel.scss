@@ -1,4 +1,13 @@
-// Wrapper for the slide container and indicators
+// Notes on the classes:
+//
+// 1. The .carousel-item-left and .carousel-item-right is used to indicate where
+//    the active slide is heading.
+// 2. .active.carousel-item is the current slide.
+// 3. .active.carousel-item-left and .active.carousel-item-right is the current
+//    slide in its in-transition state. Only one of these occurs at a time.
+// 4. .carousel-item-next.carousel-item-left and .carousel-item-prev.carousel-item-right
+//    is the upcoming slide in transition.
+
 .carousel {
   position: relative;
 }
@@ -31,7 +40,6 @@
   top: 0;
 }
 
-// CSS3 transforms when supported by the browser
 .carousel-item-next.carousel-item-left,
 .carousel-item-prev.carousel-item-right {
   transform: translateX(0);
@@ -68,6 +76,49 @@
   }
 }
 
+
+//
+// Alternate transitions
+//
+
+.carousel-fade {
+  .carousel-item {
+    opacity: 0;
+    transition-duration: .6s;
+    transition-property: opacity;
+  }
+
+  .carousel-item.active,
+  .carousel-item-next.carousel-item-left,
+  .carousel-item-prev.carousel-item-right {
+    opacity: 1;
+  }
+
+  .active.carousel-item-left,
+  .active.carousel-item-right {
+    opacity: 0;
+  }
+
+  .carousel-item-next,
+  .carousel-item-prev,
+  .carousel-item.active,
+  .active.carousel-item-left,
+  .active.carousel-item-prev {
+    transform: translateX(0);
+  }
+
+  @supports (transform-style: preserve-3d) {
+    .carousel-item-next,
+    .carousel-item-prev,
+    .carousel-item.active,
+    .active.carousel-item-left,
+    .active.carousel-item-prev {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+
 //
 // Left/right controls for nav
 //
@@ -96,18 +147,16 @@
     opacity: .9;
   }
 }
-
 .carousel-control-prev {
   left: 0;
   @if $enable-gradients {
-    background: linear-gradient(90deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, .001));
+    background: linear-gradient(90deg, rgba($black, .25), rgba($black, .001));
   }
 }
-
 .carousel-control-next {
   right: 0;
   @if $enable-gradients {
-    background: linear-gradient(270deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, .001));
+    background: linear-gradient(270deg, rgba($black, .25), rgba($black, .001));
   }
 }
 
@@ -120,14 +169,13 @@
   background: transparent no-repeat center center;
   background-size: 100% 100%;
 }
-
 .carousel-control-prev-icon {
   background-image: $carousel-control-prev-icon-bg;
 }
-
 .carousel-control-next-icon {
   background-image: $carousel-control-next-icon-bg;
 }
+
 
 // Optional indicator pips
 //
@@ -183,6 +231,7 @@
     background-color: $carousel-indicator-active-bg;
   }
 }
+
 
 // Optional captions
 //

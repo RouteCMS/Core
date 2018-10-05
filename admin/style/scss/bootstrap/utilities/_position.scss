@@ -3,12 +3,11 @@
 // Common values
 
 // Sass list not in variables since it's not intended for customization.
+// stylelint-disable-next-line scss/dollar-variable-default
 $positions: static, relative, absolute, fixed, sticky;
 
 @each $position in $positions {
-  .position-#{$position} {
-    position: $position !important;
-  }
+  .position-#{$position} { position: $position !important; }
 }
 
 // Shorthand
@@ -28,7 +27,6 @@ $positions: static, relative, absolute, fixed, sticky;
   left: 0;
   z-index: $zindex-fixed;
 }
-
 @supports (position: sticky) {
   .sticky-top {
     position: sticky;

@@ -3,6 +3,7 @@
 // .modal-dialog    - positioning shell for the actual modal
 // .modal-content   - actual modal w/ bg and corners and stuff
 
+
 // Kill the scroll on the body
 .modal-open {
   overflow: hidden;
@@ -52,9 +53,7 @@
 .modal-dialog-centered {
   display: flex;
   align-items: center;
-  height: 100%;
-  margin-top: 0;
-  margin-bottom: 0;
+  min-height: calc(100% - (#{$modal-dialog-margin} * 2));
 }
 
 // Actual modal
@@ -68,7 +67,7 @@
   background-color: $modal-content-bg;
   background-clip: padding-box;
   border: $modal-content-border-width solid $modal-content-border-color;
-  @include border-radius($border-radius-lg);
+  @include border-radius($modal-content-border-radius);
   @include box-shadow($modal-content-box-shadow-xs);
   // Remove focus outline from opened modal
   outline: 0;
@@ -85,12 +84,8 @@
   background-color: $modal-backdrop-bg;
 
   // Fade for backdrop
-  &.fade {
-    opacity: 0;
-  }
-  &.show {
-    opacity: $modal-backdrop-opacity;
-  }
+  &.fade { opacity: 0; }
+  &.show { opacity: $modal-backdrop-opacity; }
 }
 
 // Modal header
@@ -101,7 +96,7 @@
   justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
   padding: $modal-header-padding;
   border-bottom: $modal-header-border-width solid $modal-header-border-color;
-  @include border-top-radius($border-radius-lg);
+  @include border-top-radius($modal-content-border-radius);
 
   .close {
     padding: $modal-header-padding;
@@ -135,12 +130,8 @@
   border-top: $modal-footer-border-width solid $modal-footer-border-color;
 
   // Easily place margin between footer elements
-  > :not(:first-child) {
-    margin-left: .25rem;
-  }
-  > :not(:last-child) {
-    margin-right: .25rem;
-  }
+  > :not(:first-child) { margin-left: .25rem; }
+  > :not(:last-child) { margin-right: .25rem; }
 }
 
 // Measure scrollbar width for padding body during modal show/hide
@@ -161,22 +152,17 @@
   }
 
   .modal-dialog-centered {
-    margin-top: 0;
-    margin-bottom: 0;
+    min-height: calc(100% - (#{$modal-dialog-margin-y-sm-up} * 2));
   }
 
   .modal-content {
     @include box-shadow($modal-content-box-shadow-sm-up);
   }
 
-  .modal-sm {
-    max-width: $modal-sm;
-  }
+  .modal-sm { max-width: $modal-sm; }
 
 }
 
 @include media-breakpoint-up(lg) {
-  .modal-lg {
-    max-width: $modal-lg;
-  }
+  .modal-lg { max-width: $modal-lg; }
 }

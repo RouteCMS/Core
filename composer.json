@@ -1,55 +1,76 @@
 {
-  "name": "route-cms/core",
-  "description": "RouteCMS",
-  "type": "project",
-  "homepage": "https://www.route-cms.de",
-  "license": "MIT",
-  "authors": [
+  "name" : "route-cms/core",
+  "description" : "RouteCMS",
+  "type" : "project",
+  "homepage" : "https://www.route-cms.de",
+  "license" : "LGPL-3.0",
+  "authors" : [
     {
-      "name": "Cyperghost",
-      "email": "info@braun-development.de",
-      "homepage": "https://www.braun-development.de",
-      "role": "Owner"
+      "name" : "Cyperghost",
+      "email" : "info@braun-development.de",
+      "homepage" : "https://www.braun-development.de",
+      "role" : "Owner"
     }
   ],
-  "support": {
-    "email": "info@braun-development.de"
+  "support" : {
+    "email" : "info@braun-development.de"
   },
-  "require": {
-    "php": ">=7.2.0",
-    "darsyn/ip": "3.*",
-    "doctrine/annotations": "1.6.*",
-    "doctrine/dbal": "2.*",
-    "doctrine/orm": "2.*",
-    "filp/whoops": "2.*",
-    "fresh/doctrine-enum-bundle": "6.*",
-    "indigophp/doctrine-annotation-autoload": "0.1.0",
-    "leafo/scssphp": "0.*",
-    "matthiasmullie/minify": "1.*",
-    "monolog/monolog": "1.*",
-    "mtdowling/cron-expression": "1.*",
-    "phpfastcache/phpfastcache": "7.0.0-beta3",
-    "phpmailer/phpmailer": "6.*",
-    "phramz/doctrine-annotation-scanner": "1.*",
-    "phroute/phroute": "2.*",
-    "voku/html-min": "3.*",
-    "zendframework/zend-text": "2.*"
+  "require" : {
+    "php" : ">=7.2.0",
+    "ext-json" : "*",
+    "ext-openssl" : "*",
+    "darsyn/ip" : "3.*",
+    "doctrine/annotations" : "1.6.*",
+    "doctrine/dbal" : "2.*",
+    "doctrine/orm" : "2.*",
+    "filp/whoops" : "2.*",
+    "fresh/doctrine-enum-bundle" : "6.1.0",
+    "indigophp/doctrine-annotation-autoload" : "0.1.0",
+    "leafo/scssphp" : "0.*",
+    "matthiasmullie/minify" : "1.*",
+    "mtdowling/cron-expression" : "1.*",
+    "phpfastcache/phpfastcache" : "7.*",
+    "phpmailer/phpmailer" : "6.*",
+    "phramz/doctrine-annotation-scanner" : "1.*",
+    "phroute/phroute" : "2.*",
+    "voku/html-min" : "3.*",
+    "zendframework/zend-text" : "2.*"
   },
-  "autoload": {
-    "psr-4": {
-      "RouteCMS\\": "core/"
+  "autoload" : {
+    "psr-4" : {
+      "RouteCMS\\" : "src/",
+      "Fresh\\DoctrineEnumBundle\\" : "vendor/fresh/doctrine-enum-bundle/"
+    },
+    "exclude-from-classmap" : [
+      "vendor/fresh/doctrine-enum-bundle/Tests/"
+    ]
+  },
+  "autoload-dev" : {
+    "psr-4" : {
+      "Tests\\" : "tests/"
     }
   },
-  "autoload-dev": {
-    "psr-4": {
-      "Tests\\": "test/"
+  "require-dev" : {
+    "phpunit/phpunit" : "~5.7.23"
+  },
+  "repositories" : [
+    {
+      "type" : "package",
+      "package" : {
+        "name" : "fresh/doctrine-enum-bundle",
+        "version" : "6.1.0",
+        "source" : {
+          "url" : "https://github.com/RouteCMS/DoctrineEnumBundle.git",
+          "type" : "git",
+          "reference" : "master"
+        }
+      }
     }
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~5.7.23"
-  },
-  "config": {
-    "sort-packages": true,
-    "htaccess-protect": true
+  ],
+  "config" : {
+    "sort-packages" : true,
+    "htaccess-protect" : true,
+    "optimize-autoloader" : true,
+    "discard-changes" : true
   }
 }

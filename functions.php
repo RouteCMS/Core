@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+if (!defined("GLOBAL_DIR")) die("Exit!");
 
 /**
  * @author        Olaf Braun <info@braun-development.de>
@@ -79,4 +80,18 @@ function js(string $path, $admin = false): void
 {
 	global $link;
 	echo $link->jsLink($path, $admin);
+}
+
+/**
+ * Execute an inline event
+ *
+ * @param string $eventName
+ * @param array  $params
+ *
+ * @return void
+ */
+function inline(string $eventName, array &$params = []): void
+{
+	global $event;
+	$event->callInline($eventName, $params);
 }

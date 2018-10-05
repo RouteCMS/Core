@@ -1,0 +1,9 @@
+{
+  "name" : "Identifier",
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$id" : "https://www.route-cms.de/schema/types/identifier.schema.json",
+  "additionalProperties" : false,
+  "additionalItems" : false,
+  "type" : "string",
+  "pattern" : "^([a-zA-Z]{2,15}.[a-zA-Z]{2,30}.[a-zA-Z]{5,30}(.[a-zA-Z]{2,50})?)$"
+}

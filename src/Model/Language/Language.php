@@ -38,14 +38,14 @@ class Language
 	protected $default;
 
 	/**
-	 * @ORM\Column(type="string", unique=true)
+	 * @ORM\Column(type="string", unique=true, length=191)
 	 *
 	 * @var string
 	 */
 	protected $country;
 
 	/**
-	 * @ORM\Column(type="string", unique=true)
+	 * @ORM\Column(type="string", unique=true, length=191)
 	 *
 	 * @var string
 	 */

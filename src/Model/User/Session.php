@@ -25,7 +25,7 @@ class Session
 
 	/**
 	 * @ORM\Id
-	 * @ORM\Column(type="string", unique=true)
+	 * @ORM\Column(type="string", unique=true, length=191)
 	 *
 	 * @var string
 	 */

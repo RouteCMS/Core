@@ -31,7 +31,7 @@ class User
 	use IpAddressInterface;
 
 	/**
-	 * @ORM\Column(type="string", unique=true)
+	 * @ORM\Column(type="string", unique=true, length=191)
 	 *
 	 * @var string
 	 */
@@ -54,7 +54,7 @@ class User
 	protected $password = "";
 
 	/**
-	 * @ORM\Column(type="string", nullable=false, unique=true)
+	 * @ORM\Column(type="string", nullable=false, unique=true, length=191)
 	 *
 	 * @var string
 	 */

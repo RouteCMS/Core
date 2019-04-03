@@ -6,8 +6,11 @@ declare(strict_types=1);
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *
- * @var \RouteCMS\Controller\BaseController $this
+ * @var BaseController $this
  */
+
+use RouteCMS\Controller\BaseController;
+
 ?>
 <?php inline("beforeRequireJs@footer") ?>
 <script type="application/javascript" src="<?php js(DEV_MODE ? "require.js" : "require.min.js", true) ?>"></script>

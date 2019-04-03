@@ -5,12 +5,13 @@ declare(strict_types=1);
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *
- * @var \RouteCMS\Controller\BaseController $this
+ * @var BaseController $this
  */
 global $lng;
 
 //Compile style files
 use RouteCMS\Compiler\AdminStyleHandler;
+use RouteCMS\Controller\BaseController;
 
 AdminStyleHandler::instance()->compile();
 ?>

@@ -6,8 +6,10 @@ declare(strict_types=1);
  * @copyright     2013-2018 Olaf Braun - Software Development
  * @license       GNU Lesser General Public License <https://opensource.org/licenses/LGPL-3.0>
  *
- * @var \RouteCMS\Controller\Admin\LoginController $this
+ * @var LoginController $this
  */
+
+use RouteCMS\Controller\Admin\LoginController;
 
 include "template/header.php";
 global $link;

@@ -110,6 +110,26 @@ abstract class BaseController
 	}
 
 	/**
+	 * Return the path to the template file
+	 *
+	 * @return string
+	 */
+	protected function getPath()
+	{
+		return $this->getTemplateDirectory() . "$this->templateName.php";
+	}
+
+	/**
+	 * Return the template directory
+	 *
+	 * @return string
+	 */
+	protected function getTemplateDirectory()
+	{
+		return GLOBAL_DIR . ($this->isAdmin ? "/admin" : "/public/pages/");
+	}
+
+	/**
 	 * Show this controller content
 	 */
 	protected function show(): void
@@ -121,9 +141,9 @@ abstract class BaseController
 
 			if (!empty($this->templateName)) {
 				/** @noinspection PhpIncludeInspection */
-				include GLOBAL_DIR . ($this->isAdmin ? "/admin" : "/public") . "/pages/$this->templateName.php";
+				include $this->getPath();
 				$this->content = ob_get_contents();
-				//TODO load current template files
+				//TODO load current style files
 			}
 			$this->sendContent();
 		}

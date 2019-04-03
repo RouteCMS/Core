@@ -229,7 +229,7 @@ class Formatter
 	{
 		$current_tag = '';
 
-		for ($input_index; $input_index < strlen($this->input); $input_index++) {
+		for (; $input_index < strlen($this->input); $input_index++) {
 			if ($this->input[$input_index] == '<') {
 				continue;
 			} elseif ($this->input[$input_index] == '>' OR preg_match('/\s/', $this->input[$input_index])) {

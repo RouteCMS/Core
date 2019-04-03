@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace RouteCMS\Util;
 
+use ReflectionClass;
+
 /**
  * @author        Olaf Braun <info@braun-development.de>
  * @copyright     2013-2018 Olaf Braun - Software Development
@@ -18,7 +20,7 @@ final class ClassUtil
 	 */
 	public static function isAbstract(string $class): bool
 	{
-		$a = new \ReflectionClass($class);
+		$a = new ReflectionClass($class);
 
 		return $a->isAbstract();
 	}
